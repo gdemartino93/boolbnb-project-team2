@@ -24,6 +24,15 @@ return new class extends Migration {
             $table->foreignId('message_id')
                 ->constrained();
         });
+
+        Schema::table('additional_service_apartment', function (Blueprint $table) {
+
+            $table->foreignId('additional_service_id')
+                ->constrained();
+            
+            $table->foreignId('apartment_id')
+                ->constrained();
+        });
     }
 
     /**
