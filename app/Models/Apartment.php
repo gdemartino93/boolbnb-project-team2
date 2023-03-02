@@ -10,7 +10,6 @@ class Apartment extends Model
     use HasFactory;
 
     protected $fillable = [
-
         'title',
         'description',
         'room_number',
@@ -23,4 +22,9 @@ class Apartment extends Model
         'img',
         'visible',
     ];
+
+    // many (apartments) to many (sponsorships)
+    public function sponsorships() {
+        return $this -> belongsToMany(Sponsorship :: class);
+    }
 }
