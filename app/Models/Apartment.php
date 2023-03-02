@@ -10,7 +10,6 @@ class Apartment extends Model
     use HasFactory;
 
     protected $fillable = [
-
         'title',
         'description',
         'room_number',
@@ -42,5 +41,11 @@ class Apartment extends Model
     public function views(){
 
         return $this -> hasMany(View::class);
+    }
+    
+    // many (apartments) to many (sponsorships)
+    
+    public function sponsorships() {
+        return $this -> belongsToMany(Sponsorship :: class);
     }
 }
