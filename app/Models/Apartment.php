@@ -23,4 +23,24 @@ class Apartment extends Model
         'img',
         'visible',
     ];
+
+    public function additionalServices(){
+
+        return $this -> belongsToMany(AdditionalService::class);
+    }
+
+    public function user(){
+
+        return $this -> belongsTo(User::class);
+    }
+
+    public function messages(){
+
+        return $this -> hasMany(Message::class);
+    }
+
+    public function views(){
+
+        return $this -> hasMany(View::class);
+    }
 }

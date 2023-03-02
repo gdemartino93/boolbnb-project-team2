@@ -15,4 +15,9 @@ class AdditionalService extends Model
         'description'
         
     ];
+
+    public function apartments(){
+
+        return $this -> belongsToMany(Apartment::class); 
+    }
 }
