@@ -24,8 +24,6 @@ class User extends Authenticatable
         'email_verified_at',
         'lastname',
         'birthdate',
-        'has_apartment'
-
 
     ];
 
