@@ -16,13 +16,10 @@ return new class extends Migration {
                 ->constrained();
         });
 
-        Schema::table('apartment_message', function (Blueprint $table) {
+        Schema::table('messages', function(Blueprint $table) {
 
-            $table->foreignId('apartment_id')
-                ->constrained();
-            
-            $table->foreignId('message_id')
-                ->constrained();
+            $table -> foreignId('apartment_id')
+                   -> constrained();
         });
 
         Schema::table('additional_service_apartment', function (Blueprint $table) {
@@ -46,11 +43,17 @@ return new class extends Migration {
             $table->dropColumn('user_id');
         });
 
-        Schema::table('apartment_message', function (Blueprint $table) {
+        Schema::table('messages', function (Blueprint $table) {
 
-            $table->dropForeign('apartment_message_apartment_id_foreign');
-            $table->dropForeign('apartment_message_message_id_foreign');
+            $table->dropForeign('messages_apartment_id_foreign');
+            $table->dropColumn('apartment_id');
 
+        });
+
+        Schema::table('additional_service_apartment', function(Blueprint $table) {
+
+            $table -> dropForeign('additional_service_apartment_additional_service_id_foreign');
+            $table -> dropForeign('additional_service_apartment_apartment_id_foreign');
         });
     }
 };
