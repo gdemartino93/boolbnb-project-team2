@@ -16,18 +16,33 @@ return new class extends Migration {
                 ->constrained();
         });
 
-        Schema::table('messages', function(Blueprint $table) {
+        Schema::table('messages', function (Blueprint $table) {
 
-            $table -> foreignId('apartment_id')
-                   -> constrained();
+            $table->foreignId('apartment_id')
+                ->constrained();
+        });
+
+        Schema::table('views', function (Blueprint $table) {
+
+            $table->foreignId('apartment_id')
+                ->constrained();
         });
 
         Schema::table('additional_service_apartment', function (Blueprint $table) {
 
             $table->foreignId('additional_service_id')
                 ->constrained();
-            
+
             $table->foreignId('apartment_id')
+                ->constrained();
+        });
+
+        Schema::table('apartment_sponsorship', function (Blueprint $table) {
+
+            $table->foreignId('apartment_id')
+                ->constrained();
+
+            $table->foreignId('sponsorship_id')
                 ->constrained();
         });
     }
@@ -50,10 +65,22 @@ return new class extends Migration {
 
         });
 
-        Schema::table('additional_service_apartment', function(Blueprint $table) {
+        Schema::table('views', function (Blueprint $table) {
 
-            $table -> dropForeign('additional_service_apartment_additional_service_id_foreign');
-            $table -> dropForeign('additional_service_apartment_apartment_id_foreign');
+            $table->dropForeign('views_apartment_id_foreign');
+            $table->dropColumn('apartment_id');
+        });
+
+        Schema::table('additional_service_apartment', function (Blueprint $table) {
+
+            $table->dropForeign('additional_service_apartment_additional_service_id_foreign');
+            $table->dropForeign('additional_service_apartment_apartment_id_foreign');
+        });
+
+        Schema::table('apartment_sponsorship', function (Blueprint $table) {
+
+            $table->dropForeign('apartment_sponsorship_apartment_id_foreign');
+            $table->dropForeign('apartment_sponsorship_sponsorship_id_foreign');
         });
     }
 };
