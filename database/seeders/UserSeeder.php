@@ -1,10 +1,15 @@
 <?php
 
 namespace Database\Seeders;
+
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+use App\Models\Apartment;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -13,7 +18,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users') -> insert([
+        DB::table('users')->insert([
             [
                 'email' => 'lucaasdasd1010@gmail.com',
                 'password' => Hash::make('luca'),
@@ -49,6 +54,16 @@ class UserSeeder extends Seeder
                 'lastname' => 'Rossi',
                 'birthdate' => '1990/04/20'
             ],
-            ]);
+        ]);
+
+        User::factory()->count(15)->make()->each(function ($a) {
+
+            // FK User
+            $apartment = Apartment::inRandomOrder()->first();
+
+            $a->apartment()->associate($apartment);
+
+            $a->save();
+        });
     }
 }
