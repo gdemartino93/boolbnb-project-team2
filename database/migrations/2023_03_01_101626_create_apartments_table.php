@@ -18,11 +18,11 @@ return new class extends Migration {
             $table->tinyInteger('room_number')->unsigned();
             $table->tinyInteger('bed_number')->unsigned();
             $table->tinyInteger('bath_number')->unsigned();
-            $table->tinyInteger('square_meters')->unsigned();
+            $table->smallInteger('square_meters')->unsigned();
             $table->string('address', 81);
             $table -> float('latitude');
             $table -> float('longitude');
-            $table->string('img', 64);
+            $table->string('img');
             $table->boolean('visible')->default(false);
             
             $table->timestamps();

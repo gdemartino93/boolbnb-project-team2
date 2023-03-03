@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +16,22 @@ class SponsorshipSeeder extends Seeder
     public function run(): void
     {
         
-        Sponsorship::factory() -> count(50) -> create();
+        DB::table('sponsorships') -> insert([
+            
+            [
+                'type' => '24h',
+                'price' => '2.99'
+            ],
+            
+            [
+                'type' => '72h',
+                'price' => '5.99'
+            ],
+
+            [
+                'type' => '144h',
+                'price' => '9.99'
+            ]
+        ]);
     }
 }

@@ -2,14 +2,16 @@
 
 namespace Database\Seeders;
 
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+use App\Models\User;
 use App\Models\AdditionalService;
 use App\Models\Apartment;
 use App\Models\Sponsorship;
 use App\Models\View;
 use App\Models\Message;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class ApartmentSeeder extends Seeder
 {
@@ -19,31 +21,23 @@ class ApartmentSeeder extends Seeder
 
     public function run()
     {
-        Apartment::factory()->count(55)->make()->each(function ($a) {
+        Apartment::factory()->count(50)->make()->each(function ($a) {
 
-            // FK View
-            $view = View::inRandomOrder()->first();
+            // Foreign Key user_id
+            $user = User::inRandomOrder() -> first();
+            $a -> user() -> associate($user);
 
-            $a->view()->associate($view);
-
-            $a->save();
-
-            // FK Message
-            $message = Message::inRandomOrder()->first();
-
-            $a->message()->associate($message);
-
-            $a->save();
+            $a -> save();
 
             // M a N additional_service_apartment
-            $additionalService = AdditionalService::inRandomOrder()->limit(rand(1, 5))->get();
+            $additionalServices = AdditionalService::inRandomOrder()->limit(rand(1, 5))->get();
 
-            $a->additionalServices()->attach($additionalService);
+            $a->additionalServices()->attach($additionalServices);
 
             // M a N additional_service_apartment
-            $sponsorship = Sponsorship::inRandomOrder()->limit(rand(1, 5))->get();
+            $sponsorships = Sponsorship::inRandomOrder()->limit(rand(1, 3))->get();
 
-            $a->sponsorship()->attach($sponsorship);
+            $a->sponsorships()->attach($sponsorships);
         });
     }
 }

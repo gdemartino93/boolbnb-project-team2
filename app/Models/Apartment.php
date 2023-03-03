@@ -23,16 +23,12 @@ class Apartment extends Model
         'visible',
     ];
 
-    public function additionalServices(){
-
-        return $this -> belongsToMany(AdditionalService::class);
-    }
-
+    
     public function user(){
-
+        
         return $this -> belongsTo(User::class);
     }
-
+    
     public function messages(){
 
         return $this -> hasMany(Message::class);
@@ -46,6 +42,12 @@ class Apartment extends Model
     // many (apartments) to many (sponsorships)
     
     public function sponsorships() {
+        
         return $this -> belongsToMany(Sponsorship :: class);
+    }
+    
+    public function additionalServices(){
+
+        return $this -> belongsToMany(AdditionalService::class);
     }
 }

@@ -15,6 +15,6 @@ class AdditionalServiceSeeder extends Seeder
     public function run(): void
     {
         
-        AdditionalService::factory() -> count(50) -> create();
+        AdditionalService::factory() -> count(100) -> create();
     }
 }

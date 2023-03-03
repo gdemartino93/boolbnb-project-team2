@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Apartment;
 use App\Models\User;
 
 class UserSeeder extends Seeder
@@ -55,15 +54,5 @@ class UserSeeder extends Seeder
                 'birthdate' => '1990/04/20'
             ],
         ]);
-
-        User::factory()->count(15)->make()->each(function ($a) {
-
-            // FK User
-            $apartment = Apartment::inRandomOrder()->first();
-
-            $a->apartments()->associate($apartment);
-
-            $a->save();
-        });
     }
 }
