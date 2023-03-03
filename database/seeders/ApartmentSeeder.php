@@ -12,34 +12,27 @@ use App\Models\Apartment;
 use App\Models\Sponsorship;
 use App\Models\View;
 use App\Models\Message;
-
+use Carbon\Carbon;
 
 class ApartmentSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-
     public function run()
     {
-        Apartment::factory()->count(50)->make()->each(function ($a) {
-
-            // FK User
+        Apartment::factory()->count(50)->make()->each(function ($apartment) {
             $user = User::inRandomOrder()->first();
+            $apartment->user()->associate($user);
+            $apartment->save();
 
-            $a->user()->associate($user);
-
-            $a->save();
-
-            // M a N additional_service_apartment
             $additionalServices = AdditionalService::inRandomOrder()->limit(rand(1, 5))->get();
+            $apartment->additionalServices()->attach($additionalServices);
 
-            $a->additionalServices()->attach($additionalServices);
-
-            // M a N additional_service_apartment
+            // 
             $sponsorships = Sponsorship::inRandomOrder()->limit(rand(1, 5))->get();
-
-            $a->sponsorships()->attach($sponsorships);
+            $sponsorships->each(function ($sponsorship) use ($apartment) {
+            // l'attach passa una data formato timestamp quindi per passarla correttamente nel db dobbiamo convertirla in formato data che si aspetta la colonna
+            $expiringDate = Carbon::now()->addDays(rand(-180, 0))->format('Y-m-d');
+            $apartment->sponsorships()->attach($sponsorship, ['expiring_date' => $expiringDate]);
+            });
         });
     }
 }
