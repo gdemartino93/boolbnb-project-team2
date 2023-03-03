@@ -31,20 +31,6 @@ class ApartmentSeeder extends Seeder
 
             $a->save();
 
-            // FK View
-            $views = View::inRandomOrder()->first();
-
-            $a->views()->associate($views);
-
-            $a->save();
-
-            // FK Message
-            $messages = Message::inRandomOrder()->first();
-
-            $a->messages()->associate($messages);
-
-            $a->save();
-
             // M a N additional_service_apartment
             $additionalServices = AdditionalService::inRandomOrder()->limit(rand(1, 5))->get();
 
