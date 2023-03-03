@@ -15,7 +15,7 @@ class ViewFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    { 
         return [
             'ip' => fake()->ipv4(),
             'date' => fake()->date(),
