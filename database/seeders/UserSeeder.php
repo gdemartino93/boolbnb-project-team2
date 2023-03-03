@@ -51,20 +51,16 @@ class UserSeeder extends Seeder
                 'lastname' => 'Rossi',
                 'birthdate' => '1990/04/20'
             ],
-<<<<<<< HEAD
             ]);
 
-            User::factory()->count(15)->make()->each(function ($a) {
+            // User::factory()->count(15)->make()->each(function ($a) {
 
-                // FK User
-                $apartment = Apartment::inRandomOrder()->first();
+            //     // FK User
+            //     $apartment = Apartment::inRandomOrder()->first();
     
-                $a->apartment()->associate($apartment);
+            //     $a->apartment()->associate($apartment);
     
-                $a->save();
-            });
-=======
-        ]);
->>>>>>> 060d34e4080ea171e54c9e12c90931e193643387
+            //     $a->save();
+            // });
     }
 }
