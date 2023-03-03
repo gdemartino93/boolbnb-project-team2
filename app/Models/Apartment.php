@@ -53,4 +53,10 @@ class Apartment extends Model
     {
         return $this->belongsToMany(Sponsorship::class);
     }
+
+    public function additionalServices()
+    {
+
+        return $this->belongsToMany(AdditionalService::class);
+    }
 }
