@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
             // FK User
             $apartment = Apartment::inRandomOrder()->first();
 
-            $a->apartment()->associate($apartment);
+            $a->apartments()->associate($apartment);
 
             $a->save();
         });
