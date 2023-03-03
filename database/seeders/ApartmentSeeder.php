@@ -13,6 +13,7 @@ use App\Models\Sponsorship;
 use App\Models\View;
 use App\Models\Message;
 
+
 class ApartmentSeeder extends Seeder
 {
     /**
@@ -23,11 +24,26 @@ class ApartmentSeeder extends Seeder
     {
         Apartment::factory()->count(50)->make()->each(function ($a) {
 
-            // Foreign Key user_id
-            $user = User::inRandomOrder() -> first();
-            $a -> user() -> associate($user);
+            // FK User
+            $user = User::inRandomOrder()->first();
 
-            $a -> save();
+            $a->user()->associate($user);
+
+            $a->save();
+
+            // FK View
+            $views = View::inRandomOrder()->first();
+
+            $a->views()->associate($views);
+
+            $a->save();
+
+            // FK Message
+            $messages = Message::inRandomOrder()->first();
+
+            $a->messages()->associate($messages);
+
+            $a->save();
 
             // M a N additional_service_apartment
             $additionalServices = AdditionalService::inRandomOrder()->limit(rand(1, 5))->get();
@@ -35,7 +51,7 @@ class ApartmentSeeder extends Seeder
             $a->additionalServices()->attach($additionalServices);
 
             // M a N additional_service_apartment
-            $sponsorships = Sponsorship::inRandomOrder()->limit(rand(1, 3))->get();
+            $sponsorships = Sponsorship::inRandomOrder()->limit(rand(1, 5))->get();
 
             $a->sponsorships()->attach($sponsorships);
         });

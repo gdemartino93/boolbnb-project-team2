@@ -23,31 +23,40 @@ class Apartment extends Model
         'visible',
     ];
 
-    
-    public function user(){
-        
-        return $this -> belongsTo(User::class);
-    }
-    
-    public function messages(){
+    public function additionalServices()
+    {
 
-        return $this -> hasMany(Message::class);
+        return $this->belongsToMany(AdditionalService::class);
     }
 
-    public function views(){
+    public function user()
+    {
 
-        return $this -> hasMany(View::class);
+        return $this->belongsTo(User::class);
     }
-    
+
+    public function messages()
+    {
+
+        return $this->hasMany(Message::class);
+    }
+
+    public function views()
+    {
+
+        return $this->hasMany(View::class);
+    }
+
     // many (apartments) to many (sponsorships)
-    
-    public function sponsorships() {
-        
-        return $this -> belongsToMany(Sponsorship :: class);
-    }
-    
-    public function additionalServices(){
 
-        return $this -> belongsToMany(AdditionalService::class);
+    public function sponsorships()
+    {
+        return $this->belongsToMany(Sponsorship::class);
+    }
+
+    public function additionalServices()
+    {
+
+        return $this->belongsToMany(AdditionalService::class);
     }
 }
