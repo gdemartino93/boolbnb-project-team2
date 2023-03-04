@@ -25,10 +25,10 @@ const form = ({
     password : ''
 });
 
-// csrf protection laravel documentation
-// const getToken = async () =>{
-//     await axios.get('/sanctum/csrf-cookie')
-// };
+    // csrf protection laravel documentation
+    const getToken = async () =>{
+        await axios.get('/sanctum/csrf-cookie')
+    };
 
 const handleLogin = async () => {
     // await getToken();

@@ -46,16 +46,13 @@ const form = ref({
 
 });
 
-const stampa = () =>{
-    console.log(form)
-}
 // csrf protection laravel documentation
-// const getToken = async () =>{
-//     await axios.get('/sanctum/csrf-cookie')
-// };
+const getToken = async () =>{
+    await axios.get('/sanctum/csrf-cookie')
+};
 // facciamo la chiamta api per la registrazzione
 const handleRegister = async () =>{
-    // await getToken(); // ottieni il token CSRF prima di effettuare la richiesta
+    await getToken(); // ottieni il token CSRF prima di effettuare la richiesta
     await axios.post('/register',{
         // passiamo al backend l'oggetto che che abbiamo creato con i dati presi dal form
         name : form.value.name,
@@ -70,7 +67,7 @@ const handleRegister = async () =>{
 
 </script>
 
-<style lang="scss" scoped>
+<style  scoped>
 .d-flex{
     display: flex;
     flex-direction: column;
