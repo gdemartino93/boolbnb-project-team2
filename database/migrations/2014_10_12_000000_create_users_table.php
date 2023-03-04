@@ -18,6 +18,9 @@ return new class extends Migration {
             $table->string('name');
             $table->string('lastname', 64);
             $table->date('birthdate');
+
+            // se bisogna aggiungere dei campi per la registrazione degli utenti, andare in http\controllers\auth per aggiungerli anche li e fare validazioni altrimenti il frontend non comunicherà con il backend.
+            // i campi di default sono email/nome/password
             
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

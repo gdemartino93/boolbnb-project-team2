@@ -26,12 +26,12 @@ const form = ({
 });
 
 // csrf protection laravel documentation
-const getToken = async () =>{
-    await axios.get('/sanctum/csrf-cookie')
-};
+// const getToken = async () =>{
+//     await axios.get('/sanctum/csrf-cookie')
+// };
 
 const handleLogin = async () => {
-    await getToken();
+    // await getToken();
     await axios.post('/login',{
         email: form.email,
         password: form.password

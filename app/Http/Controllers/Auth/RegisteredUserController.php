@@ -22,14 +22,21 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            // validiamo che l'utente abbia più di 18 anni 
+            'birthdate' => ['required', 'date', 'before:'.date('Y-m-d', strtotime('-18 years'))],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'lastname' => $request -> lastname,
+            'birthdate' => $request -> birthdate
+            
         ]);
 
         event(new Registered($user));

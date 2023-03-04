@@ -5,11 +5,12 @@
             <label for="name">Nome</label>
             <input type="text" name="name" v-model="form.name">
 
-            <label for="surname">Cognome</label>
-            <input type="text" name="surname" v-model="form.surname">
+            <label for="lastname">Cognome</label>
+            <input type="text" name="lastname" v-model="form.lastname">
+                        
 
             <label for="date">Data di nascita</label>
-            <input type="date" name="dateOB" v-model="form.dateOB" >
+            <input type="date" name="birthdate" v-model="form.birthdate" >
 
             <label for="email">Email</label>
             <input type="text" name="email" v-model="form.email" >
@@ -17,10 +18,11 @@
             <label for="email">Password</label>
             <input type="password" name="password" v-model="form.password">
 
-            <!-- <label for="email">Repeat Password</label>
-            <input type="password" name="password_confirmation" v-model="form.password_confirmation"> -->
+            <label for="email">Repeat Password</label>
+            <input type="password" name="password_confirmation" v-model="form.password_confirmation">
 
             <button type="submit" class="">Login</button>
+            <button @click="stampa">stampa</button>
         </form>
     </div>
 </template>
@@ -37,24 +39,29 @@ const router = useRouter();
 // colleghiamo i dati agli input del form tramite v-model e creiamo un oggetto con quei dati
 const form = ref({
     name : "",
-    surname : "",
-    dateOB : "",
+    lastname : "",
+    birthdate : "",
     email : "",
     password : "",
 
 });
+
+const stampa = () =>{
+    console.log(form)
+}
 // csrf protection laravel documentation
-const getToken = async () =>{
-    await axios.get('/sanctum/csrf-cookie')
-};
+// const getToken = async () =>{
+//     await axios.get('/sanctum/csrf-cookie')
+// };
 // facciamo la chiamta api per la registrazzione
 const handleRegister = async () =>{
-    await getToken(); // ottieni il token CSRF prima di effettuare la richiesta
+    // await getToken(); // ottieni il token CSRF prima di effettuare la richiesta
     await axios.post('/register',{
         // passiamo al backend l'oggetto che che abbiamo creato con i dati presi dal form
         name : form.value.name,
-        surname : form.value.surname,
-        dateOB : form.value.dateOB,
+        lastname :form.value.lastname,
+        email : form.value.email,
+        birthdate : form.value.birthdate,
         password : form.value.password,
         password_confirmation : form.value.password_confirmation
     })
