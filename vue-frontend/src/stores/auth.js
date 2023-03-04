@@ -38,6 +38,24 @@ export const useAuthStore = defineStore("auth",{
             this.router.push("/")
 
           },
+        //   gestione registrazione
+        async handleRegister(data) {
+            // usiamo trycatch per la gestione degli errori ed evitare crash dell'applicazione
+            try {
+                await this.getToken();
+                await axios.post('/register',{
+                    name : data.name,
+                    lastname : data.lastname,
+                    email : data.email,
+                    birthdate : data.birthdate,
+                    password : data.password,
+                    password_confirmation : data.password_confirmation
+                });            
+            } catch (error) {
+                console.log("Errore registrazione: " + error);
+            }
+            this.router.push('/')
+          },
 
     }
 })
