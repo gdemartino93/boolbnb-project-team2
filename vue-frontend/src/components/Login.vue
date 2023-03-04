@@ -31,7 +31,7 @@ const form = ({
     };
 
 const handleLogin = async () => {
-    // await getToken();
+    await getToken();
     await axios.post('/login',{
         email: form.email,
         password: form.password
