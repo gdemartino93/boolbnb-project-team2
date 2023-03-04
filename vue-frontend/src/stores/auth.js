@@ -17,11 +17,27 @@ export const useAuthStore = defineStore("auth",{
             await axios.get('/sanctum/csrf-cookie');
         },
         // otteniamo le informazioni dell'user
+        // gestiamo con il trycatch per evitare di far crashare l'applicazione quando l'utente non è loggato.
         async getUser(){
-            this.getToken();
-            const response = await axios.get('/api/user');
-            this.authUser = response.data
+            try {
+                await this.getToken();
+                const response = await axios.get('/api/user');
+                this.authUser = response.data;
+            } catch (error) {
+                console.log("Errore get user" + error)
+            }
         }
+        ,
+        // gestione login
+        async handleLogin(data) {
+            await this.getToken();
+            await axios.post("/login", {
+              email: data.email,
+              password: data.password,
+            });
+            this.router.push("/")
+
+          },
 
     }
 })
