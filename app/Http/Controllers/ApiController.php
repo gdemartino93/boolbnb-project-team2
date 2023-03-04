@@ -17,11 +17,11 @@ class ApiController extends Controller
     // Index function displaying list of apartments
     public function index(){
 
-        $apartments = Apartment::with('additional_services')
+        $apartments = Apartment::with('additionalServices')
                                 -> orderBy('created_at', 'desc')
                                 -> get();
 
-        $additional_services = AdditionalService::all();
+        $additionalServices = AdditionalService::all();
 
         return response() -> json([
 
@@ -29,7 +29,7 @@ class ApiController extends Controller
             'response' => [
 
                 'apartments' => $apartments,
-                'additional_services' => $additional_services
+                'additionalServices' => $additionalServices
             ]
         ]);
     }
