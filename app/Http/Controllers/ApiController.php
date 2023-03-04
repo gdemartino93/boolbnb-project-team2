@@ -13,31 +13,33 @@ use App\Models\View;
 
 class ApiController extends Controller
 {
-    
+
     // Index function displaying list of apartments
-    public function index(){
+    public function index()
+    {
 
         $apartments = Apartment::with('additionalServices')
-                                -> orderBy('created_at', 'desc')
-                                -> get();
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        $additionalServices = AdditionalService::all();
+        // $additionalServices = AdditionalService::all();
 
-        return response() -> json([
+        return response()->json([
 
             'success' => true,
             'response' => [
 
                 'apartments' => $apartments,
-                'additionalServices' => $additionalServices
+                // 'additionalServices' => $additionalServices
             ]
         ]);
     }
 
     // Store function creating new obj
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
-        $data = $request -> validate([
+        $data = $request->validate([
 
             'title' => 'required | string | min: 10',
             'description' => 'nullable | text',
@@ -58,13 +60,13 @@ class ApiController extends Controller
         if (array_key_exists('additional_services_id', $data)) {
 
             $additional_services = AdditionalService::find($data['additional_services_id']);
-            $apartment -> additionalServices() -> sync($additional_services);
+            $apartment->additionalServices()->sync($additional_services);
         }
 
-        return response() -> json([
+        return response()->json([
             'success' => true,
             'response' => $apartment,
-            'data' => $request -> all()
+            'data' => $request->all()
         ]);
     }
 }
