@@ -21,7 +21,7 @@
         <input type="password" name="password_confirmation" v-model="form.password_confirmation">
   
         <button type="submit" class="">Login</button>
-        <button @click.prevent="stampa">stampa</button>
+        <button type="submit">stampa</button>
       </form>
     </div>
   </template>
@@ -30,7 +30,9 @@
   import { useRouter } from 'vue-router';
   import { ref } from 'vue';
   import axios from 'axios';
-  
+  axios.defaults.baseURL = 'http://localhost:8000';
+  axios.defaults.withCredentials = true;
+
   export default {
     data() {
       return {
@@ -60,9 +62,6 @@
       async getToken() {
         await axios.get('/sanctum/csrf-cookie');
       },
-      stampa() {
-        console.log(this.form);
-      }
     },
   };
   </script>
