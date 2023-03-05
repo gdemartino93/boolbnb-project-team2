@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>login</h1>
-      <form class="d-flex" @submit.prevent="handleRegister">
+      <form class="d-flex" @submit.prevent="authStore.handleRegister(form)">
         <label for="name">Nome</label>
         <input type="text" name="name" v-model="form.name">
   
@@ -24,54 +24,40 @@
         <button type="submit">stampa</button>
       </form>
     </div>
-  </template>
+</template>
   
-  <script>
-  import { useRouter } from 'vue-router';
-  import { ref } from 'vue';
-  import axios from 'axios';
-  axios.defaults.baseURL = 'http://localhost:8000';
-  axios.defaults.withCredentials = true;
+<script>
+import { ref } from 'vue';
+import { useAuthStore } from '../stores/auth';
+
 
   export default {
     data() {
       return {
-        form: {
+        authStore: useAuthStore(),
+        form: ref({
           name: "",
           lastname: "",
           birthdate: "",
           email: "",
           password: "",
           password_confirmation: "",
-        },
+        }),
       };
     },
     methods: {
-      async handleRegister() {
-        await this.getToken();
-        await axios.post('/register',{
-            name : this.form.name,
-            lastname : this.form.lastname,
-            email : this.form.email,
-            birthdate : this.form.birthdate,
-            password : this.form.password,
-            password_confirmation : this.form.password_confirmation
-        });
-        this.$router.push('/');
-      },
-      async getToken() {
-        await axios.get('/sanctum/csrf-cookie');
-      },
+
+
     },
   };
   </script>
   
-  <style scoped>
+<style scoped>
   .d-flex {
     display: flex;
     flex-direction: column;
     width: 500px;
     margin: 0 auto;
   }
-  </style>
+</style>
   
