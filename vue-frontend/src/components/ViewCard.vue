@@ -53,6 +53,8 @@ export default {
 <template>
     <h3>Id: {{ $route.params.id }}</h3>
     <ul>
+        <img :src="$route.params.img" alt="apartment image">
+
         <li>Title: {{ $route.params.title }}</li>
         <li>Description: {{ $route.params.description }}</li>
         <li>Room Number: {{ $route.params.room_number }}</li>
@@ -62,7 +64,7 @@ export default {
         <li>Address: {{ $route.params.address }}</li>
         <li>Latitude: {{ $route.params.latitude }}</li>
         <li>Longitude: {{ $route.params.longitude }}</li>
-        <li>Visible: {{ $route.params.visible }}</li>
+        <!-- <li>Visible: {{ $route.params.visible }}</li> -->
     </ul>
 </template>
 
