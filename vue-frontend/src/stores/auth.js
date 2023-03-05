@@ -4,11 +4,13 @@ import axios from "axios";
 export const useAuthStore = defineStore("auth",{
     // nello state si ineriscono le variabili
     state: () => ({
-        authUser: null
+        authUser: null,
+        authErrors: []
     }),
     // nei getters si calcola il valore derivante dallo stato dell'applicazione per non ripetre codice.
     getters: {
-        user: (state) => state.authUser
+        user: (state) => state.authUser,
+        error: (state) => state.authErrors,
     },
     // qui ci vanno le funzioni tra cui le chiamate API
     actions:{
@@ -30,19 +32,29 @@ export const useAuthStore = defineStore("auth",{
         ,
         // gestione login
         async handleLogin(data) {
+            this.authErrors = [];
             await this.getToken();
-            await axios.post("/login", {
-              email: data.email,
-              password: data.password,
-            });
-            this.router.push("/")
+            try {
+                await axios.post("/login", {
+                    email: data.email,
+                    password: data.password,
+                });
+            this.router.push("/")    
+            } catch (error) {
+                if(error.response.status === 422){
+                    this.authErrors = error.response.data.errors
+                }
+            }
+
+
 
           },
         //   gestione registrazione
         async handleRegister(data) {
-            // usiamo trycatch per la gestione degli errori ed evitare crash dell'applicazione
+            this.authErrors = [];
+            await this.getToken();
+            // usiamo trycatch per la gestione degli errori ed evitare crash dell'applicazione e gestione degli errori
             try {
-                await this.getToken();
                 await axios.post('/register',{
                     name : data.name,
                     lastname : data.lastname,
@@ -50,11 +62,13 @@ export const useAuthStore = defineStore("auth",{
                     birthdate : data.birthdate,
                     password : data.password,
                     password_confirmation : data.password_confirmation
-                });            
+                });        
+                this.router.push('/')    
             } catch (error) {
-                console.log("Errore registrazione: " + error);
+                if ( error.response.status === 422){
+                    this.authErrors = error.response.data.errors
+                }
             }
-            this.router.push('/')
           },
         // gestiamo il logout
         async handleLogout(){

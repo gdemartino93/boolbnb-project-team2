@@ -21,7 +21,6 @@
         <input type="password" name="password_confirmation" v-model="form.password_confirmation">
   
         <button type="submit" class="">Login</button>
-        <button type="submit">stampa</button>
       </form>
     </div>
 </template>

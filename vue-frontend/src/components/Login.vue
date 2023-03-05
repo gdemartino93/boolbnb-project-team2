@@ -1,14 +1,16 @@
 <template>
-  <div>
+  <section class="col-4 mx-auto">
     <h1>login</h1>
     <form @submit.prevent="authStore.handleLogin(form)">
-      <label for="email">Email</label>
-      <input type="text" name="email" v-model="form.email">
-      <label for="password">Password</label>
-      <input type="password" name="password" v-model="form.password">
-      <button type="submit">Login</button>
+      <div class="d-flex flex-column">
+        <label for="email">Email</label>
+        <input type="text" name="email" v-model="form.email">
+        <label for="password">Password</label>
+        <input type="password" name="password" v-model="form.password">
+      </div>
+      <button type="submit" class="btn btn-success my-3">Login</button>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>
