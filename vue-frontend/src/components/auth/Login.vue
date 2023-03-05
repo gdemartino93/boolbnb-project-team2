@@ -22,13 +22,17 @@
         <span class="text-danger">{{ authStore.errors.password[0] }}</span>
         </div>
       </div>
-      <button type="submit" class="btn btn-success my-3">Login</button>
+      <div class="d-flex align-items-center justify-content-between">
+        <button type="submit" class="btn btn-success my-3">Login</button>
+        <router-link :to="'/forgot-password'">Password Dimenticata</router-link>
+      </div>
+
     </form>
   </section>
 </template>
 
 <script>
-import { useAuthStore } from '../stores/auth';
+import { useAuthStore } from '../../stores/auth';
 import { ref } from 'vue';
 
 export default {

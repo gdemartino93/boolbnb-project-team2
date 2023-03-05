@@ -1,6 +1,6 @@
 <template>
     <div class="container col-6">
-      <h1>login</h1>
+      <h1>registrazione</h1>
       <form class="d-flex flex-column mx-auto" @submit.prevent="authStore.handleRegister(form)">
         <div class="d-flex flex-column">
           <label for="name">Nome</label>
@@ -52,7 +52,7 @@
   
 <script>
 import { ref } from 'vue';
-import { useAuthStore } from '../stores/auth';
+import { useAuthStore } from '../../stores/auth';
 
 
   export default {
