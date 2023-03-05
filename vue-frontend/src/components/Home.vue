@@ -5,23 +5,11 @@
             <h2> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
         <div v-else>Go to login</div>
-        <ul>
-            <li v-for="apartment in apartments" :key="apartment.id">
-                <h1>Apartments n:{{ apartment.id }}</h1>
-                
-                <img :src="apartment.img" :alt="apartment.img">
-                
-                <h3>Nome: {{ apartment.title }}</h3>
-                
-                <!-- <ul>
-                    <li v-for="additional_service in apartment.additional_services" :key="additional_service.id">
-                        Nome:{{ additional_service.name }}
-                    </li>
-                </ul> -->
+        
+        <div class="container">
 
-                <h3> Additional services: {{ apartment.additional_services.length }}</h3>
-            </li>
-        </ul>
+          <AptCard v-for="apartment in apartments" :apartment="apartment"/>  
+        </div>
     </div>
 </template>
   
@@ -29,20 +17,25 @@
 import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 
+import AptCard from './AptCard.vue';
+
 
 
 export default {
     name: 'HomePage',
+    components: {
+      AptCard
+    },
     data() {
         return {
             // dichiariamo un istanza di useAuthstore 
             authStore : useAuthStore(),
-            apartments: [],
+            apartments: []
         };
     },
     methods: {
 
-        async apartmentPrint() {
+      async apartmentPrint() {
             try {
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments;
@@ -57,8 +50,16 @@ export default {
         
         this.authStore.getUser(); //uso la funzione dello store di pinia
         this.apartmentPrint();
-
     },
 };
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+</style>
   
