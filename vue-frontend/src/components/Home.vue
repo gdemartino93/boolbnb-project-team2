@@ -12,12 +12,18 @@
         <ul>
             <li v-for="apartment in apartments" :key="apartment.id">
                 <h1>Apartments n:{{ apartment.id }}</h1>
-                Nome: {{ apartment.title }}
-                <ul>
+                
+                <img :src="apartment.img" :alt="apartment.img">
+                
+                <h3>Nome: {{ apartment.title }}</h3>
+                
+                <!-- <ul>
                     <li v-for="additional_service in apartment.additional_services" :key="additional_service.id">
                         Nome:{{ additional_service.name }}
                     </li>
-                </ul>
+                </ul> -->
+
+                <h3> Additional services: {{ apartment.additional_services.length }}</h3>
             </li>
         </ul>
     </div>
