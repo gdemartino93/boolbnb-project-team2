@@ -2,7 +2,7 @@
     <div>
         <h1>Home Page</h1>
         <div v-if="authStore.user">
-            Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}
+            <h2> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
         <div v-else>Go to login</div>
         <ul>
