@@ -19,6 +19,9 @@ import { ref } from 'vue';
         data(){
             return{
                 authStore : useAuthStore(),
+                // form: ref({
+
+                // })
             }
         }
         
