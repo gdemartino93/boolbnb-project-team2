@@ -10,7 +10,7 @@ export const useAuthStore = defineStore("auth",{
     // nei getters si calcola il valore derivante dallo stato dell'applicazione per non ripetre codice.
     getters: {
         user: (state) => state.authUser,
-        error: (state) => state.authErrors,
+        errors: (state) => state.authErrors,
     },
     // qui ci vanno le funzioni tra cui le chiamate API
     actions:{
