@@ -19,7 +19,7 @@ const router = createRouter({
       component: () => import('../components/auth/Register.vue')
     },
     {
-      path: '/apartments/:id',
+      path: '/apartments/:id/:title/:description/:room_number/:bed_number/:bath_number/:square_meters/:address/:latitude/:longitude/:visible',
       name: 'view',
       component: () => import('../components/ViewCard.vue'),
     },
@@ -33,7 +33,7 @@ const router = createRouter({
     //   name: 'resetpassword',
     //   component: () => import('../components/auth/ResetPassword.vue')
     // },
-    
+
   ]
 })
 
