@@ -2,9 +2,10 @@
     <div class="container">
         <div class="col-5 mx-auto">
             <h2>Recupera password</h2>
-            <form action="" class="d-flex flex-column">
+            <form action="" class="d-flex flex-column" @submit.prevent="authStore.handleForgotPassword(form.email)">
                 <label for="email">Email</label>
-                <input type="text" name="email">
+                <input type="text" name="email" v-model="form.email">
+                <button type="submit">Recupera password</button>
                 <a href>Recupera Password</a>
             </form>
         </div>
@@ -19,9 +20,9 @@ import { ref } from 'vue';
         data(){
             return{
                 authStore : useAuthStore(),
-                // form: ref({
-
-                // })
+                form: ref({
+                    email : ""
+                })
             }
         }
         
