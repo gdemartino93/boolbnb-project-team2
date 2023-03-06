@@ -69,4 +69,12 @@ class ApiController extends Controller
             'data' => $request->all()
         ]);
     }
+
+    public function dashboardList(Request $request){
+
+        $user = $request -> user();
+        $apartments = $user -> apartments;
+
+        return response() -> json($apartments);
+    }
 }

@@ -6,13 +6,15 @@ export const useAuthStore = defineStore("auth",{
     state: () => ({
         authUser: null,
         authErrors: [],
-        authStatus: null //stato dell'email inviata per il cambio password
+        authStatus: null, //stato dell'email inviata per il cambio password
+        userApartments: []
     }),
     // nei getters si calcola il valore derivante dallo stato dell'applicazione per non ripetre codice.
     getters: {
         user: (state) => state.authUser,
         errors: (state) => state.authErrors,
-        status: (state) => state.statusEmail
+        status: (state) => state.statusEmail,
+        apartments: (state) => state.userApartments
     },
     // qui ci vanno le funzioni tra cui le chiamate API
     actions:{
@@ -27,6 +29,7 @@ export const useAuthStore = defineStore("auth",{
                 await this.getToken();
                 const response = await axios.get('/api/user');
                 this.authUser = response.data;
+                await this.getUsersWithApt();
             } catch (error) {
                 console.log("Errore get user" + error)
             }
@@ -99,6 +102,11 @@ export const useAuthStore = defineStore("auth",{
                     this.authErrors = error.response.data.errors;
                 }
             }
+        },
+        async getUsersWithApt(){
+
+            const response = await axios.get('/api/user/apartments');
+            this.userApartments = response.data;
         }
 
 
