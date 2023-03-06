@@ -8,7 +8,10 @@
                 <RouterLink :to="{name: 'register'}">Register</RouterLink>
             </div>
             <div v-else>
+                <RouterLink :to="{ name: 'dashboard' }">Dashboard</RouterLink>
+                
                 <button @click="authStore.handleLogout">Logout</button>
+
             </div>
         </ul>
     </div>

@@ -33,6 +33,16 @@ const router = createRouter({
       name: 'resetpassword',
       component: () => import('../components/auth/ResetPassword.vue')
     },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('../components/auth/Dashboard.vue')
+    },
+    {
+      path: '/dashboard/apartment/new',
+      name: 'addApt',
+      component: () => import('../components/auth/AddApt.vue')
+    }
     
   ]
 })
