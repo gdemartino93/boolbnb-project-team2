@@ -34,7 +34,7 @@ const router = createRouter({
       component: () => import('../components/auth/ResetPassword.vue')
     },
     {
-      path: '/dashboard',
+      path: '/dashboard/:id',
       name: 'dashboard',
       component: () => import('../components/auth/Dashboard.vue')
     },

@@ -15,6 +15,7 @@
   
 <script>
 import axios from 'axios';
+// import { PiniaVuePlugin } from 'pinia';
 import { useAuthStore } from '../stores/auth';
 
 import AptCard from './AptCard.vue';
@@ -34,7 +35,7 @@ export default {
         };
     },
     methods: {
-
+        // Igor ha detto che questa parte dovrebbe andare in Pinia, perchè altrimenti non avrebbe senso installarla :)
       async apartmentPrint() {
             try {
                 const response = await axios.get('/api/v1/apartment/all');
