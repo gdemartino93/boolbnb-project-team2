@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-<script >
-import axios from 'axios';
-
-export default {
-    data() {
-        return {
-            // title: [],
-            // description: [],
-            // room_number: [],
-            // bed_number: [],
-            // bath_number: [],
-            // square_meters: [],
-            // address: [],
-            // latitude: [],
-            // longitude: [],
-            // img: [],
-            // additional_services_id: [],
-        }
-    },
-
-    methods: {
-
-
-    },
-
-    mounted() {
-        // this.updateData();
-    }
-};
-=======
 <script>
 import { useAuthStore } from '../../stores/auth';
 
@@ -46,7 +15,6 @@ export default{
         this.authStore.getUsersWithApt();
     }
 }
->>>>>>> listOfApt
 </script>
 
 <template>
@@ -58,11 +26,6 @@ export default{
             <input type="text" name="title">
             <br>
 
-<<<<<<< HEAD
-            <label for="description">description</label>
-            <input type="text" name="description">
-            <br>
-=======
     <h2>CIAO SEI NELLA DASHBOARD {{$route.params.id}}</h2>
 
     <h3>List of apartments</h3>
@@ -70,7 +33,6 @@ export default{
     <ul v-if="authStore.apartments">
     <li v-for="apartment in authStore.apartments"> {{ apartment.title }}</li>
     </ul> 
->>>>>>> listOfApt
 
             <label for="room_number">room number</label>
             <input type="number" name="room_number">
