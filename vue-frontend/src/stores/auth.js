@@ -5,12 +5,14 @@ export const useAuthStore = defineStore("auth",{
     // nello state si ineriscono le variabili
     state: () => ({
         authUser: null,
-        authErrors: []
+        authErrors: [],
+        authStatus: null //stato dell'email inviata per il cambio password
     }),
     // nei getters si calcola il valore derivante dallo stato dell'applicazione per non ripetre codice.
     getters: {
         user: (state) => state.authUser,
         errors: (state) => state.authErrors,
+        status: (state) => state.statusEmail
     },
     // qui ci vanno le funzioni tra cui le chiamate API
     actions:{
@@ -45,9 +47,6 @@ export const useAuthStore = defineStore("auth",{
                     this.authErrors = error.response.data.errors
                 }
             }
-
-
-
           },
         //   gestione registrazione
         async handleRegister(data) {
@@ -79,9 +78,10 @@ export const useAuthStore = defineStore("auth",{
             this.authErrors = [];
             this.getToken();
             try {
-                await axios.post("/forgot-password",{
+                const response = await axios.post("/forgot-password",{
                     email : emailUser
                 })
+                this.authStatus = response.data.status;
             } catch (error) {
                 if ( error.response.status === 422){
                     this.authErrors = error.response.data.errors;
@@ -91,10 +91,9 @@ export const useAuthStore = defineStore("auth",{
         async handleResetPassword(resetData){
             this.authErrors = [];
             try {
-                const response = await axios.post('/reset-password', resetData)
-                this.router.push("/login")
-
-                
+                const response = await axios.post('/reset-password', resetData);
+                this.authStatus = response.data.errors;
+                this.router.push("/login")        
             } catch (error) {
                 if (error.response.status === 422){
                     this.authErrors = error.response.data.errors;
