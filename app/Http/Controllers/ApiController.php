@@ -52,19 +52,20 @@ class ApiController extends Controller
             'latitude' => 'nullable |int',
             'longitude' => 'nullable | int',
             'img' => 'required | string',
-            'additional_services' => 'nullable'
+            'additional_services' => 'nullable',
 
         ]);
         // prendiamo l'appartamento creato associato all'utente.
         $apartment = $user ->apartments() -> create($data);
-        dd($apartment);
+       
 
         if (array_key_exists('additional_services', $data)) {
 
             $additional_services = AdditionalService::find($data['additional_services']);
             $apartment->additionalServices()->sync($additional_services);
         }
-        
+        dd($apartment);
+
         return response()->json([
             'success' => true,
             'response' => $apartment,

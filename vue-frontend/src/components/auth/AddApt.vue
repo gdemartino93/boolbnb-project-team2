@@ -84,8 +84,10 @@ export default {
         <br>
 
         <div v-for="service in store.additional_services" :key="service.id">
+
+            <input type="checkbox" :id="service.id" :value="service.id" v-model="form.additional_services">
+
             <label :for="service.name"> {{ service.name }} </label>
-            <input type="checkbox" :name="service.name" :id="service.id" v-model="form.additional_services">
         </div>
 
         <br>
