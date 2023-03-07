@@ -30,7 +30,6 @@ class ApiController extends Controller
             'response' => [
 
                 'apartments' => $apartments,
-                // 'additionalServices' => $additionalServices
             ]
         ]);
     }
@@ -39,29 +38,33 @@ class ApiController extends Controller
     public function store(Request $request)
     {
 
+        $user = $request ->user();
+
         $data = $request->validate([
 
             'title' => 'required | string | min: 10',
-            'description' => 'nullable | text',
-            'room_number' => 'required | tinyInteger | min: 1',
-            'bed_number' => 'required | tinyInteger | min: 1',
-            'bath_number' => 'required | tinyInteger | min: 1',
-            'square_meters' => 'required | smallInteger | min: 40',
+            'description' => 'nullable | string',
+            'room_number' => 'required | int | min: 1',
+            'bed_number' => 'required | int | min: 1',
+            'bath_number' => 'required | int | min: 1',
+            'square_meters' => 'required | int | min: 40',
             'address' => 'required | string | min: 5',
-            'latitude' => 'nullable |float',
-            'longitude' => 'nullable | float',
+            'latitude' => 'nullable |int',
+            'longitude' => 'nullable | int',
             'img' => 'required | string',
-            'additional_services_id' => 'nullable | array'
+            'additional_services' => 'nullable',
 
         ]);
+        // prendiamo l'appartamento creato associato all'utente.
+        $apartment = $user ->apartments() -> create($data);
+       
 
-        $apartment = Apartment::create($data);
+        if (array_key_exists('additional_services', $data)) {
 
-        if (array_key_exists('additional_services_id', $data)) {
-
-            $additional_services = AdditionalService::find($data['additional_services_id']);
+            $additional_services = AdditionalService::find($data['additional_services']);
             $apartment->additionalServices()->sync($additional_services);
         }
+        dd($apartment);
 
         return response()->json([
             'success' => true,
