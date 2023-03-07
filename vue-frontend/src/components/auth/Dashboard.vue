@@ -42,7 +42,11 @@ export default {
 
     <ul v-if="authStore.apartments">
         <li v-for="apartment in authStore.apartments">
-            {{ apartment.title }} <button @click="deleteApartment(apartment)">Elimina</button>
+            {{ apartment.title }}
+            <button @click="deleteApartment(apartment)">Elimina</button>
+            <RouterLink :to="{ name: 'editApt' }">
+                <button @click="">Modifica Appartamento</button>
+            </RouterLink>
         </li>
     </ul>
 </template>

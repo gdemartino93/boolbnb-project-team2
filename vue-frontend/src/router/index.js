@@ -49,8 +49,13 @@ const router = createRouter({
       path: '/dashboard/apartment/new',
       name: 'addApt',
       component: () => import('../components/auth/AddApt.vue')
+    },
+    {
+      path: '/dashboard/apartment/edit',
+      name: 'editApt',
+      component: () => import('../components/auth/EditApt.vue')
     }
-    
+
   ]
 })
 
