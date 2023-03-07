@@ -6,7 +6,7 @@ export default {
         return{
 
             authStore: useAuthStore(),
-            apts : [],
+            apt : [],
             services : []
         }
     },
@@ -14,8 +14,8 @@ export default {
         async getSingleAp(id){
             try {
                const response =  await axios.get('/api/v1/apartment/' + id )
-               this.apts = response.data.response;
-                this.services = response.data.response.additional_services;
+               this.apt = response.data.response;
+                this.services = response.data.additional_services.response;
                
                 
             } catch (error) {
@@ -27,22 +27,25 @@ export default {
     mounted(){
         this.getSingleAp(this.$route.params.id);
         this.authStore.getUsersWithApt();
-
     }
 }
 </script>
 
 <template>
-    <div  v-for="apt in apts ">
-       <div>{{ apt }}</div>
-    </div>
+    <!-- <div v-for="{id,title} in apts" >
+      <div>ID: {{ id }}, Nome: {{ title }}</div>
+    </div> -->
+
     <div>
-        <ul>lista add services
-            <li v-for="service in services">
-            {{ service.name }}
-            </li>
-        </ul>
+        ID: {{ apt.id }}
+        name: {{ apt.title }}
     </div>
-</template>
+    <!-- <div>
+      <ul>lista add services
+        <li v-for="service in services">{{ service.name }}</li>
+      </ul>
+    </div> -->
+  </template>
+  
 
 <style scoped></style>
