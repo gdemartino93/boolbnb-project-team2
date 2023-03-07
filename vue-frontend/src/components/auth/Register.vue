@@ -88,13 +88,22 @@ import { useAuthStore } from '../../stores/auth';
           <div class="step d-flex justify-content-center align-items-center">
             <label for="password_confirmation">Repeat Password</label>
             <input type="password" name="password_confirmation" v-model="form.password_confirmation" ref="password_confirmation">
-            <button class="btn btn-success mx-2" type="submit">Register</button>
+            <button class="btn btn-success mx-2" type="button" @click="()=>{ this.$refs.output.scrollIntoView({behavior: &quot;smooth&quot;})}">next</button>
             <!-- gestione errore -->
             <div v-if="authStore.errors.password_confirmation">
               <span class="text-danger">{{ authStore.errors.password_confirmation[0] }}</span>
             </div>          
           </div>
-        <!-- </div> -->
+          <!-- conferma dei dati Ultimo step-->
+          <div class="step d-flex flex-column justify-content-center align-items-center">
+            <h3>Confermat i dati</h3>
+            <h4 v-for="(value,key,index) in form" :key="index">{{ key }} : {{ value }}</h4>
+            <button class="btn btn-success m-2" type="submit" ref="output">Register</button>
+            <!-- gestione errore -->
+            <div v-if="authStore.errors.password_confirmation">
+              <span class="text-danger">{{ authStore.errors.password_confirmation[0] }}</span>
+            </div>          
+          </div>
       </form>
     </div>
 </template>
