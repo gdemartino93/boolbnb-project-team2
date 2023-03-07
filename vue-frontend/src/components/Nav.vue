@@ -1,20 +1,20 @@
 <template>
-    <div>
+    <nav>
         <ul>
             <RouterLink :to="{name: 'home'}">Home</RouterLink>
 
-            <div v-if="!authStore.user">
+            <div v-if="!authStore.user" class="d-flex mx-2">
                 <RouterLink :to="{name: 'login'}">Login</RouterLink> <br>
-                <RouterLink :to="{name: 'register'}">Register</RouterLink>
+                <RouterLink :to="{name: 'register'}" class="mx-2">Register</RouterLink>
             </div>
-            <div v-else>
+            <div v-else class="d-flex">
                 <RouterLink :to="{ name: 'dashboard', params: {id: `${authStore.user.id}`} }">Dashboard</RouterLink>
                 
                 <button @click="authStore.handleLogout">Logout</button>
 
             </div>
         </ul>
-    </div>
+    </nav>
 </template>
 
 <script>
@@ -31,6 +31,11 @@ export default{
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+nav{
+    display: flex;
+}
+ul{
+    display: flex;
+}
 </style>
