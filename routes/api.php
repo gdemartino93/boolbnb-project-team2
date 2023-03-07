@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->get('/user/apartments', [ApiController::class
 
 
 Route::get('/v1/apartment/all', [ApiController::class, 'index']);
+Route::get('/v1/apartment/{id}',[ApiController :: class, 'signleAp']);
 
 
 Route :: post('/v1/apartment/update/{apartment}', [ApiController :: class, 'update']);

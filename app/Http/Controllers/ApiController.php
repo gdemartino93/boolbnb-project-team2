@@ -32,6 +32,16 @@ class ApiController extends Controller
         ]);
     }
 
+      public function signleAp($id){
+
+        $apartment = Apartment::with('additionalServices') ->find($id);
+        
+        return response()->json([
+            'success' => true,
+            'response' => $apartment
+        ]);
+    }
+
     // Store function creating new obj
     public function store(Request $request)
     {

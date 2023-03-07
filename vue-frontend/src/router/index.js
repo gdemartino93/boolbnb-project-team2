@@ -18,10 +18,17 @@ const router = createRouter({
       name: 'register',
       component: () => import('../components/auth/Register.vue')
     },
+    // {
+    //   path: '/apartments/:id/:title/:description/:room_number/:bed_number/:bath_number/:square_meters/:address/:latitude/:longitude/:visible/:img',
+    //   name: 'view',
+    //   component: () => import('../components/ViewCard.vue'),
+    // },
     {
-      path: '/apartments/:id/:title/:description/:room_number/:bed_number/:bath_number/:square_meters/:address/:latitude/:longitude/:visible/:img',
-      name: 'view',
+      path: '/apartment/:id',
+      name: 'show',
       component: () => import('../components/ViewCard.vue'),
+
+
     },
     {
       path: '/forgot-password',
