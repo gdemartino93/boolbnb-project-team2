@@ -69,10 +69,10 @@ import { useAuthStore } from '../../stores/auth';
         }),
       };
     },
-    methods: {
-
-
-    },
+    beforeRouteLeave(to,from,next){
+      alert("Stai lasicando la pagina");
+      next();
+    }
   };
   </script>
   
