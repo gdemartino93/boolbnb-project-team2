@@ -6,7 +6,7 @@ export default {
         return{
 
             authStore: useAuthStore(),
-            apt : [],
+            apt : {},
             services : []
         }
     },
