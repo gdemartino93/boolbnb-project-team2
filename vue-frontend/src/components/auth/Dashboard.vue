@@ -5,30 +5,24 @@ import axios from 'axios';
 export default {
     data() {
         return {
-
             authStore: useAuthStore(),
         }
     },
     methods: {
 
-
-
         deleteApartment(apartment) {
-
             axios.delete('/api/v1/apartment/delete/' + apartment.id)
-            .then(res => {
-                const data = res.data;
-                const success = data.success;
+                .then(res => {
 
-                if(success){
-                    this.authStore.getUsersWithApt();
-                }
-                
-            })
+                    const data = res.data;
+                    const success = data.success;
 
-            .catch(err => console.log);
+                    if (success) {
+                        this.authStore.getUsersWithApt();
+                    }
+                })
+                .catch(err => console.log);
         },
-        
     },
 
     mounted() {
@@ -47,7 +41,7 @@ export default {
     <h3>List of apartments</h3>
 
     <ul v-if="authStore.apartments">
-        <li v-for="apartment in authStore.apartments"> 
+        <li v-for="apartment in authStore.apartments">
             {{ apartment.title }} <button @click="deleteApartment(apartment)">Elimina</button>
         </li>
     </ul>

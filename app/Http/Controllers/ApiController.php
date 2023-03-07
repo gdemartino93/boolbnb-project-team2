@@ -36,7 +36,7 @@ class ApiController extends Controller
     public function store(Request $request)
     {
 
-        $user = $request ->user();
+        $user = $request->user();
 
         $data = $request->validate([
 
@@ -54,8 +54,8 @@ class ApiController extends Controller
 
         ]);
         // prendiamo l'appartamento creato associato all'utente.
-        $apartment = $user ->apartments() -> create($data);
-       
+        $apartment = $user->apartments()->create($data);
+
 
         if (array_key_exists('additional_services', $data)) {
 
@@ -71,21 +71,25 @@ class ApiController extends Controller
         ]);
     }
 
-    public function dashboardList(Request $request){
+    public function dashboardList(Request $request)
+    {
 
-        $user = $request -> user();
-        $apartments = $user -> apartments;
+        $user = $request->user();
+        $apartments = $user->apartments;
 
-        return response() -> json($apartments);
+        return response()->json($apartments);
     }
 
     public function delete(Apartment $apartment)
     {
-        $apartment -> additionalServices() -> sync([]);
-        $apartment -> sponsorships() -> sync([]);
-        $apartment -> delete();
+        $apartment->sponsorships()->sync([]);
+        $apartment->additionalServices()->sync([]);
 
-        return response() ->json([
+        $apartment->views()->delete();
+        $apartment->messages()->delete();
+        $apartment->delete();
+
+        return response()->json([
             'success' => true
         ]);
     }

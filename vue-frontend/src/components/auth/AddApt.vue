@@ -1,39 +1,39 @@
 <script>
 import { ref } from 'vue';
-import {store} from '../../stores/store'
+import { store } from '../../stores/store'
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
 export default {
-    data(){
-        return{
-            auth : useAuthStore(),
+    data() {
+        return {
+            auth: useAuthStore(),
             store,
             // inserimento nuovo appartamento
             form: ref({
                 title: "",
-                description:"",
+                description: "",
                 room_number: undefined,
-                bed_number:undefined,
-                bath_number:undefined,
-                square_meters:undefined,
-                address:"",
+                bed_number: undefined,
+                bath_number: undefined,
+                square_meters: undefined,
+                address: "",
                 latitude: undefined,
-                longitude:undefined,
-                img :"",
+                longitude: undefined,
+                img: "",
                 additional_services: []
             }),
 
         }
     },
-    methods:{
-        async storeData(e){
+    methods: {
+        async storeData(e) {
             e.preventDefault();
             await this.auth.getToken();
-           try {
-            await axios.post('/api/v1/apartment/store',this.form)
-           } catch (error) {
-            console.log(error)
-           }
+            try {
+                await axios.post('/api/v1/apartment/store', this.form)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
@@ -79,7 +79,7 @@ export default {
         <input type="number" name="longitude" v-model="form.longitude">
         <br>
 
-        <label for="img" >Image</label>
+        <label for="img">Image</label>
         <input type="text" name="img" v-model="form.img">
         <br>
 
