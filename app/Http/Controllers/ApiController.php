@@ -77,4 +77,16 @@ class ApiController extends Controller
 
         return response() -> json($apartments);
     }
+
+    public function delete(Apartment $apartment)
+    {
+        $apartment -> additionalServices() -> sync([]);
+        $apartment -> sponsorships() -> sync([]);
+        $apartment -> delete();
+
+        return response() ->json([
+            'success' => true
+        ]);
+    }
+
 }

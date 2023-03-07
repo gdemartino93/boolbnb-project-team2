@@ -1,5 +1,6 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
+import axios from 'axios';
 
 export default {
     data() {
@@ -9,7 +10,27 @@ export default {
         }
     },
     methods: {
+
+
+
+        deleteApartment(apartment) {
+
+            axios.delete('/api/v1/apartment/delete/' + apartment.id)
+            .then(res => {
+                const data = res.data;
+                const success = data.success;
+
+                if(success){
+                    this.authStore.getUsersWithApt();
+                }
+                
+            })
+
+            .catch(err => console.log);
+        },
+        
     },
+
     mounted() {
 
         this.authStore.getUsersWithApt();
@@ -26,7 +47,9 @@ export default {
     <h3>List of apartments</h3>
 
     <ul v-if="authStore.apartments">
-        <li v-for="apartment in authStore.apartments"> {{ apartment.title }}</li>
+        <li v-for="apartment in authStore.apartments"> 
+            {{ apartment.title }} <button @click="deleteApartment(apartment)">Elimina</button>
+        </li>
     </ul>
 </template>
 
