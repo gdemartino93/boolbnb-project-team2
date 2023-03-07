@@ -108,6 +108,6 @@ import { useAuthStore } from '../../stores/auth';
 }
 .test{
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 </style>
