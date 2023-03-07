@@ -26,8 +26,8 @@ export default {
     },
 
     mounted() {
-
         this.authStore.getUsersWithApt();
+        console.log(this.authStore.apartments);
     }
 }
 </script>

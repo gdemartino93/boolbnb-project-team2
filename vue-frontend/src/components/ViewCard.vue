@@ -1,52 +1,17 @@
 <script>
-import axios from 'axios';
-
+import {useAuthStore} from '../stores/auth';
 
 export default {
-    props: ['apartment'],
-    data() {
-        return {
+    data(){
+        return{
 
-            apartments: [],
-            thisApartment: {
-
-            }
+            authStore: useAuthStore()
         }
     },
-    methods: {
+    mounted(){
 
-        async getAllData() {
-
-            try {
-                const response = await axios.get('/api/v1/apartment/all');
-                this.apartments = response.data.response.apartments;
-                console.log(this.apartments);
-            } catch (error) {
-                // bisogna gestire l'errore della chiamata API
-                // console.log(error);
-            }
-        },
-
-        destinationId() {
-
-            return parseInt(this.$route.params.id)
-        },
-        destination() {
-
-            return this.apartments.find(x => apartment.id === this.apartment.id)
-        },
-        fillObj() {
-
-            return this.thisApartment = this.destination();
-        }
-    },
-    mounted() {
-        this.destinationId();
-        this.destination();
-        this.getAllData();
+        this.authStore.getUsersWithApt();
     }
-
-
 }
 </script>
 
@@ -64,7 +29,12 @@ export default {
         <li>Address: {{ $route.params.address }}</li>
         <li>Latitude: {{ $route.params.latitude }}</li>
         <li>Longitude: {{ $route.params.longitude }}</li>
-        <!-- <li>Visible: {{ $route.params.visible }}</li> -->
+
+        <ul>
+            <li v-for="service in authStore.apartments.additional_services">
+                {{ service.name }}
+            </li>
+        </ul>
     </ul>
 </template>
 
