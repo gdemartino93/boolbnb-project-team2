@@ -22,8 +22,6 @@ class ApiController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // $additionalServices = AdditionalService::all();
-
         return response()->json([
 
             'success' => true,
@@ -64,7 +62,7 @@ class ApiController extends Controller
             $additional_services = AdditionalService::find($data['additional_services']);
             $apartment->additionalServices()->sync($additional_services);
         }
-        dd($apartment);
+
 
         return response()->json([
             'success' => true,
