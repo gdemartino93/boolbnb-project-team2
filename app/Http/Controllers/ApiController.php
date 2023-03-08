@@ -32,10 +32,11 @@ class ApiController extends Controller
         ]);
     }
 
-      public function signleAp($id){
+    public function signleAp($id)
+    {
 
-        $apartment = Apartment::with('additionalServices') ->find($id);
-        
+        $apartment = Apartment::with('additionalServices')->find($id);
+
         return response()->json([
             'success' => true,
             'response' => $apartment
@@ -81,6 +82,50 @@ class ApiController extends Controller
         ]);
     }
 
+    public function update(Request $request, Apartment $apartment)
+    {
+
+        $user = $request->user();
+
+        $data = $request->validate([
+
+            'title' => 'required | string | min: 10',
+            'description' => 'nullable | string',
+            'room_number' => 'required | int | min: 1',
+            'bed_number' => 'required | int | min: 1',
+            'bath_number' => 'required | int | min: 1',
+            'square_meters' => 'required | int | min: 40',
+            'address' => 'required | string | min: 5',
+            'latitude' => 'nullable |int',
+            'longitude' => 'nullable | int',
+            'img' => 'required | string',
+            'additional_services' => 'nullable',
+
+        ]);
+
+        // prendiamo l'appartamento creato associato all'utente.
+        $apartment = $user->apartments()->create($data);
+        $apartment->update($data);
+        $apartment->user()->associate($user);
+        $apartment->save();
+
+
+        if (array_key_exists('additional_services', $data)) {
+
+            $additional_services = AdditionalService::find($data['additional_services']);
+            $apartment->additionalServices()->sync($additional_services);
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'response' => $apartment,
+            'data' => $request->all()
+        ]);
+
+
+    }
+
     public function dashboardList(Request $request)
     {
 
@@ -104,9 +149,10 @@ class ApiController extends Controller
         ]);
     }
 
-    public function getAdditionalServices(){
+    public function getAdditionalServices()
+    {
 
-        $additional_services = AdditionalService::orderBy('name', 'asc') -> get();
+        $additional_services = AdditionalService::orderBy('name', 'asc')->get();
 
         return response()->json([
 
