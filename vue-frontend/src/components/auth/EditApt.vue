@@ -3,11 +3,13 @@ import { ref } from 'vue';
 import { store } from '../../stores/store'
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
+
 export default {
     data() {
         return {
             auth: useAuthStore(),
             store,
+            services: [],
             // inserimento nuovo appartamento
             form: ref({
                 title: "",
@@ -22,16 +24,45 @@ export default {
                 img: "",
                 additional_services: []
             }),
+
         }
     },
     methods: {
+        async storeData(e) {
+            e.preventDefault();
+            await this.auth.getToken();
+            try {
 
+                await axios.post('/api/v1/apartment/store', this.form)
+            } catch (error) {
+
+                console.log(error)
+            }
+
+            this.$router.push('/');
+        },
+        async getServices() {
+            try {
+
+                const response = await axios.get('api/v1/services/all');
+                this.services = response.data.response;
+                console.log(this.services);
+            } catch (error) {
+
+                console.log(error);
+            }
+        }
+    },
+    mounted() {
+
+        this.getServices();
     }
+
 }
 </script>
 
 <template>
-    <h2>Form Edit</h2>
+    <h2>Form</h2>
     <form action="" method="POST">
         <label for="title">Title</label>
         <input type="text" name="title" v-model="form.title">
@@ -73,7 +104,7 @@ export default {
         <input type="text" name="img" v-model="form.img">
         <br>
 
-        <div v-for="service in store.additional_services" :key="service.id">
+        <div v-for="service in services.additional_service" :key="service.id">
 
             <input type="checkbox" :id="service.id" :value="service.id" v-model="form.additional_services">
 
@@ -81,7 +112,10 @@ export default {
         </div>
 
         <br>
+
+        <!-- <router-link :to="{name: 'home'}" > -->
         <input @click="" type="submit" value="Update Apartment">
+        <!-- </router-link> -->
     </form>
 </template>
 
