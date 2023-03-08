@@ -16,20 +16,10 @@ import { useAuthStore } from '../../stores/auth';
           password: "",
           password_confirmation: "",
         }),
+        regexEmail : "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/"
       };
     },
     methods:{
-checkAge() {
-    const birthdate = new Date(this.form.birthdate);
-    const today = new Date();
-    const age = today.getFullYear() - birthdate.getFullYear();
-    const monthDiff = today.getMonth() - birthdate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
-      age--;
-    }
-    return age >= 18;
-  }
-
 
     }
   };
@@ -65,7 +55,7 @@ checkAge() {
         <!-- Step 3 -->
         <div class="step d-flex justify-content-center align-items-center">
           <label for="birthdate">Inserisci la tua Data di Nascita, devi avere più di 18 anni</label>
-          <input type="date" name="birthdate" v-model="form.birthdate" ref="dateOB">
+          <input type="date" name="birthdate"  v-model="form.birthdate" ref="dateOB">
           <button class="btn btn-success mx-2" type="button"  @click="this.$refs.email.scrollIntoView({behavior: 'smooth'})">next</button>
           <!-- Gestione errore -->
           <div v-if="authStore.errors.birthdate">
@@ -76,7 +66,7 @@ checkAge() {
           <div class="step d-flex justify-content-center align-items-center">
             <label for="email">Email</label>
             <input type="text" name="email" v-model="form.email" ref="email">
-            <button class="btn btn-success mx-2" type="button" @click="()=>{ this.$refs.password.scrollIntoView({behavior: &quot;smooth&quot;})}">next</button>
+            <button class="btn btn-success mx-2" type="button" v-if="form.email.length > 0" @click="()=>{ this.$refs.password.scrollIntoView({behavior: &quot;smooth&quot;})}">next</button>
             <!-- gestione errore -->
             <div v-if="authStore.errors.email">
               <span class="text-danger">{{ authStore.errors.email[0] }}</span>
@@ -87,7 +77,7 @@ checkAge() {
           <div class="step d-flex justify-content-center align-items-center">
             <label for="password">Password</label>
             <input type="password" name="password" v-model="form.password" ref="password">
-            <button class="btn btn-success mx-2" type="button" @click="()=>{ this.$refs.password_confirmation.scrollIntoView({behavior: &quot;smooth&quot;})}">next</button>
+            <button class="btn btn-success mx-2" type="button" v-if="form.password.length > 0" @click="()=>{ this.$refs.password_confirmation.scrollIntoView({behavior: &quot;smooth&quot;})}">next</button>
             <!-- gestione errore -->
             <div v-if="authStore.errors.password">
               <span class="text-danger">{{ authStore.errors.password[0] }}</span>
@@ -98,7 +88,7 @@ checkAge() {
           <div class="step d-flex justify-content-center align-items-center">
             <label for="password_confirmation">Repeat Password</label>
             <input type="password" name="password_confirmation" v-model="form.password_confirmation" ref="password_confirmation">
-            <button class="btn btn-success mx-2" type="button" @click="()=>{ this.$refs.output.scrollIntoView({behavior: &quot;smooth&quot;})}">next</button>
+            <button class="btn btn-success mx-2" type="button" v-if="form.password === form.password_confirmation" @click="()=>{ this.$refs.output.scrollIntoView({behavior: &quot;smooth&quot;})}">next</button>
             <!-- gestione errore -->
             <div v-if="authStore.errors.password_confirmation">
               <span class="text-danger">{{ authStore.errors.password_confirmation[0] }}</span>
@@ -108,7 +98,7 @@ checkAge() {
           <div class="step d-flex flex-column justify-content-center align-items-center">
             <h3>Confermat i dati</h3>
             <h4 v-for="(value,key,index) in form" :key="index">{{ key }} : {{ value }}</h4>
-            <button class="btn btn-success m-2" type="submit" ref="output">Register</button>
+            <button class="btn btn-success m-2" type="submit" ref="output" v-if="form.email.includes('@')">Register</button>
             <!-- gestione errore -->
             <div v-if="authStore.errors.password_confirmation">
               <span class="text-danger">{{ authStore.errors.password_confirmation[0] }}</span>
