@@ -38,3 +38,5 @@ Route::get('/v1/apartment/{id}',[ApiController :: class, 'signleAp']);
 Route :: post('/v1/apartment/update/{apartment}', [ApiController :: class, 'update']);
 
 Route :: delete('/v1/apartment/delete/{apartment}', [ApiController :: class, 'delete']);
+
+Route::get('/v1/services/all', [ApiController::class, 'getAdditionalServices']);

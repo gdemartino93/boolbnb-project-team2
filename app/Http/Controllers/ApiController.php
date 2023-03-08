@@ -104,4 +104,18 @@ class ApiController extends Controller
         ]);
     }
 
+    public function getAdditionalServices(){
+
+        $additional_services = AdditionalService::orderBy('name', 'asc') -> get();
+
+        return response()->json([
+
+            'success' => true,
+            'response' => [
+
+                'additional_service' => $additional_services,
+            ]
+        ]);
+    }
+
 }

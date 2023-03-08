@@ -3,11 +3,13 @@ import { ref } from 'vue';
 import { store } from '../../stores/store'
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
+
 export default {
     data() {
         return {
             auth: useAuthStore(),
             store,
+            services: [],
             // inserimento nuovo appartamento
             form: ref({
                 title: "",
@@ -30,11 +32,30 @@ export default {
             e.preventDefault();
             await this.auth.getToken();
             try {
+                
                 await axios.post('/api/v1/apartment/store', this.form)
             } catch (error) {
+                
                 console.log(error)
             }
+            
+            this.$router.push('/');
+        },
+        async getServices(){
+            try {
+                
+                const response = await axios.get('api/v1/services/all');
+                this.services = response.data.response;
+                console.log(this.services);
+            } catch (error) {
+                
+                console.log(error);
+            }
         }
+    },
+    mounted(){
+
+        this.getServices();
     }
 
 }
@@ -83,7 +104,7 @@ export default {
         <input type="text" name="img" v-model="form.img">
         <br>
 
-        <div v-for="service in store.additional_services" :key="service.id">
+        <div v-for="service in services.additional_service" :key="service.id">
 
             <input type="checkbox" :id="service.id" :value="service.id" v-model="form.additional_services">
 
@@ -91,7 +112,10 @@ export default {
         </div>
 
         <br>
+
+        <!-- <router-link :to="{name: 'home'}" > -->
         <input @click="storeData" type="submit" value="Create New Apartment">
+        <!-- </router-link> -->
     </form>
 </template>
 
