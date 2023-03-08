@@ -44,7 +44,7 @@ export default {
         <li v-for="apartment in authStore.apartments">
             {{ apartment.title }}
             <button @click="deleteApartment(apartment)">Elimina</button>
-            <RouterLink :to="{ name: 'editApt' }">
+            <RouterLink :to="{ name: 'editApt', params: { id: `${apartment.id}` } }">
                 <button @click="">Modifica Appartamento</button>
             </RouterLink>
         </li>
