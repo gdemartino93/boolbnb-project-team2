@@ -48,7 +48,7 @@ export default {
     <h6>Additional Services</h6>
     <ul v-for="service in services">
         <li>Name: {{ service.name }}</li>
-        <li>Description: {{ service.description }}</li>
+        <!-- <li>Description: {{ service.description }}</li> -->
     </ul>
 </template>
   
