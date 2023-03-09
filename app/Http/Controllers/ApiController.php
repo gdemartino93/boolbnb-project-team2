@@ -85,44 +85,47 @@ class ApiController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
 
-        $user = $request->user();
+        // $user = $request->user();
 
-        $data = $request->validate([
+        // $data = $request->validate([
 
-            'title' => 'required | string | min: 10',
-            'description' => 'nullable | string',
-            'room_number' => 'required | int | min: 1',
-            'bed_number' => 'required | int | min: 1',
-            'bath_number' => 'required | int | min: 1',
-            'square_meters' => 'required | int | min: 40',
-            'address' => 'required | string | min: 5',
-            'latitude' => 'nullable |int',
-            'longitude' => 'nullable | int',
-            'img' => 'required | string',
-            'additional_services' => 'nullable',
+        //     'title' => 'required | string | min: 10',
+        //     'description' => 'nullable | string',
+        //     'room_number' => 'required | int | min: 1',
+        //     'bed_number' => 'required | int | min: 1',
+        //     'bath_number' => 'required | int | min: 1',
+        //     'square_meters' => 'required | int | min: 40',
+        //     'address' => 'required | string | min: 5',
+        //     'latitude' => 'nullable |int',
+        //     'longitude' => 'nullable | int',
+        //     'img' => 'required | string',
+        //     'additional_services' => 'nullable',
 
-        ]);
+        // ]);
 
-        // prendiamo l'appartamento creato associato all'utente.
-        $apartment = $user->apartments()->create($data);
-        $apartment->update($data);
-        $apartment->user()->associate($user);
-        $apartment->save();
-
-
-        if (array_key_exists('additional_services', $data)) {
-
-            $additional_services = AdditionalService::find($data['additional_services']);
-            $apartment->additionalServices()->sync($additional_services);
-        }
+        // // prendiamo l'appartamento creato associato all'utente.
+        // $apartment = $user->apartments()->create($data);
+        // $apartment->update($data);
+        // $apartment->user()->associate($user);
+        // $apartment->save();
 
 
-        return response()->json([
-            'success' => true,
-            'response' => $apartment,
-            'data' => $request->all()
-        ]);
+        // if (array_key_exists('additional_services', $data)) {
 
+        //     $additional_services = AdditionalService::find($data['additional_services']);
+        //     $apartment->additionalServices()->sync($additional_services);
+        // }
+
+
+        // return response()->json([
+        //     'success' => true,
+        //     'response' => $apartment,
+        //     'data' => $request->all()
+        // ]);
+        
+        $apartment -> update($request -> all());
+
+        return $apartment;
 
     }
 

@@ -11,7 +11,8 @@ export default {
             store,
             apt: {},
             services: [],
-            adds: []
+            adds: [],
+            formUpdate: {}
 
         }
     },
@@ -19,8 +20,9 @@ export default {
         async updateData(apartment) {
             await this.auth.getToken();
             try {
-
-                await axios.post('/api/v1/apartment/update/' + apartment.id, this.apt)
+                console.log(this.apt);
+                this.formUpdate = this.apt;
+                await axios.post('api/v1/apartment/update/' + apartment.id, this.formUpdate)
             } catch (error) {
 
                 console.log(error)
@@ -43,6 +45,7 @@ export default {
                 const response = await axios.get('/api/v1/apartment/' + id)
                 this.apt = response.data.response;
 
+                console.log(this.apt);
             } catch (error) {
                 console.log(error)
             }

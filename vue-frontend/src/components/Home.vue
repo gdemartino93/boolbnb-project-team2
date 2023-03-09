@@ -1,7 +1,8 @@
 <template>
     <div>
-        <label for="searchBar">Search:</label>
-        <input type="search" name="searchBar">
+        <input type="search" name="searchBar" placeholder="Cosa stai cercando?">
+        <button>Search</button>
+
         <div v-if="authStore.user">
             <h2> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
@@ -56,7 +57,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
   display: flex;
   gap: 1rem;
@@ -64,7 +65,36 @@ export default {
 }
 
 input {
-    width: 90%;
+    width: 80%;
+    margin-left: 2rem;    
+    padding-left: .5rem;
+    border-radius: 16px 0 16px 0;
+    // appearance: none;
+    // border: none;
+    // outline: none;
+    background: none;
+    background-color: rgba(255, 255, 255, .35);
+    transition: 0.4s;
+
+    &:focus {
+        border-radius: 0 16px 0 16px;
+        background-color: rgba(255, 255, 255, .75);
+    }
+    
+}
+
+button {
+    margin-left: 2rem;
+    padding: 0.5rem;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-radius: 16px 0 16px 0;
+    transition: 0.4s;
+    
+    &:hover {
+        border-radius: 0 16px 0 16px;
+    }
 }
 </style>
   
