@@ -13,19 +13,19 @@ export default {
             services: [],
             adds: [],
             // inserimento nuovo appartamento
-            form: ref({
-                title: "",
-                description: "",
-                room_number: undefined,
-                bed_number: undefined,
-                bath_number: undefined,
-                square_meters: undefined,
-                address: "",
-                latitude: undefined,
-                longitude: undefined,
-                img: "",
-                additional_services: []
-            }),
+            // form: ref({
+            //     title: "",
+            //     description: "",
+            //     room_number: undefined,
+            //     bed_number: undefined,
+            //     bath_number: undefined,
+            //     square_meters: undefined,
+            //     address: "",
+            //     latitude: undefined,
+            //     longitude: undefined,
+            //     img: "",
+            //     additional_services: []
+            // }),
 
         }
     },
@@ -60,20 +60,21 @@ export default {
                 this.apt = response.data.response;
                 // this.services = response.data.response.additional_services;
                 // this.services = response.data.response;
-
+                console.log(this.apt);
 
             } catch (error) {
                 console.log(error)
             }
 
         },
-        checkCheckboxes(apartment, additional_service){
+        checkCheckboxes(apartment, additionalService){
 
-            for(let x = 0; x < apartment.additional_service.length; x++ ){
+            for(let x = 0; x < apartment.additional_services.length; x++ ){
 
-                const apartmentAdds = apartment.additional_service[x];
+                const apartmentAdds = apartment.additional_services[x];
+                // console.log(apartmentAdds, adds);
 
-                if(apartmentAdds.id == additional_service.id){
+                if(apartmentAdds.id == additionalService.id){
 
                     return true;
                 }
@@ -85,7 +86,7 @@ export default {
     mounted() {
         this.getSingleAp(this.$route.params.id);
         this.getServices();
-        this.checkCheckboxes();
+        
     }
 
 }
@@ -95,43 +96,43 @@ export default {
     <h2>Form</h2>
     <form action="" method="POST">
         <label for="title">Title</label>
-        <input type="text" name="title" :value="apt.title" v-model="form.title">
+        <input type="text" name="title" :value="apt.title">
         <br>
 
         <label for="description">Description</label>
-        <input type="text" name="description" :value="apt.description" v-model="form.description">
+        <input type="text" name="description" :value="apt.description">
         <br>
 
         <label for="room_number">Room Number</label>
-        <input type="number" name="room_number" :value="apt.room_number" v-model="form.room_number">
+        <input type="number" name="room_number" :value="apt.room_number">
         <br>
 
         <label for="bed_number">Bed Number</label>
-        <input type="number" name="bed_number" :value="apt.bed_number" v-model="form.bed_number">
+        <input type="number" name="bed_number" :value="apt.bed_number">
         <br>
 
         <label for="bath_number">Bath Number</label>
-        <input type="number" name="bath_number" :value="apt.bath_number" v-model="form.bath_number">
+        <input type="number" name="bath_number" :value="apt.bath_number" >
         <br>
 
         <label for="square_meters">Square Meters</label>
-        <input type="number" name="square_meters" :value="apt.square_meters" v-model="form.square_meters">
+        <input type="number" name="square_meters" :value="apt.square_meters" >
         <br>
 
         <label for="address">Address</label>
-        <input type="text" name="address" :value="apt.address" v-model="form.address">
+        <input type="text" name="address" :value="apt.address" >
         <br>
 
         <label for="latitude">Latitude</label>
-        <input type="number" name="latitude" :value="apt.latitude" v-model="form.latitude">
+        <input type="number" name="latitude" :value="apt.latitude" >
         <br>
 
         <label for="longitude">Longitude</label>
-        <input type="number" name="longitude" :value="apt.longitude" v-model="form.longitude">
+        <input type="number" name="longitude" :value="apt.longitude" >
         <br>
 
         <label for="img">Image</label>
-        <input type="text" name="img" :value="apt.img" v-model="form.img">
+        <input type="text" name="img" :value="apt.img" >
         <br>
         
         <!-- <p>{{ adds.additional_service }}</p>
@@ -139,7 +140,7 @@ export default {
         
         <div v-for="service in adds.additional_service" :key="service.id">
             <!-- <p>{{ service }}</p> -->
-            <input type="checkbox" :id="service.id" :value="service.id" v-model="form.additional_services">
+            <input type="checkbox" :id="service.id" :value="service.id" :checked="checkCheckboxes(apt, adds)">
             <!-- :checked="apt.additional_services.pivot.additional_service_id === service.id ? 'true' : 'false'  -->
             <!-- :checked="apt.additional_services.includes(service) ? 'true' : 'false'" -->
             <label :for="service.name"> {{ service.name }} </label>
