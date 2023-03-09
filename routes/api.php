@@ -19,7 +19,9 @@ use App\Http\Controllers\ApiController;
 Route::middleware('auth:sanctum') ->group(function(){
 
     Route::get('/dashboard',[ApiController :: class, 'dashboardList' ]);
-
+    Route :: post('/v1/apartment/store', [ApiController :: class, 'store']);
+    Route :: post('/v1/apartment/update/{apartment}', [ApiController :: class, 'update']);
+    Route :: delete('/v1/apartment/delete/{apartment}', [ApiController :: class, 'delete']);
 
 
 
@@ -28,15 +30,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-Route :: post('/v1/apartment/store', [ApiController :: class, 'store']);
 
 
 Route::get('/v1/apartment/all', [ApiController::class, 'index']);
 Route::get('/v1/apartment/{id}',[ApiController :: class, 'signleAp']);
-
-
-Route :: post('/v1/apartment/update/{apartment}', [ApiController :: class, 'update']);
-
-Route :: delete('/v1/apartment/delete/{apartment}', [ApiController :: class, 'delete']);
-
 Route::get('/v1/services/all', [ApiController::class, 'getAdditionalServices']);
