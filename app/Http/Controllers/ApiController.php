@@ -96,8 +96,8 @@ class ApiController extends Controller
             'bath_number' => 'required | int | min: 1',
             'square_meters' => 'required | int | min: 40',
             'address' => 'required | string | min: 5',
-            'latitude' => 'nullable |int',
-            'longitude' => 'nullable | int',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
             'img' => 'required | string',
             'additional_services' => 'nullable',
 
@@ -105,7 +105,7 @@ class ApiController extends Controller
 
         // prendiamo l'appartamento creato associato all'utente.
         $apartment = $user->apartments()->create($data);
-         $apartment->update($data);
+        $apartment->update($data);
         $apartment->user()->associate($user);
         $apartment->save();
 
