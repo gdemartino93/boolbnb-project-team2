@@ -18,11 +18,6 @@ const router = createRouter({
       name: 'register',
       component: () => import('../components/auth/Register.vue')
     },
-    // {
-    //   path: '/apartments/:id/:title/:description/:room_number/:bed_number/:bath_number/:square_meters/:address/:latitude/:longitude/:visible/:img',
-    //   name: 'view',
-    //   component: () => import('../components/ViewCard.vue'),
-    // },
     {
       path: '/apartment/:id',
       name: 'show',
@@ -41,9 +36,12 @@ const router = createRouter({
       component: () => import('../components/auth/ResetPassword.vue')
     },
     {
-      path: '/dashboard/:id',
+      path: '/dashboard',
       name: 'dashboard',
-      component: () => import('../components/auth/Dashboard.vue')
+      component: () => import('../components/auth/Dashboard.vue'),
+      meta:{
+        requiresAuth:true
+      }
     },
     {
       path: '/dashboard/apartment/new',

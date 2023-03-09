@@ -65,7 +65,7 @@ export const useAuthStore = defineStore("auth",{
                     password : data.password,
                     password_confirmation : data.password_confirmation
                 });        
-                this.router.push('/')    
+                this.router.push('/dashboard')    
             } catch (error) {
                 if ( error.response.status === 422){
                     this.authErrors = error.response.data.errors
