@@ -67,14 +67,14 @@ export default {
             }
 
         },
-        checkCheckboxes(apartment, additionalService){
+        checkCheckboxes(apt, service){
 
-            for(let x = 0; x < apartment.additional_services.length; x++ ){
+            for(let x = 0; x < apt.additional_services.length; x++ ){
 
-                const apartmentAdds = apartment.additional_services[x];
+                const apartmentAdds = apt.additional_services[x];
                 // console.log(apartmentAdds, adds);
 
-                if(apartmentAdds.id == additionalService.id){
+                if(apartmentAdds.id == service.id){
 
                     return true;
                 }
@@ -93,6 +93,7 @@ export default {
 </script>
 
 <template>
+
     <h2>Form</h2>
     <form action="" method="POST">
         <label for="title">Title</label>
@@ -133,25 +134,16 @@ export default {
 
         <label for="img">Image</label>
         <input type="text" name="img" :value="apt.img" >
-        <br>
-        
-        <!-- <p>{{ adds.additional_service }}</p>
-        <p>{{ apt }}</p> -->
+        <br>        
         
         <div v-for="service in adds.additional_service" :key="service.id">
-            <!-- <p>{{ service }}</p> -->
-            <input type="checkbox" :id="service.id" :value="service.id" :checked="checkCheckboxes(apt, adds)">
-            <!-- :checked="apt.additional_services.pivot.additional_service_id === service.id ? 'true' : 'false'  -->
-            <!-- :checked="apt.additional_services.includes(service) ? 'true' : 'false'" -->
+            <input type="checkbox" :id="service.id" :value="service.id" :checked="checkCheckboxes(apt, service)">
             <label :for="service.name"> {{ service.name }} </label>
-
         </div>
 
         <br>
 
-        <!-- <router-link :to="{name: 'home'}" > -->
         <input @click="updateData(apt.id)" type="submit" value="Update Apartment">
-        <!-- </router-link> -->
     </form>
 </template>
 
