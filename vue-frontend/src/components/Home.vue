@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h1>Home Page</h1>
+        <label for="searchBar">Search:</label>
+        <input type="search" name="searchBar">
         <div v-if="authStore.user">
             <h2> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
@@ -62,5 +63,8 @@ export default {
   overflow-x: auto;
 }
 
+input {
+    width: 90%;
+}
 </style>
   
