@@ -106,9 +106,7 @@ class ApiController extends Controller
 
         ]);
 
-        // prendiamo l'appartamento creato associato all'utente.
-        // $apartment = $user->apartments()->create($data); this was the problem XDD you want to update item right yes this line is the problem that make new one it is updating what is the problem
-         $apartment->update($data);
+        $apartment->update($data);
         $apartment->user()->associate($user);
         $apartment->save();
 
