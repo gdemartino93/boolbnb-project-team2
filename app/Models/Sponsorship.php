@@ -10,7 +10,8 @@ class Sponsorship extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type',
+
+        'duration',
         'price',
     ];
 

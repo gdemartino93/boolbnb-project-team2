@@ -19,18 +19,18 @@ class SponsorshipSeeder extends Seeder
         DB::table('sponsorships') -> insert([
             
             [
-                'type' => '24h',
-                'price' => '2.99'
+                'duration' => '24:00:00',
+                'price' => '2.99',
             ],
             
             [
-                'type' => '72h',
-                'price' => '5.99'
+                'duration' => '72:00:00',
+                'price' => '5.99',
             ],
 
             [
-                'type' => '144h',
-                'price' => '9.99'
+                'duration' => '144:00:00',
+                'price' => '9.99',
             ]
         ]);
     }

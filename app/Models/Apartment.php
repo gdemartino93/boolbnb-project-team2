@@ -43,7 +43,7 @@ class Apartment extends Model
     
     public function sponsorships() {
         
-        return $this -> belongsToMany(Sponsorship :: class);
+        return $this -> belongsToMany(Sponsorship :: class) -> withTimestamps();
     }
     
     public function additionalServices(){

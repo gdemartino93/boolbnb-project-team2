@@ -18,7 +18,6 @@ class ViewFactory extends Factory
     { 
         return [
             'ip' => fake()->ipv4(),
-            'date' => fake()->date(),
         ];
     }
 }

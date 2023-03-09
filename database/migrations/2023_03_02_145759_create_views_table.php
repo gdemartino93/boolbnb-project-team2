@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
 
             $table->string('ip', 50)->unique();
-            $table->dateTime('date');
 
             $table->timestamps();
         });

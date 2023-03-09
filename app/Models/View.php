@@ -11,7 +11,6 @@ class View extends Model
 
     protected $fillable = [
         'ip',
-        'date',
     ];
 
     public function apartment()
