@@ -18,7 +18,8 @@ use App\Http\Controllers\ApiController;
 
 Route::middleware('auth:sanctum') ->group(function(){
 
-  
+    Route::get('/dashboard',[ApiController :: class, 'dashboardList' ]);
+
 
 
 
@@ -28,7 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 Route :: post('/v1/apartment/store', [ApiController :: class, 'store']);
-Route::middleware('auth:sanctum')->get('/user/apartments', [ApiController::class, 'dashboardList']);
 
 
 Route::get('/v1/apartment/all', [ApiController::class, 'index']);
