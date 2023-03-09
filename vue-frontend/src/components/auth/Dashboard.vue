@@ -27,13 +27,13 @@ export default {
 
     mounted() {
         this.authStore.getUsersWithApt();
-        console.log(this.authStore.apartments);
     }
 }
 </script>
 
 <template>
-    <RouterLink :to="{ name: 'addApt' }">
+    <section v-if="authStore.user">
+        <RouterLink :to="{ name: 'addApt' }">
         <a href="#">Aggiungi appartamento</a>
     </RouterLink>
     <h2>CIAO SEI NELLA DASHBOARD {{ $route.params.id }}</h2>
@@ -49,6 +49,14 @@ export default {
             </RouterLink>
         </li>
     </ul>
+
+    </section>
+    <section v-else>
+        <h1 class="text-danger">
+            non autenticato
+        </h1>
+    </section>
+    
 </template>
 
 <style scoped></style>

@@ -73,59 +73,65 @@ export default {
 }
 </script>
 
-<template>
+<template>  
+    <section v-if="auth.user">
+        <h2>Form</h2>
+        <form action="" method="POST">
+            <label for="title">Title</label>
+            <input type="text" name="title" :value="apt.title">
+            <br>
 
-    <h2>Form</h2>
-    <form action="" method="POST">
-        <label for="title">Title</label>
-        <input type="text" name="title" :value="apt.title">
-        <br>
+            <label for="description">Description</label>
+            <input type="text" name="description" :value="apt.description">
+            <br>
 
-        <label for="description">Description</label>
-        <input type="text" name="description" :value="apt.description">
-        <br>
+            <label for="room_number">Room Number</label>
+            <input type="number" name="room_number" :value="apt.room_number">
+            <br>
 
-        <label for="room_number">Room Number</label>
-        <input type="number" name="room_number" :value="apt.room_number">
-        <br>
+            <label for="bed_number">Bed Number</label>
+            <input type="number" name="bed_number" :value="apt.bed_number">
+            <br>
 
-        <label for="bed_number">Bed Number</label>
-        <input type="number" name="bed_number" :value="apt.bed_number">
-        <br>
+            <label for="bath_number">Bath Number</label>
+            <input type="number" name="bath_number" :value="apt.bath_number" >
+            <br>
 
-        <label for="bath_number">Bath Number</label>
-        <input type="number" name="bath_number" :value="apt.bath_number" >
-        <br>
+            <label for="square_meters">Square Meters</label>
+            <input type="number" name="square_meters" :value="apt.square_meters" >
+            <br>
 
-        <label for="square_meters">Square Meters</label>
-        <input type="number" name="square_meters" :value="apt.square_meters" >
-        <br>
+            <label for="address">Address</label>
+            <input type="text" name="address" :value="apt.address" >
+            <br>
 
-        <label for="address">Address</label>
-        <input type="text" name="address" :value="apt.address" >
-        <br>
+            <label for="latitude">Latitude</label>
+            <input type="number" name="latitude" :value="apt.latitude" >
+            <br>
 
-        <label for="latitude">Latitude</label>
-        <input type="number" name="latitude" :value="apt.latitude" >
-        <br>
+            <label for="longitude">Longitude</label>
+            <input type="number" name="longitude" :value="apt.longitude" >
+            <br>
 
-        <label for="longitude">Longitude</label>
-        <input type="number" name="longitude" :value="apt.longitude" >
-        <br>
+            <label for="img">Image</label>
+            <input type="text" name="img" :value="apt.img" >
+            <br>        
+            
+            <div v-for="service in adds.additional_service" :key="service.id">
+                <input type="checkbox" :id="service.id" :value="service.id" :checked="checkCheckboxes(apt, service)">
+                <label :for="service.name"> {{ service.name }} </label>
+            </div>
 
-        <label for="img">Image</label>
-        <input type="text" name="img" :value="apt.img" >
-        <br>        
-        
-        <div v-for="service in adds.additional_service" :key="service.id">
-            <input type="checkbox" :id="service.id" :value="service.id" :checked="checkCheckboxes(apt, service)">
-            <label :for="service.name"> {{ service.name }} </label>
-        </div>
+            <br>
 
-        <br>
+            <input @click.prevent="updateData(apt)" type="submit" value="Update Apartment">
+        </form>
+    </section>
+    <section v-else>
+        <h1 class="text-danger">NON AUTENTICATO</h1>
+    </section>
 
-        <input @click.prevent="updateData(apt)" type="submit" value="Update Apartment">
-    </form>
+
 </template>
 
 <style scoped></style>

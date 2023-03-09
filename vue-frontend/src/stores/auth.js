@@ -29,7 +29,7 @@ export const useAuthStore = defineStore("auth",{
                 await this.getToken();
                 const response = await axios.get('/api/user');
                 this.authUser = response.data;
-                await this.getUsersWithApt();
+                // await this.getUsersWithApt();
             } catch (error) {
                 console.log("Errore get user" + error)
             }
@@ -105,7 +105,7 @@ export const useAuthStore = defineStore("auth",{
         },
         async getUsersWithApt(){
 
-            const response = await axios.get('/api/user/apartments');
+            const response = await axios.get('/api/dashboard');
             this.userApartments = response.data;
         }
 
