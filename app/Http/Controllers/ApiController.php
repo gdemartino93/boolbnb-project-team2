@@ -105,7 +105,7 @@ class ApiController extends Controller
 
         // prendiamo l'appartamento creato associato all'utente.
         $apartment = $user->apartments()->create($data);
-        $apartment->update($data);
+         $apartment->update($data);
         $apartment->user()->associate($user);
         $apartment->save();
 
