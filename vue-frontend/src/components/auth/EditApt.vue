@@ -11,31 +11,16 @@ export default {
             store,
             apt: {},
             services: [],
-            adds: [],
-            // inserimento nuovo appartamento
-            // form: ref({
-            //     title: "",
-            //     description: "",
-            //     room_number: undefined,
-            //     bed_number: undefined,
-            //     bath_number: undefined,
-            //     square_meters: undefined,
-            //     address: "",
-            //     latitude: undefined,
-            //     longitude: undefined,
-            //     img: "",
-            //     additional_services: []
-            // }),
+            adds: []
 
         }
     },
     methods: {
         async updateData(apartment) {
-            // e.preventDefault();
             await this.auth.getToken();
             try {
 
-                await axios.post('/api/v1/apartment/update/' + apartment, this.form)
+                await axios.post('/api/v1/apartment/update/' + apartment.id, this.apt)
             } catch (error) {
 
                 console.log(error)
@@ -48,7 +33,6 @@ export default {
 
                 const response = await axios.get('api/v1/services/all');
                 this.adds = response.data.response;
-                console.log(this.adds);
             } catch (error) {
 
                 console.log(error);
@@ -58,23 +42,20 @@ export default {
             try {
                 const response = await axios.get('/api/v1/apartment/' + id)
                 this.apt = response.data.response;
-                // this.services = response.data.response.additional_services;
-                // this.services = response.data.response;
-                console.log(this.apt);
 
             } catch (error) {
                 console.log(error)
             }
 
         },
-        checkCheckboxes(apt, service){
+        checkCheckboxes(apartment, addService){
 
-            for(let x = 0; x < apt.additional_services.length; x++ ){
+            // Ciclo for che verifica ad ogni iterazione se l'elemento x dell'array additional_services in apartment ha id uguale a quello del singolo servizio, sono state usate due variabili generiche apartment e addService 
+            for(let x = 0; x < apartment.additional_services.length; x++ ){
 
-                const apartmentAdds = apt.additional_services[x];
-                // console.log(apartmentAdds, adds);
+                const apartmentAdds = apartment.additional_services[x];
 
-                if(apartmentAdds.id == service.id){
+                if(apartmentAdds.id == addService.id){
 
                     return true;
                 }
@@ -143,7 +124,7 @@ export default {
 
         <br>
 
-        <input @click="updateData(apt.id)" type="submit" value="Update Apartment">
+        <input @click.prevent="updateData(apt)" type="submit" value="Update Apartment">
     </form>
 </template>
 
