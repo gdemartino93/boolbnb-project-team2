@@ -16,7 +16,7 @@ export default {
     }
   },
   methods: {
-    async updateData() {
+    async updateData(apartment) {
       await this.auth.getToken();
       try {
         await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt);
@@ -54,15 +54,15 @@ export default {
         }
       }
       return false;
-    },
-    mounted() {
-        this.getSingleAp(this.$route.params.id);
-        this.getServices();
-        
     }
-
+  },
+  mounted() {
+    this.getSingleAp(this.$route.params.id);
+    this.getServices(); 
+  }
 }
 </script>
+
 
 <template>
     <section v-if="auth.user">
