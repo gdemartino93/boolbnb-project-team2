@@ -51,7 +51,7 @@ class ApiController extends Controller
 
         $data = $request->validate([
 
-            'title' => 'required | string | min: 10',
+            'title' => 'required | string',
             'description' => 'nullable | string',
             'room_number' => 'required | int | min: 1',
             'bed_number' => 'required | int | min: 1',
@@ -81,7 +81,8 @@ class ApiController extends Controller
             'data' => $request->all()
         ]);
     }
-    public function updateServices(Request $request, Apartment $apartment){
+    public function updateServices(Request $request, Apartment $apartment)
+    {
         $apartment->additionalServices()->detach();
         $apartment->additionalServices()->sync($request->all());
     }
@@ -92,7 +93,7 @@ class ApiController extends Controller
 
         $data = $request->validate([
 
-            'title' => 'required | string | min: 10',
+            'title' => 'required | string',
             'description' => 'nullable | string',
             'room_number' => 'required | int | min: 1',
             'bed_number' => 'required | int | min: 1',
