@@ -71,7 +71,7 @@ class ApiController extends Controller
         $path = $request->file('img')->store('public/apartments');
 
         // get the name of the image, we will use it to display the image
-        $name = env('APP_URL') . 'storage/' . $path;
+        $name = env('APP_URL') . '/storage/' . $path;
 
         // add the name of the image to the data array
         $data['img'] = $name;
@@ -117,10 +117,15 @@ class ApiController extends Controller
         
         // upload image to storage and get the path if the user upload a new image
         if ($request->img) {
-
-            // upload using storage facade
+       
+            // upload using storage 
             Storage::disk('public')->put('apartments', $request->file('img'));
 
+            // get the name of the image, we will use it to display the image
+            $name = env('APP_URL') . '/storage/apartments/' . $request->file('img')->hashName();
+
+            // add the name of the image to the data array , yes you got it
+            $data['img'] = $name;
 
         }
       
