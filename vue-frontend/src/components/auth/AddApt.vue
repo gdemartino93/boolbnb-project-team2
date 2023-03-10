@@ -4,12 +4,16 @@ import { store } from '../../stores/store'
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
 
+
 export default {
     data() {
         return {
             auth: useAuthStore(),
             store,
             services: [],
+            apiKey: 'SfvOMauuBurBZ10AFwJoH8KGTKOA6PA8',
+            latitude: undefined,
+            longitude: undefined,
             // inserimento nuovo appartamento
             form: ref({
                 title: "",
@@ -30,6 +34,11 @@ export default {
     methods: {
         async storeData(e) {
             e.preventDefault();
+
+            this.getCohordinates();
+
+            this.form.latitude = this.latitude;
+            this.form.longitude = this.longitude;
             await this.auth.getToken();
             try {
                 
@@ -50,6 +59,31 @@ export default {
             } catch (error) {
                 
                 console.log(error);
+            }
+        },
+        async getCohordinates(){
+
+            // name
+            // var theUrl = 'https://api.tomtom.com/search/2/geocode/$%7Bthis.apartmentSearch%7D.json?key=7WvQPGS4KEheGe1NqjeIiLoLFdGWHmbO';
+            // var xmlHttp = new XMLHttpRequest();
+            // xmlHttp.open("GET", theUrl, false);
+            // xmlHttp.send(null);
+            // var json = JSON.parse(xmlHttp.responseText);
+
+            try {
+                
+                const response = await axios.get('https://api.tomtom.com/search/2/geocode/' + this.form.address + '.json?key=' + this.apiKey);
+
+                // const response = await axios.get('https://api.tomtom.com/search/2/geocode/De%20Ruijterkade%20154,%201011%20AC,%20Amsterdam.json?key=YnMfUAYY76CkHWngLQxDudDG5GdEAEs5');
+
+                this.latitude = response.results.position.latitude;
+                this.longitude = response.results.position.longitude;
+
+                console.log(this.form);
+
+            } catch (error) {
+                
+                console.log(error)
             }
         }
     },
@@ -93,13 +127,13 @@ export default {
             <input type="text" name="address" v-model="form.address">
             <br>
 
-            <label for="latitude">Latitude</label>
+            <!-- <label for="latitude">Latitude</label>
             <input type="number" name="latitude" v-model="form.latitude">
             <br>
 
             <label for="longitude">Longitude</label>
             <input type="number" name="longitude" v-model="form.longitude">
-            <br>
+            <br> -->
 
             <label for="img">Image</label>
             <input type="text" name="img" v-model="form.img">
