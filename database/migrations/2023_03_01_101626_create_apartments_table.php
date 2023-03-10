@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('address', 81);
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
-            $table->string('img');
+            $table->string('img') ->nullable();
             $table->boolean('visible')->default(false);
 
             $table->timestamps();
