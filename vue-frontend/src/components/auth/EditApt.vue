@@ -16,7 +16,7 @@ export default {
     }
   },
   methods: {
-    async updateData(apartment) {
+    async updateData() {
       await this.auth.getToken();
       try {
         await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt);
@@ -29,7 +29,6 @@ export default {
       try {
         const response = await axios.get('api/v1/services/all');
         this.adds = response.data.response;
-        ser = response.data.response;
       } catch (error) {
         console.log(error);
       }
@@ -46,15 +45,15 @@ export default {
       this.adservices.push(value);
     },
     checkCheckboxes(apartment, addService) {
-      for (let x = 0; x < apartment.additional_services.length; x++) {
-        const apartmentAdds = apartment.additional_services[x];
-        this.adservices.push(apartment.additional_services[x])
-        if (apartmentAdds.id == addService.id) {
-          return true;
-        }
-      }
-      return false;
+  for (let x = 0; x < apartment.additional_services.length; x++) {
+    const apartmentAdds = apartment.additional_services[x];
+    if (apartmentAdds.id == addService.id) {
+      this.adservices.push(apartmentAdds.id);
+      return true;
     }
+  }
+  return false;
+}
   },
   mounted() {
     this.getSingleAp(this.$route.params.id);
