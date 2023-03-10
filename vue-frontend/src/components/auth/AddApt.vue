@@ -51,6 +51,14 @@ export default {
                 
                 console.log(error);
             }
+        },
+        async getCord(){
+            axios.get('https://api.tomtom.com/search/2/geocode/' + this.form.address +'.json?key=BkGWT9JoOHyfQlGCvB9M8qbY5ZoUdNZo')
+                .then(res => {
+                    const response = res.data;
+                    this.form.latitude = response.position.lat;
+                    console.log(this.form.latitude)
+                })
         }
     },
     mounted(){
@@ -90,16 +98,16 @@ export default {
             <br>
 
             <label for="address">Address</label>
-            <input type="text" name="address" v-model="form.address">
+            <input type="text" name="address" v-model="form.address" @change="getCord">
             <br>
-
+<!-- 
             <label for="latitude">Latitude</label>
             <input type="number" name="latitude" v-model="form.latitude">
             <br>
 
             <label for="longitude">Longitude</label>
             <input type="number" name="longitude" v-model="form.longitude">
-            <br>
+            <br> -->
 
             <label for="img">Image</label>
             <input type="text" name="img" v-model="form.img">
