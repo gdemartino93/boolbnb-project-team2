@@ -24,47 +24,62 @@ export default {
                 img: "",
                 additional_services: []
             }),
-
         }
     },
     methods: {
-        async storeData(e) {
-            e.preventDefault();
-            await this.auth.getToken();
+        async getServices() {
             try {
-                
-                await axios.post('/api/v1/apartment/store', this.form)
-            } catch (error) {
-                
-                console.log(error)
-            }
-            
-            this.$router.push('/');
-        },
-        async getServices(){
-            try {
-                
+
                 const response = await axios.get('api/v1/services/all');
                 this.services = response.data.response;
                 console.log(this.services);
             } catch (error) {
-                
                 console.log(error);
             }
+        },
+        onFileChange(e) {
+            const file = e.target.files[0];
+            this.form.img = file;
+        },
+        async storeData(e) {
+            e.preventDefault();
+            await this.auth.getToken();
+            try {
+                const formData = new FormData();
+                formData.append('title', this.form.title);
+                formData.append('description', this.form.description);
+                formData.append('room_number', this.form.room_number);
+                formData.append('bed_number', this.form.bed_number);
+                formData.append('bath_number', this.form.bath_number);
+                formData.append('square_meters', this.form.square_meters);
+                formData.append('address', this.form.address);
+                formData.append('latitude', this.form.latitude);
+                formData.append('longitude', this.form.longitude);
+                formData.append('img', this.form.img);
+                formData.append('additional_services', this.form.additional_services);
+
+
+                await axios.post('/api/v1/apartment/store', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+            } catch (error) {
+                console.log(error)
+            }
+            this.$router.push('/');
         }
     },
-    mounted(){
-
+    mounted() {
         this.getServices();
     }
-
 }
 </script>
 
 <template>
     <section v-if="auth.user">
-            <h2>Form</h2>
-        <form action="" method="POST">
+        <h2>Form</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
             <label for="title">Title</label>
             <input type="text" name="title" v-model="form.title">
             <br>
@@ -102,7 +117,7 @@ export default {
             <br>
 
             <label for="img">Image</label>
-            <input type="text" name="img" v-model="form.img">
+            <input type="file" name="img" v-on:change="onFileChange" ref="img" accept="image/*">
             <br>
 
             <div v-for="service in services.additional_service" :key="service.id">
