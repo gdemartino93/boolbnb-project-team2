@@ -31,9 +31,9 @@ export default {
         async storeData(e) {
             e.preventDefault();
             await this.auth.getToken();
-            try {
-                
+            try {    
                 await axios.post('/api/v1/apartment/store', this.form)
+                
             } catch (error) {
                 
                 console.log(error)
@@ -64,7 +64,7 @@ export default {
 <template>
     <section v-if="auth.user">
             <h2>Form</h2>
-        <form action="" method="POST">
+        <form action="" method="POST" @submit.prevent="storeData" enctype="multipart/form-data">
             <label for="title">Title</label>
             <input type="text" name="title" v-model="form.title">
             <br>
@@ -102,7 +102,7 @@ export default {
             <br>
 
             <label for="img">Image</label>
-            <input type="text" name="img" v-model="form.img">
+            <input type="file" name="img" >
             <br>
 
             <div v-for="service in services.additional_service" :key="service.id">

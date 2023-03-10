@@ -60,7 +60,7 @@ class ApiController extends Controller
             'address' => 'required | string | min: 5',
             'latitude' => 'nullable |int',
             'longitude' => 'nullable | int',
-            'img' => 'required | string',
+            'img' => 'required | image | mimes: jpeg,png,jpg,gif,svg | max:2048',
             'additional_services' => 'nullable',
 
         ]);
