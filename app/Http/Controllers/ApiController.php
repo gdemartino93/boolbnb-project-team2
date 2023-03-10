@@ -10,6 +10,7 @@ use App\Models\Message;
 use App\Models\Sponsorship;
 use App\Models\User;
 use App\Models\View;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
@@ -58,15 +59,24 @@ class ApiController extends Controller
             'bath_number' => 'required | int | min: 1',
             'square_meters' => 'required | int | min: 40',
             'address' => 'required | string | min: 5',
-            'latitude' => 'nullable |int',
+            'latitude' => 'nullable |int', //
             'longitude' => 'nullable | int',
-            'img' => 'required | image | mimes: jpeg,png,jpg,gif,svg | max:2048',
+            // image only accept jpeg,png,jpg,gif,svg format and max size 2048
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'additional_services' => 'nullable',
 
         ]);
+
+        // upload image to storage and get the path
+        $path = $request->file('img')->store('public/apartments');
+
+        // get the name of the image, we will use it to display the image
+        $name = env('APP_URL') . 'storage/' . $path;
+
+        // add the name of the image to the data array
+        $data['img'] = $name;
         // prendiamo l'appartamento creato associato all'utente.
         $apartment = $user->apartments()->create($data);
-
 
         if (array_key_exists('additional_services', $data)) {
 
@@ -87,7 +97,6 @@ class ApiController extends Controller
     }
     public function update(Request $request, Apartment $apartment)
     {
-
         $user = $request->user();
 
         $data = $request->validate([
@@ -101,15 +110,23 @@ class ApiController extends Controller
             'address' => 'required | string | min: 5',
             'latitude' => 'nullable',
             'longitude' => 'nullable',
-            'img' => 'required | string',
             'additional_services' => 'nullable',
 
         ]);
 
+        
+        // upload image to storage and get the path if the user upload a new image
+        if ($request->img) {
+
+            // upload using storage facade
+            Storage::disk('public')->put('apartments', $request->file('img'));
+
+
+        }
+      
         $apartment->update($data);
         $apartment->user()->associate($user);
-        $apartment->save();
-
+        $apartment->save(); 
 
         if (array_key_exists('additional_services', $data)) {
 
@@ -123,7 +140,6 @@ class ApiController extends Controller
             'response' => $apartment,
             'data' => $request->all()
         ]);
-
 
     }
 
