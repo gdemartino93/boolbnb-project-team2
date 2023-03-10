@@ -16,7 +16,7 @@ export default {
     }
   },
   methods: {
-    async updateData(apartment) {
+    async updateData() {
       await this.auth.getToken();
       try {
         await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt);
