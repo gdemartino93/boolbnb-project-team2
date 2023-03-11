@@ -112,7 +112,8 @@ class ApiController extends Controller
             'latitude' => 'nullable',
             'longitude' => 'nullable',
             'additional_services' => 'nullable',
-
+            // image only accept jpeg,png,jpg,gif,svg format and max size 2048
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
 
         
