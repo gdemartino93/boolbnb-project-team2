@@ -46,8 +46,8 @@ export default {
                 key: "BkGWT9JoOHyfQlGCvB9M8qbY5ZoUdNZo",
                 container: "map",
                 center: this.center,
-                zoom: 10,
-                minZoom: 4,
+                zoom: 18,
+                minZoom: 10,
                 // maxBounds: [
                 //     [1.7499552751, 1.619987291],
                 //     [19.4802470232, 48.1153931748],
