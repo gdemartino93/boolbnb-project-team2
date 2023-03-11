@@ -59,8 +59,8 @@ class ApiController extends Controller
             'bath_number' => 'required | int | min: 1',
             'square_meters' => 'required | int | min: 40',
             'address' => 'required | string | min: 5',
-            'latitude' => 'nullable |int', //
-            'longitude' => 'nullable | int',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
             // image only accept jpeg,png,jpg,gif,svg format and max size 2048
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'additional_services' => 'nullable',
