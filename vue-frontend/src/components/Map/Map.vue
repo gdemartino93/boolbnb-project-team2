@@ -1,6 +1,6 @@
 <template>
   <div class="" style="position: sticky; top: 200px;">
-      <div id="map" style='width: 100%; height: 600px; border-radius: 10px;'></div>
+      <div id="map" style='width: 100%; height: 100px; border-radius: 10px;'></div>
   </div>
 </template>
 
