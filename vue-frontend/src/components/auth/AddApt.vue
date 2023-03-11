@@ -110,14 +110,6 @@ export default {
             <input type="text" name="address" v-model="form.address">
             <br>
 
-            <!-- <label for="latitude">Latitude</label>
-            <input type="number" name="latitude" v-model="form.latitude">
-            <br>
-
-            <label for="longitude">Longitude</label>
-            <input type="number" name="longitude" v-model="form.longitude">
-            <br> -->
-
             <label for="img">Image</label>
             <input type="file" name="img" v-on:change="onFileChange" ref="img" accept="image/*">
             <br>

@@ -17,12 +17,13 @@ export default {
   },
   methods: {
     async updateData() {
-
+      
+      await this.auth.getToken();
       this.store.getCohordinates(this.apt.address);
       this.apt.latitude = this.store.latitude;
       this.apt.longitude = this.store.longitude;
       
-      await this.auth.getToken();
+      
       try {
         // await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt);
         const formData = new FormData();
