@@ -10,7 +10,7 @@
         <div class="container">
             <AptCard v-for="apartment in apartments" :apartment="apartment" />
         </div>
-        <button class="btn btn-success" @click="loadMore">CARICA ALTRI</button>
+        <button class="btn btn-success" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
     </div>
 </template>
   
@@ -37,6 +37,7 @@ export default {
         async loadMore(){
             this.currentPage++;
             await this.apartmentPrint(this.currentPage);
+            
         },
         async apartmentPrint(page) {
             try {
