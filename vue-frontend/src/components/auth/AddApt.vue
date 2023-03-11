@@ -4,6 +4,7 @@ import { store } from '../../stores/store'
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
 
+
 export default {
     data() {
         return {
@@ -27,7 +28,17 @@ export default {
         }
     },
     methods: {
-        async getServices() {
+        async storeData(e) {
+            e.preventDefault();
+
+            this.store.getCohordinates(this.form.address);
+
+            this.form.latitude = this.store.latitude;
+            this.form.longitude = this.store.longitude;
+            await this.auth.getToken();
+
+            console.log(this.form);
+
             try {
 
                 const response = await axios.get('api/v1/services/all');
@@ -37,38 +48,7 @@ export default {
                 console.log(error);
             }
         },
-        onFileChange(e) {
-            const file = e.target.files[0];
-            this.form.img = file;
-        },
-        async storeData(e) {
-            e.preventDefault();
-            await this.auth.getToken();
-            try {
-                const formData = new FormData();
-                formData.append('title', this.form.title);
-                formData.append('description', this.form.description);
-                formData.append('room_number', this.form.room_number);
-                formData.append('bed_number', this.form.bed_number);
-                formData.append('bath_number', this.form.bath_number);
-                formData.append('square_meters', this.form.square_meters);
-                formData.append('address', this.form.address);
-                formData.append('latitude', this.form.latitude);
-                formData.append('longitude', this.form.longitude);
-                formData.append('img', this.form.img);
-                formData.append('additional_services', this.form.additional_services);
-
-
-                await axios.post('/api/v1/apartment/store', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-            } catch (error) {
-                console.log(error)
-            }
-            this.$router.push('/');
-        }
+        
     },
     mounted() {
         this.getServices();
@@ -108,13 +88,13 @@ export default {
             <input type="text" name="address" v-model="form.address">
             <br>
 
-            <label for="latitude">Latitude</label>
+            <!-- <label for="latitude">Latitude</label>
             <input type="number" name="latitude" v-model="form.latitude">
             <br>
 
             <label for="longitude">Longitude</label>
             <input type="number" name="longitude" v-model="form.longitude">
-            <br>
+            <br> -->
 
             <label for="img">Image</label>
             <input type="file" name="img" v-on:change="onFileChange" ref="img" accept="image/*">

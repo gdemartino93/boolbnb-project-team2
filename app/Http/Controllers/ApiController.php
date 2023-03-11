@@ -52,17 +52,16 @@ class ApiController extends Controller
 
         $data = $request->validate([
 
-            'title' => 'required | string | min: 10',
+            'title' => 'required | string',
             'description' => 'nullable | string',
             'room_number' => 'required | int | min: 1',
             'bed_number' => 'required | int | min: 1',
             'bath_number' => 'required | int | min: 1',
             'square_meters' => 'required | int | min: 40',
             'address' => 'required | string | min: 5',
-            'latitude' => 'nullable |int', //
-            'longitude' => 'nullable | int',
-            // image only accept jpeg,png,jpg,gif,svg format and max size 2048
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
+            'img' => 'required | string',
             'additional_services' => 'nullable',
 
         ]);
@@ -91,7 +90,8 @@ class ApiController extends Controller
             'data' => $request->all()
         ]);
     }
-    public function updateServices(Request $request, Apartment $apartment){
+    public function updateServices(Request $request, Apartment $apartment)
+    {
         $apartment->additionalServices()->detach();
         $apartment->additionalServices()->sync($request->all());
     }
@@ -101,7 +101,7 @@ class ApiController extends Controller
 
         $data = $request->validate([
 
-            'title' => 'required | string | min: 10',
+            'title' => 'required | string',
             'description' => 'nullable | string',
             'room_number' => 'required | int | min: 1',
             'bed_number' => 'required | int | min: 1',
