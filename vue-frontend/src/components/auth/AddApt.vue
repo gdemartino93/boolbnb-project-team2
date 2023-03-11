@@ -28,9 +28,6 @@ export default {
         }
     },
     methods: {
-<<<<<<< HEAD
-        async getServices() {
-=======
         async storeData(e) {
             e.preventDefault();
 
@@ -42,7 +39,6 @@ export default {
 
             console.log(this.form);
 
->>>>>>> apiTesting
             try {
 
                 const response = await axios.get('api/v1/services/all');
@@ -52,42 +48,7 @@ export default {
                 console.log(error);
             }
         },
-<<<<<<< HEAD
-        onFileChange(e) {
-            const file = e.target.files[0];
-            this.form.img = file;
-        },
-        async storeData(e) {
-            e.preventDefault();
-            await this.auth.getToken();
-            try {
-                const formData = new FormData();
-                formData.append('title', this.form.title);
-                formData.append('description', this.form.description);
-                formData.append('room_number', this.form.room_number);
-                formData.append('bed_number', this.form.bed_number);
-                formData.append('bath_number', this.form.bath_number);
-                formData.append('square_meters', this.form.square_meters);
-                formData.append('address', this.form.address);
-                formData.append('latitude', this.form.latitude);
-                formData.append('longitude', this.form.longitude);
-                formData.append('img', this.form.img);
-                formData.append('additional_services', this.form.additional_services);
-
-
-                await axios.post('/api/v1/apartment/store', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-            } catch (error) {
-                console.log(error)
-            }
-            this.$router.push('/');
-        }
-=======
         
->>>>>>> apiTesting
     },
     mounted() {
         this.getServices();
