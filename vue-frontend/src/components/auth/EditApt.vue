@@ -17,6 +17,11 @@ export default {
   },
   methods: {
     async updateData() {
+
+      this.store.getCohordinates(this.apt.address);
+      this.apt.latitude = this.store.latitude;
+      this.apt.longitude = this.store.longitude;
+      
       await this.auth.getToken();
       try {
         this.apt.additional_services = [...this.adservices];
@@ -103,14 +108,6 @@ export default {
   
         <label for="address">Address</label>
         <input type="text" name="address" v-model="apt.address">
-        <br>
-  
-        <label for="latitude">Latitude</label>
-        <input type="number" name="latitude" v-model="apt.latitude">
-        <br>
-  
-        <label for="longitude">Longitude</label>
-        <input type="number" name="longitude" v-model="apt.longitude">
         <br>
   
         <label for="img">Image</label>

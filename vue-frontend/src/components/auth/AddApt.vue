@@ -11,9 +11,6 @@ export default {
             auth: useAuthStore(),
             store,
             services: [],
-            apiKey: 'SfvOMauuBurBZ10AFwJoH8KGTKOA6PA8',
-            latitude: undefined,
-            longitude: undefined,
             // inserimento nuovo appartamento
             form: ref({
                 title: "",
@@ -35,11 +32,14 @@ export default {
         async storeData(e) {
             e.preventDefault();
 
-            this.getCohordinates();
+            this.store.getCohordinates(this.form.address);
 
-            this.form.latitude = this.latitude;
-            this.form.longitude = this.longitude;
+            this.form.latitude = this.store.latitude;
+            this.form.longitude = this.store.longitude;
             await this.auth.getToken();
+
+            console.log(this.form);
+
             try {
                 
                 await axios.post('/api/v1/apartment/store', this.form)
@@ -61,31 +61,7 @@ export default {
                 console.log(error);
             }
         },
-        async getCohordinates(){
-
-            // name
-            // var theUrl = 'https://api.tomtom.com/search/2/geocode/$%7Bthis.apartmentSearch%7D.json?key=7WvQPGS4KEheGe1NqjeIiLoLFdGWHmbO';
-            // var xmlHttp = new XMLHttpRequest();
-            // xmlHttp.open("GET", theUrl, false);
-            // xmlHttp.send(null);
-            // var json = JSON.parse(xmlHttp.responseText);
-
-            try {
-                
-                const response = await axios.get('https://api.tomtom.com/search/2/geocode/' + this.form.address + '.json?key=' + this.apiKey);
-
-                // const response = await axios.get('https://api.tomtom.com/search/2/geocode/De%20Ruijterkade%20154,%201011%20AC,%20Amsterdam.json?key=YnMfUAYY76CkHWngLQxDudDG5GdEAEs5');
-
-                this.latitude = response.results.position.latitude;
-                this.longitude = response.results.position.longitude;
-
-                console.log(this.form);
-
-            } catch (error) {
-                
-                console.log(error)
-            }
-        }
+        
     },
     mounted(){
 
