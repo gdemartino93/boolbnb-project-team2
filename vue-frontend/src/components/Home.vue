@@ -2,9 +2,10 @@
     <div>
         <input type="search" name="searchBar" placeholder="Cosa stai cercando?">
         <button>Search</button>
-
+        <Map :center="{ lat: 41.902782, lon: 12.496366 }" :flats="flats" />
         <div v-if="authStore.user">
             <h2> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
+      
         </div>
         <div v-else>Go to login</div>
         
@@ -17,17 +18,18 @@
   
 <script>
 import axios from 'axios';
-// import { PiniaVuePlugin } from 'pinia';
 import { useAuthStore } from '../stores/auth';
-
+import Map from './Map/Map.vue';
 import AptCard from './AptCard.vue';
+
 
 
 
 export default {
     name: 'HomePage',
     components: {
-      AptCard
+      AptCard,
+      Map
     },
     data() {
         return {
