@@ -2,10 +2,10 @@
     <div>
         <input type="search" name="searchBar" placeholder="Cosa stai cercando?">
         <button>Search</button>
-
+        <Map :center="{ lat: 41.902782, lon: 12.496366 }" :flats="flats" />
         <div v-if="authStore.user">
             <h2> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
-            <Map />
+      
         </div>
         <div v-else>Go to login</div>
         
