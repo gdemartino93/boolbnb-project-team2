@@ -8,9 +8,9 @@
         <div v-else class="mt-5">Go to login</div>
 
         <div class="container">
-
             <AptCard v-for="apartment in apartments" :apartment="apartment" />
         </div>
+        <button class="btn btn-success" @click="loadMore">CARICA ALTRI</button>
     </div>
 </template>
   
@@ -29,15 +29,20 @@ export default {
         return {
             // dichiariamo un istanza di useAuthstore 
             authStore: useAuthStore(),
-            apartments: []
+            apartments: [],
+            currentPage: 1
         };
     },
     methods: {
-        async apartmentPrint() {
+        async loadMore(){
+            this.currentPage++;
+            await this.apartmentPrint(this.currentPage);
+        },
+        async apartmentPrint(page) {
             try {
-                const response = await axios.get('/api/v1/apartment/all');
+                const response = await axios.get(`/api/v1/apartment/all?page=${page}`);
                 const res = response.data.response.apartments;
-                this.apartments = res.data
+                this.apartments = this.apartments.concat(res.data);
             } catch (error) {
                 
                 console.log(error);
