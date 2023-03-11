@@ -10,7 +10,8 @@
         <div class="container">
             <AptCard v-for="apartment in apartments" :apartment="apartment" />
         </div>
-        <button class="btn btn-success" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
+        <button class="btn btn-info">TOP</button>
+        <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
     </div>
 </template>
   
