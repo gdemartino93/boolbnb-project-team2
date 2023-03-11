@@ -17,8 +17,8 @@ export const store = reactive ({
         xmlHttp.send(null);
         var json = JSON.parse(xmlHttp.responseText);
 
-        this.latitude = parseFloat(json.results[0].position.lat);
-        this.longitude = parseFloat(json.results[0].position.lon);
+        this.latitude = json.results[0].position.lat;
+        this.longitude = json.results[0].position.lon;
 
     }
 });

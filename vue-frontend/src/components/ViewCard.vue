@@ -1,10 +1,13 @@
 <script>
+import Map from './Map/Map.vue';
 import { useAuthStore } from '../stores/auth';
 import axios from 'axios';
 export default {
+    components:{
+        Map
+    },
     data() {
         return {
-
             authStore: useAuthStore(),
             apt: {},
             services: []
@@ -22,7 +25,7 @@ export default {
                 console.log(error)
             }
 
-        }
+        },
     },
     mounted() {
         this.getSingleAp(this.$route.params.id);
@@ -32,6 +35,7 @@ export default {
 </script>
 
 <template>
+    
     <ul>
         <li>Id: {{ apt.id }}</li>
         <li><img :src="apt.img" :alt="apt.img"></li>
@@ -48,8 +52,9 @@ export default {
     <h6>Additional Services</h6>
     <ul v-for="service in services">
         <li>Name: {{ service.name }}</li>
-        <!-- <li>Description: {{ service.description }}</li> -->
     </ul>
+
+    <Map :center="{ lat: apt.latitude , lon: apt.longitude  }" :flats="flats" />
 </template>
   
 
