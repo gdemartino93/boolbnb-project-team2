@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@tomtom-international/web-sdk-maps": "^6.23.0",
+    "@tomtom-international/web-sdk-services": "^6.23.0",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1"
   }
