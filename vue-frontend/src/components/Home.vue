@@ -33,11 +33,11 @@ export default {
         };
     },
     methods: {
-        // Igor ha detto che questa parte dovrebbe andare in Pinia, perchè altrimenti non avrebbe senso installarla :)
         async apartmentPrint() {
             try {
                 const response = await axios.get('/api/v1/apartment/all');
-                this.apartments = response.data.response.apartments;
+                const res = response.data.response.apartments;
+                this.apartments = res.data
             } catch (error) {
                 
                 console.log(error);
