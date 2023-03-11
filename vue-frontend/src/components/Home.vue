@@ -1,11 +1,12 @@
 <template>
     <div>
-        <input type="search" name="searchBar" placeholder="Cosa stai cercando?">
-        <button>Search</button>
+        
         <div v-if="authStore.user">
             <h2 class="mt-5"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
         <div v-else class="mt-5">Go to login</div>
+
+        <router-link :to="{name: 'advancedSearch'}">Vai alla ricerca</router-link>
 
         <div class="container">
 
@@ -59,37 +60,6 @@ export default {
     overflow-x: auto;
 }
 
-input {
-    width: 80%;
-    margin-left: 2rem;
-    padding-left: .5rem;
-    border-radius: 16px 0 16px 0;
-    // appearance: none;
-    // border: none;
-    // outline: none;
-    background: none;
-    background-color: rgba(255, 255, 255, .35);
-    transition: 0.4s;
 
-    &:focus {
-        border-radius: 0 16px 0 16px;
-        background-color: rgba(255, 255, 255, .75);
-    }
-
-}
-
-button {
-    margin-left: 2rem;
-    padding: 0.5rem;
-    appearance: none;
-    border: none;
-    outline: none;
-    border-radius: 16px 0 16px 0;
-    transition: 0.4s;
-
-    &:hover {
-        border-radius: 0 16px 0 16px;
-    }
-}
 </style>
   
