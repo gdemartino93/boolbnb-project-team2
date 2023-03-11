@@ -4,6 +4,7 @@ import { store } from '../../stores/store'
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
 
+
 export default {
     data() {
         return {
@@ -27,7 +28,21 @@ export default {
         }
     },
     methods: {
+<<<<<<< HEAD
         async getServices() {
+=======
+        async storeData(e) {
+            e.preventDefault();
+
+            this.store.getCohordinates(this.form.address);
+
+            this.form.latitude = this.store.latitude;
+            this.form.longitude = this.store.longitude;
+            await this.auth.getToken();
+
+            console.log(this.form);
+
+>>>>>>> apiTesting
             try {
 
                 const response = await axios.get('api/v1/services/all');
@@ -37,6 +52,7 @@ export default {
                 console.log(error);
             }
         },
+<<<<<<< HEAD
         onFileChange(e) {
             const file = e.target.files[0];
             this.form.img = file;
@@ -69,6 +85,9 @@ export default {
             }
             this.$router.push('/');
         }
+=======
+        
+>>>>>>> apiTesting
     },
     mounted() {
         this.getServices();
@@ -108,13 +127,13 @@ export default {
             <input type="text" name="address" v-model="form.address">
             <br>
 
-            <label for="latitude">Latitude</label>
+            <!-- <label for="latitude">Latitude</label>
             <input type="number" name="latitude" v-model="form.latitude">
             <br>
 
             <label for="longitude">Longitude</label>
             <input type="number" name="longitude" v-model="form.longitude">
-            <br>
+            <br> -->
 
             <label for="img">Image</label>
             <input type="file" name="img" v-on:change="onFileChange" ref="img" accept="image/*">

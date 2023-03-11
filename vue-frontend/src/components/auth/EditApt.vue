@@ -17,6 +17,11 @@ export default {
   },
   methods: {
     async updateData() {
+
+      this.store.getCohordinates(this.apt.address);
+      this.apt.latitude = this.store.latitude;
+      this.apt.longitude = this.store.longitude;
+      
       await this.auth.getToken();
       try {
         // await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt);
@@ -88,6 +93,7 @@ export default {
 
 
 <template>
+<<<<<<< HEAD
   <section v-if="auth.user">
     <h2>Form</h2>
     <form action="" method="POST">
@@ -146,6 +152,57 @@ export default {
     <h1 class="text-danger">NON AUTENTICATO</h1>
   </section>
 </template>
+=======
+    <section v-if="auth.user">
+      <h2>Form</h2>
+      <form action="" method="POST">
+        <label for="title">Title</label>
+        <input type="text" name="title" v-model="apt.title">
+        <br>
+  
+        <label for="description">Description</label>
+        <input type="text" name="description" v-model="apt.description">
+        <br>
+  
+        <label for="room_number">Room Number</label>
+        <input type="number" name="room_number" v-model="apt.room_number">
+        <br>
+  
+        <label for="bed_number">Bed Number</label>
+        <input type="number" name="bed_number" v-model="apt.bed_number">
+        <br>
+  
+        <label for="bath_number">Bath Number</label>
+        <input type="number" name="bath_number" v-model="apt.bath_number">
+        <br>
+  
+        <label for="square_meters">Square Meters</label>
+        <input type="number" name="square_meters" v-model="apt.square_meters">
+        <br>
+  
+        <label for="address">Address</label>
+        <input type="text" name="address" v-model="apt.address">
+        <br>
+  
+        <label for="img">Image</label>
+        <input type="text" name="img" v-model="apt.img">
+        <br>
+  
+        <div v-for="service in adds.additional_service" :key="service.id">
+          <input type="checkbox" :id="service.id" @change="getAdServices(service.id)" :checked="checkCheckboxes(apt, service)">
+          <label :for="service.name"> {{ service.name }} </label>
+        </div>
+  
+        <br>
+  
+        <button type="button" @click="updateData(apt)">Update Apartment</button>
+      </form>
+    </section>
+    <section v-else>
+      <h1 class="text-danger">NON AUTENTICATO</h1>
+    </section>
+  </template>
+>>>>>>> apiTesting
   
 
 <style scoped></style>
