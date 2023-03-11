@@ -55,8 +55,8 @@ export default {
 <style lang="scss" scoped>
 .container {
     display: flex;
-    gap: 1rem;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 input {
@@ -64,9 +64,6 @@ input {
     margin-left: 2rem;
     padding-left: .5rem;
     border-radius: 16px 0 16px 0;
-    // appearance: none;
-    // border: none;
-    // outline: none;
     background: none;
     background-color: rgba(255, 255, 255, .35);
     transition: 0.4s;
