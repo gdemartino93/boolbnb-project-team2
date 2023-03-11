@@ -27,33 +27,39 @@ export default {
     },
     data() {
         return {
-            // dichiariamo un istanza di useAuthstore 
+            // declare istance of authstore
             authStore: useAuthStore(),
             apartments: [],
+            // set current page to 1 by default. If you wanna change the results for page you must be change them on apicontroller
             currentPage: 1
         };
     },
     methods: {
         async loadMore(){
+            // increase current page on click
             this.currentPage++;
+            // print results
             await this.apartmentPrint(this.currentPage);
+            // wait resultas has been printed then scrollintoview
+            this.$refs.loadmore.scrollIntoView({behavior: 'smooth'});
+
             
         },
         async apartmentPrint(page) {
             try {
                 const response = await axios.get(`/api/v1/apartment/all?page=${page}`);
                 const res = response.data.response.apartments;
+                // we need to concat results either we ll have only X apt in page because they ll overwrite
                 this.apartments = this.apartments.concat(res.data);
-            } catch (error) {
-                
+            } catch (error) {   
                 console.log(error);
             }
         },
     },
     mounted() {
 
-        this.authStore.getUser(); //uso la funzione dello store di pinia
-        this.apartmentPrint();
+        this.authStore.getUser(); //check if user is validated
+        this.apartmentPrint(); //èrin result
     },
 };
 </script>
