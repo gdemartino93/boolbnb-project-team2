@@ -44,10 +44,9 @@ export default {
             try {
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments;
-                console.log(this.apartments);
             } catch (error) {
-                // bisogna gestire l'errore della chiamata API
-                // console.log(error);
+                
+                console.log(error);
             }
         },
     },
