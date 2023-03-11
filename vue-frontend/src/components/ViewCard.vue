@@ -53,8 +53,8 @@ export default {
     <ul v-for="service in services">
         <li>Name: {{ service.name }}</li>
     </ul>
-
-    <Map :center="{ lat: apt.latitude , lon: apt.longitude  }" :flats="flats" />
+    <!-- use v-if because value onmounted start as undefinied and app crash -->
+    <Map v-if="apt.latitude && apt.longitude " :center="{ lat: apt.latitude , lon: apt.longitude  }" :flats="flats" />
 </template>
   
 
