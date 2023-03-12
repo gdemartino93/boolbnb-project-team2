@@ -1,7 +1,6 @@
 <script>
 import {store} from '../stores/store';
 import axios from 'axios';
-import debounce from 'lodash/debounce';
 import AptCard from './AptCard.vue';
 
 export default{
@@ -20,20 +19,17 @@ export default{
     },
     methods: {
 
-        queryCoordinates: debounce(function() {
-
+        queryCoordinates(){
+            
+            // Funzione per prendere le coordinate dato un indirizzo deciso dall'input dell'utente, attraverso chiamata API a TomTom
             this.store.getCohordinates(this.queryValue);
             this.queryLatitude = this.store.latitude;
             this.queryLongitude = this.store.longitude;
-
             console.log(this.queryLatitude, this.queryLongitude);
-
             // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
             this.queryResults = [];
-
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
-            // tempo dopo la quale eseguire la funzione
-        }, 200),
+        },
         async apartmentPrint() {
             
             try {
@@ -41,7 +37,8 @@ export default{
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments.data;
                 console.log(this.apartments);
-            } catch (error) {        
+            } catch (error) {
+                
                 console.log(error);
             }
         },
@@ -96,9 +93,8 @@ export default{
     }
 }
 </script>
-
 <template>
-    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" @input="queryCoordinates">
+    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
     <button @click="queryCoordinates">Search</button>
 
     <div class="container d-flex">
