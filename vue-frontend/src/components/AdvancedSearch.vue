@@ -2,8 +2,12 @@
 import {store} from '../stores/store';
 import axios from 'axios';
 
+import AptCard from './AptCard.vue';
 
 export default{
+    components: {
+        AptCard
+    },
     data(){
         return{
             store,
@@ -23,6 +27,8 @@ export default{
             this.queryLatitude = this.store.latitude;
             this.queryLongitude = this.store.longitude;
 
+            console.log(this.queryLatitude, this.queryLongitude);
+
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
         },
         async apartmentPrint() {
@@ -30,7 +36,8 @@ export default{
             try {
             
                 const response = await axios.get('/api/v1/apartment/all');
-                this.apartments = response.data.response.apartments;
+                this.apartments = response.data.response.apartments.data;
+                console.log(this.apartments);
             } catch (error) {
                 
                 console.log(error);
@@ -93,13 +100,15 @@ export default{
     <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
     <button @click="queryCoordinates">Search</button>
 
-    <div class="container">
+    <div class="container d-flex">
 
-        <ul>
+        <!-- <ul>
             <li v-for="apartment in queryResults">
                 {{ apartment.title }}
             </li>
-        </ul>
+        </ul> -->
+
+        <AptCard v-for="apartment in queryResults" :apartment="apartment"/>
     </div>
 </template>
 
