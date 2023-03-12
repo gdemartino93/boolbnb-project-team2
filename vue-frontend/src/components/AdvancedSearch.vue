@@ -1,7 +1,7 @@
 <script>
 import {store} from '../stores/store';
 import axios from 'axios';
-
+import debounce from 'lodash/debounce';
 import AptCard from './AptCard.vue';
 
 export default{
@@ -20,9 +20,8 @@ export default{
     },
     methods: {
 
-        queryCoordinates(){
-            
-            // Funzione per prendere le coordinate dato un indirizzo deciso dall'input dell'utente, attraverso chiamata API a TomTom
+        queryCoordinates: debounce(function() {
+
             this.store.getCohordinates(this.queryValue);
             this.queryLatitude = this.store.latitude;
             this.queryLongitude = this.store.longitude;
@@ -33,7 +32,8 @@ export default{
             this.queryResults = [];
 
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
-        },
+            // tempo dopo la quale eseguire la funzione
+        }, 200),
         async apartmentPrint() {
             
             try {
@@ -41,8 +41,7 @@ export default{
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments.data;
                 console.log(this.apartments);
-            } catch (error) {
-                
+            } catch (error) {        
                 console.log(error);
             }
         },
@@ -87,7 +86,6 @@ export default{
             
         },
         toRad(value) {
-            
             return (value * Math.PI) / 180;
         }
     },
@@ -100,17 +98,10 @@ export default{
 </script>
 
 <template>
-    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
+    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" @input="queryCoordinates">
     <button @click="queryCoordinates">Search</button>
 
     <div class="container d-flex">
-
-        <!-- <ul>
-            <li v-for="apartment in queryResults">
-                {{ apartment.title }}
-            </li>
-        </ul> -->
-
         <AptCard v-for="apartment in queryResults" :apartment="apartment"/>
     </div>
 </template>
