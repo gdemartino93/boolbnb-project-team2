@@ -14,7 +14,8 @@ export default{
             queryLatitude: undefined,
             queryLongitude: undefined,
             apartments: [],
-            queryResults: []
+            queryResults: [],
+            sortedArray: []
         }
     },
     methods: {
@@ -37,8 +38,7 @@ export default{
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments.data;
                 console.log(this.apartments);
-            } catch (error) {
-                
+            } catch (error) {        
                 console.log(error);
             }
         },
@@ -98,7 +98,14 @@ export default{
     <button @click="queryCoordinates">Search</button>
 
     <div class="container d-flex">
-        <AptCard v-for="apartment in queryResults" :apartment="apartment"/>
+
+        <!-- <ul>
+            <li v-for="apartment in queryResults">
+                {{ apartment.title }}
+            </li>
+        </ul> -->
+
+        <AptCard v-for="apartment in sortedArray" :apartment="apartment"/>
     </div>
 </template>
 
