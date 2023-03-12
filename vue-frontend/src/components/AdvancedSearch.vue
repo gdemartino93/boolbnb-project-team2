@@ -29,6 +29,9 @@ export default{
 
             console.log(this.queryLatitude, this.queryLongitude);
 
+            // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
+            this.queryResults = [];
+
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
         },
         async apartmentPrint() {
