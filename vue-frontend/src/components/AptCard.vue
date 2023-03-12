@@ -17,15 +17,8 @@ export default {
 </script>
 
 <template>
-    <!-- <router-link
-        :to="{ name: 'view', params: { 
-            id: `${apartment.id}`, title: `${apartment.title}`, description: `${apartment.description}`, 
-            room_number: `${apartment.room_number}`, bed_number: `${apartment.bed_number}`, 
-            bath_number: `${apartment.bath_number}`, square_meters: `${apartment.square_meters}`, 
-            address: `${apartment.address}`, latitude: `${apartment.latitude}`, longitude: `${apartment.longitude}`, 
-            visible: `${apartment.visible}`, img: `${apartment.img}` } }"
-        :apartment="apartment"> -->
-        <router-link :to="{name: 'show', params:{
+
+        <router-link class="card col-4" :to="{name: 'show', params:{
             id: `${apartment.id}`
         }}" >
 
@@ -51,4 +44,11 @@ export default {
     <!-- </router-link> -->
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.card{
+    img{
+        width: 50px;
+    }
+}
+
+</style>
