@@ -100,6 +100,7 @@ button {
     outline: none;
     border-radius: 16px 0 16px 0;
     transition: 0.4s;
+}
 
 </style>
   
