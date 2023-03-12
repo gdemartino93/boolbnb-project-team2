@@ -15,7 +15,8 @@ export default{
             queryLatitude: undefined,
             queryLongitude: undefined,
             apartments: [],
-            queryResults: []
+            queryResults: [],
+            sortedArray: []
         }
     },
     methods: {
@@ -25,8 +26,6 @@ export default{
             this.store.getCohordinates(this.queryValue);
             this.queryLatitude = this.store.latitude;
             this.queryLongitude = this.store.longitude;
-
-            console.log(this.queryLatitude, this.queryLongitude);
 
             // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
             this.queryResults = [];
@@ -40,8 +39,8 @@ export default{
             
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments.data;
-                console.log(this.apartments);
-            } catch (error) {        
+            } catch (error) {
+                
                 console.log(error);
             }
         },
@@ -102,7 +101,14 @@ export default{
     <button @click="queryCoordinates">Search</button>
 
     <div class="container d-flex">
-        <AptCard v-for="apartment in queryResults" :apartment="apartment"/>
+
+        <!-- <ul>
+            <li v-for="apartment in queryResults">
+                {{ apartment.title }}
+            </li>
+        </ul> -->
+
+        <AptCard v-for="apartment in sortedArray" :apartment="apartment"/>
     </div>
 </template>
 
