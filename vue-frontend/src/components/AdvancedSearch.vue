@@ -15,7 +15,8 @@ export default{
             queryLatitude: undefined,
             queryLongitude: undefined,
             apartments: [],
-            queryResults: []
+            queryResults: [],
+            sortedArray: []
         }
     },
     methods: {
@@ -27,12 +28,13 @@ export default{
             this.queryLatitude = this.store.latitude;
             this.queryLongitude = this.store.longitude;
 
-            console.log(this.queryLatitude, this.queryLongitude);
-
             // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
             this.queryResults = [];
 
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
+
+            // Funzione che ordina l'array di risultati in ordine crescente in base alla distanza dall'input dell'utente
+            this.sortedArray = this.queryResults.sort((a,b) => a.distance - b.distance);
         },
         async apartmentPrint() {
             
@@ -40,7 +42,6 @@ export default{
             
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments.data;
-                console.log(this.apartments);
             } catch (error) {
                 
                 console.log(error);
@@ -111,7 +112,7 @@ export default{
             </li>
         </ul> -->
 
-        <AptCard v-for="apartment in queryResults" :apartment="apartment"/>
+        <AptCard v-for="apartment in sortedArray" :apartment="apartment"/>
     </div>
 </template>
 
