@@ -3,14 +3,14 @@
         <input type="search" name="searchBar" placeholder="Cosa stai cercando?">
         <button>Search</button>
         <div v-if="authStore.user">
-            <h2 class="mt-5"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
+            <h2 class="mt-5" ref="first"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
-        <div v-else class="mt-5">Go to login</div>
+        <div v-else class="mt-5" >Go to login</div>
 
         <div class="container">
-            <AptCard v-for="apartment in apartments" :apartment="apartment" />
+            <AptCard v-for="(apartment,index) in apartments" :apartment="apartment" :key="index" />
         </div>
-        <button class="btn btn-info">TOP</button>
+        <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
         <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
     </div>
 </template>
@@ -56,6 +56,9 @@ export default {
                 console.log(error);
             }
         },
+        async goToFirst(){
+            this.$refs.first.scrollIntoView({behavior: 'smooth'});
+        }
     },
     mounted() {
 
