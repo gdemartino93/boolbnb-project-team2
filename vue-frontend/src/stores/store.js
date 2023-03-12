@@ -7,7 +7,7 @@ export const store = reactive ({
     latitude: undefined,
     longitude: undefined,
     
-    getCohordinates(value){
+    getCoordinates(value){
 
         // Metodo da spada smart per aggirare le CORS policy
 

@@ -18,34 +18,23 @@ export default {
   methods: {
     async updateData() {
       
-      await this.auth.getToken();
-      this.store.getCohordinates(this.apt.address);
+      this.store.getCoordinates(this.apt.address);
       this.apt.latitude = this.store.latitude;
       this.apt.longitude = this.store.longitude;
       
+      await this.auth.getToken();
       
       try {
-        // await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt);
-        const formData = new FormData();
-        formData.append('title', this.apt.title);
-        formData.append('description', this.apt.description);
-        formData.append('room_number', this.apt.room_number);
-        formData.append('bed_number', this.apt.bed_number);
-        formData.append('bath_number', this.apt.bath_number);
-        formData.append('square_meters', this.apt.square_meters);
-        formData.append('address', this.apt.address);
-        formData.append('latitude', this.apt.latitude);
-        formData.append('longitude', this.apt.longitude);
-        formData.append('img', this.apt.img);
-        formData.append('additional_services', this.adservices);
-
-        await axios.post('/api/v1/apartment/update/' + this.apt.id, formData, {
+        
+        this.apt.additional_services = [...this.adservices];
+        await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt, {
           headers: {
+            
             'Content-Type': 'multipart/form-data'
-          },
-        });
-
+          }
+        }) 
       } catch (error) {
+        
         console.log(error);
       }
 
@@ -68,16 +57,26 @@ export default {
         const response = await axios.get('/api/v1/apartment/' + id);
         this.apt = response.data.response;
       } catch (error) {
+        
         console.log(error);
       }
     },
     getAdServices(value) {
-      this.adservices.push(value);
+      
+      if(!this.adservices.includes(value)){
+
+        this.adservices.push(value);
+      } else {
+
+        const index = this.adservices.indexOf(value);
+        this.adservices.splice(index, 1);
+      }
     },
-    checkCheckboxes(apartment, addService) {
-      for (let x = 0; x < apartment.additional_services.length; x++) {
-        const apartmentAdds = apartment.additional_services[x];
-        if (apartmentAdds.id == addService.id) {
+    checkCheckboxes(element) {
+      
+      for (let x = 0; x < this.apt.additional_services.length; x++) {
+        const apartmentAdds = this.apt.additional_services[x];
+        if (apartmentAdds.id == element.id) {
           this.adservices.push(apartmentAdds.id);
           return true;
         }
@@ -86,6 +85,7 @@ export default {
     }
   },
   mounted() {
+    
     this.getSingleAp(this.$route.params.id);
     this.getServices();
   }
@@ -131,7 +131,7 @@ export default {
 
       <div v-for="service in adds.additional_service" :key="service.id">
         <input type="checkbox" :id="service.id" @change="getAdServices(service.id)"
-          :checked="checkCheckboxes(apt, service)">
+          :checked="checkCheckboxes(service)">
         <label :for="service.name"> {{ service.name }} </label>
       </div>
 

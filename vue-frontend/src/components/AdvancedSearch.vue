@@ -23,7 +23,7 @@ export default{
         queryCoordinates(){
             
             // Funzione per prendere le coordinate dato un indirizzo deciso dall'input dell'utente, attraverso chiamata API a TomTom
-            this.store.getCohordinates(this.queryValue);
+            this.store.getCoordinates(this.queryValue);
             this.queryLatitude = this.store.latitude;
             this.queryLongitude = this.store.longitude;
             // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
