@@ -29,6 +29,7 @@ export const useAuthStore = defineStore("auth",{
                 await this.getToken();
                 const response = await axios.get('/api/user');
                 this.authUser = response.data;
+                console.log(response.data)
                 // await this.getUsersWithApt();
             } catch (error) {
                 console.log("Errore get user" + error)
