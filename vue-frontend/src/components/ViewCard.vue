@@ -45,15 +45,16 @@ export default {
                 <img :src="apt.img" :alt="apt.img">
             </li>
 
-            <li class="description">{{ apt.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore,
-                magni assumenda? Libero error sint animi molestias in assumenda velit dolor ullam tempore corrupti, deleniti
-                quis, pariatur, nostrum quibusdam magnam autem</li>
+            <li class="description">{{ apt.description }}</li>
 
-            <li class="info"><b>Room number</b>: {{ apt.room_number }}</li>
-            <li class="info"><b>Bed number</b>: {{ apt.bed_number }}</li>
-            <li class="info"><b>Bath number</b>: {{ apt.bath_number }}</li>
-            <li class="info"><b>Square meters</b>: {{ apt.square_meters }}</li>
-            <li class="info"><b>Address</b>: {{ apt.address }}</li>
+            <li class="info"><i class="fa-solid fa-house-chimney-window"></i> <b>Room number</b>: {{ apt.room_number }}</li>
+            <li class="info"><i class="fa-solid fa-bed"></i> <b>Beds number</b>: {{ apt.bed_number }}</li>
+
+            <li class="info"><i class="fa-solid fa-bath"></i> <b>Baths number</b>: {{ apt.bath_number }}</li>
+
+            <li class="info"><i class="fa-solid fa-ruler"></i> <b>Square meters</b>: {{ apt.square_meters }}</li>
+
+            <li class="info"><i class="fa-solid fa-map-location-dot"></i> <b>Address</b>: {{ apt.address }}</li>
 
             <ul class="services-ul list-unstyled"><b>Additional services</b>:
                 <li v-for="service in services">{{ service.name }}</li>
