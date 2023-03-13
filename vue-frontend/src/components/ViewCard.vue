@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-    <div class="m-5">
+    <div class="container">
         <ul class="list-unstyled">
             <li>
                 <h2>{{ apt.title }}</h2>
@@ -45,9 +45,9 @@ export default {
                 <img :src="apt.img" :alt="apt.img">
             </li>
 
-            <li class="description">{{ apt.description }} lorem et lorem et loremlorem et lorem et loremlorem et lorem et
-                lorem et lorem et loremlorem et lorem et loremlorem e lorem etlorem et lorem et loremlorem et lorem et
-                loremlorem et lorem et lorem</li>
+            <li class="description">{{ apt.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore,
+                magni assumenda? Libero error sint animi molestias in assumenda velit dolor ullam tempore corrupti, deleniti
+                quis, pariatur, nostrum quibusdam magnam autem</li>
 
             <li class="info"><b>Room number</b>: {{ apt.room_number }}</li>
             <li class="info"><b>Bed number</b>: {{ apt.bed_number }}</li>
@@ -55,11 +55,9 @@ export default {
             <li class="info"><b>Square meters</b>: {{ apt.square_meters }}</li>
             <li class="info"><b>Address</b>: {{ apt.address }}</li>
 
-            <li><b>Additional Services</b>:
-                <ul class="list-unstyled" v-for="service in services">
-                    <li> {{ service.name }}</li>
-                </ul>
-            </li>
+            <ul class="services-ul list-unstyled"><b>Additional services</b>:
+                <li v-for="service in services">{{ service.name }}</li>
+            </ul>
         </ul>
 
         <!-- use v-if because value onmounted start as undefinied and app crash -->
@@ -71,17 +69,34 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/main.scss' as *;
 
-ul {
-    img {}
+.container {
+    font-size: 14px;
+    margin: auto;
+    padding: 40px 0;
 
-    li {
+    ul {
         h2 {
             margin-bottom: 30px;
         }
 
         img {
-            width: 300px;
+            width: 400px;
+        }
+
+        img,
+        .description {
+            margin-bottom: 10px;
+        }
+
+        .services-ul {
+            margin-bottom: 40px;
+
+            li {
+                margin-left: 20px;
+            }
+
         }
     }
+
 }
 </style>
