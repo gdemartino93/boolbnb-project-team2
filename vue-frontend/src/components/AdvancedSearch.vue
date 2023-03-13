@@ -93,52 +93,46 @@ export default {
 }
 </script>
 <template>
-    <div class="container">
-        <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
-        <button @click="queryCoordinates">Search</button>
+    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
+    <button @click="queryCoordinates">Search</button>
 
-        <div class="container d-flex">
+    <div class="container d-flex">
 
-            <AptCard v-for="apartment in sortedArray" :apartment="apartment" />
-        </div>
+        <AptCard v-for="apartment in sortedArray" :apartment="apartment" />
     </div>
 </template>
 
 <style lang="scss" scoped>
-.container {
-    margin-top: 100px;
+input {
+    width: 80%;
+    margin-left: 2rem;
+    padding-left: .5rem;
+    border-radius: 16px 0 16px 0;
+    // appearance: none;
+    // border: none;
+    // outline: none;
+    background: none;
+    background-color: rgba(255, 255, 255, .35);
+    transition: 0.4s;
 
-    input {
-        width: 80%;
-        margin-left: 2rem;
-        padding-left: .5rem;
-        border-radius: 16px 0 16px 0;
-        // appearance: none;
-        // border: none;
-        // outline: none;
-        background: none;
-        background-color: rgba(255, 255, 255, .35);
-        transition: 0.4s;
-
-        &:focus {
-            border-radius: 0 16px 0 16px;
-            background-color: rgba(255, 255, 255, .75);
-        }
-
+    &:focus {
+        border-radius: 0 16px 0 16px;
+        background-color: rgba(255, 255, 255, .75);
     }
 
-    button {
-        margin-left: 2rem;
-        padding: 0.5rem;
-        appearance: none;
-        border: none;
-        outline: none;
-        border-radius: 16px 0 16px 0;
-        transition: 0.4s;
+}
 
-        &:hover {
-            border-radius: 0 16px 0 16px;
-        }
+button {
+    margin-left: 2rem;
+    padding: 0.5rem;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-radius: 16px 0 16px 0;
+    transition: 0.4s;
+
+    &:hover {
+        border-radius: 0 16px 0 16px;
     }
 }
 </style>
