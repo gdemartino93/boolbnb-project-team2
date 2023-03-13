@@ -95,6 +95,15 @@ export default{
 </script>
 <template>
     <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
+    <br>
+    <label for="room_number">Min Rooms Number:</label>
+    <input type="number" name="room_number">
+    <br>
+    <label for="room_number">Min Beds Number:</label>
+    <input type="number" name="bed_number">
+    <br>
+    <label for="range">Distance range (default is 20km):</label>
+    <input type="range" name="range" min="20" max="60" step="20">
     <button @click="queryCoordinates">Search</button>
 
     <div class="container d-flex">
