@@ -3,7 +3,7 @@ import Map from './Map/Map.vue';
 import { useAuthStore } from '../stores/auth';
 import axios from 'axios';
 export default {
-    components:{
+    components: {
         Map
     },
     data() {
@@ -35,27 +35,53 @@ export default {
 </script>
 
 <template>
-    
-    <ul>
-        <li>Id: {{ apt.id }}</li>
-        <li><img :src="apt.img" :alt="apt.img"></li>
-        <li>Title: {{ apt.title }}</li>
-        <li>Description: {{ apt.description }}</li>
-        <li>Room Number: {{ apt.room_number }}</li>
-        <li>Bed Number: {{ apt.bed_number }}</li>
-        <li>Bath Number: {{ apt.bath_number }}</li>
-        <li>Square Meters: {{ apt.square_meters }}</li>
-        <li>Address: {{ apt.address }}</li>
-        <li>Latitude: {{ apt.latitude }}</li>
-        <li>Longitude: {{ apt.longitude }}</li>
-    </ul>
-    <h6>Additional Services</h6>
-    <ul v-for="service in services">
-        <li>Name: {{ service.name }}</li>
-    </ul>
-    <!-- use v-if because value onmounted start as undefinied and app crash -->
-    <Map v-if="apt.latitude && apt.longitude " :center="{ lat: apt.latitude , lon: apt.longitude  }" :flats="flats" />
+    <div class="m-5">
+        <ul class="list-unstyled">
+            <li>
+                <h2>{{ apt.title }}</h2>
+            </li>
+
+            <li class="img">
+                <img :src="apt.img" :alt="apt.img">
+            </li>
+
+            <li class="description">{{ apt.description }} lorem et lorem et loremlorem et lorem et loremlorem et lorem et
+                lorem et lorem et loremlorem et lorem et loremlorem e lorem etlorem et lorem et loremlorem et lorem et
+                loremlorem et lorem et lorem</li>
+
+            <li class="info"><b>Room number</b>: {{ apt.room_number }}</li>
+            <li class="info"><b>Bed number</b>: {{ apt.bed_number }}</li>
+            <li class="info"><b>Bath number</b>: {{ apt.bath_number }}</li>
+            <li class="info"><b>Square meters</b>: {{ apt.square_meters }}</li>
+            <li class="info"><b>Address</b>: {{ apt.address }}</li>
+
+            <li><b>Additional Services</b>:
+                <ul class="list-unstyled" v-for="service in services">
+                    <li> {{ service.name }}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- use v-if because value onmounted start as undefinied and app crash -->
+        <Map v-if="apt.latitude && apt.longitude" :center="{ lat: apt.latitude, lon: apt.longitude }" :flats="flats" />
+    </div>
 </template>
   
 
-<style scoped></style>
+<style lang="scss" scoped>
+@use '../assets/main.scss' as *;
+
+ul {
+    img {}
+
+    li {
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        img {
+            width: 300px;
+        }
+    }
+}
+</style>
