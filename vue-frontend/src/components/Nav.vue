@@ -45,7 +45,6 @@ nav {
         text-decoration: none;
 
         img {
-            height: 100%;
             width: 30%;
         }
     }

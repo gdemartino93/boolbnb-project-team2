@@ -73,7 +73,8 @@ export default {
 .container {
     font-size: 14px;
     margin: auto;
-    padding: 40px 0;
+    padding: 20px 0;
+    margin-top: 100px;
 
     ul {
         h2 {
