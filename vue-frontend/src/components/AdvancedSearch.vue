@@ -106,7 +106,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 100px;
+    margin-top: 150px;
 
     input {
         width: 80%;
