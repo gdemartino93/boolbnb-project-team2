@@ -1,13 +1,14 @@
 import { reactive } from "vue";
 import axios from "axios";
-export const store = reactive ({
+export const store = reactive({
 
-    geolocationUrl : 'https://api.tomtom.com/search/2/geocode/',
+    geolocationUrl: 'https://api.tomtom.com/search/2/geocode/',
     apiKey: 'YnMfUAYY76CkHWngLQxDudDG5GdEAEs5',
     latitude: undefined,
     longitude: undefined,
-    
-    getCoordinates(value){
+    logo: "./public/BoolBNB_logo-1.png",
+
+    getCoordinates(value) {
 
         // Metodo da spada smart per aggirare le CORS policy
 
@@ -21,5 +22,6 @@ export const store = reactive ({
         this.longitude = json.results[0].position.lon;
 
     }
+
 });
 export default store
