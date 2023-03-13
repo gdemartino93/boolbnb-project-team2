@@ -8,6 +8,7 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+
 // impostiamo interceptor di axios per far in modo che tutte le chiamate avvengono da questa base url 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "http://localhost:8000";
@@ -25,10 +26,24 @@ const app = createApp(App);
 const vuetify = createVuetify({
     components,
     directives,
+
   })
+
+  /* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faUserSecret,faUser)
+
 
 app.use(vuetify);
 app.use(pinia);
 app.use(router);
-
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app');
