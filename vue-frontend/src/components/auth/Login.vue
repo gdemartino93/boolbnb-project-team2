@@ -1,33 +1,48 @@
 <template>
-  <section class="col-4 mx-auto">
-    <h1>login</h1>
+  <section class="container d-flex flex-column justify-content-center align-items-center">
+    <h1 class="my-5">Login</h1>
+
+    <v-sheet width="300" class="mx-auto">
+      <v-form @submit.prevent>
+        <v-text-field
+          v-model="firstName"
+          :rules="rules"
+          label="Email"
+        >
+        </v-text-field>
+        <v-text-field
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="show2 ? 'text' : 'password'"
+              name="input-10-2"
+              label="Visible"
+              hint="At least 8 characters"
+              class="input-group--focused"
+              @click:append="show2 = !show2"
+            ></v-text-field>
+        <v-btn type="submit" block class="mt-2">Submit</v-btn>
+      </v-form>
+    </v-sheet>
+
+
+
+<!--     
     <form @submit.prevent="authStore.handleLogin(form)">
-      <span v-if="authStore.errors.email" >
-        <span class="text-danger">
-          {{ (authStore.errors.email[0]) === 'These credentials do not match our records.' 
-        ? 
-        "Nessuna corrispondenza "
-        : ""
-         }}</span>
-      </span>
+
       <div class="d-flex flex-column">
         <label for="email">Email</label>
         <input type="text" name="email" v-model="form.email">
-        <div v-if="authStore.errors.email">
-        <span class="text-danger">{{ (authStore.errors.email[0]) === 'These credentials do not match our records.' ? "" : authStore.errors.email[0] }}</span>
-        </div>
+
         <label for="password">Password</label>
         <input type="password" name="password" v-model="form.password">
-        <div v-if="authStore.errors.password">
-        <span class="text-danger">{{ authStore.errors.password[0] }}</span>
-        </div>
+
       </div>
       <div class="d-flex align-items-center justify-content-between">
         <button type="submit" class="btn btn-success my-3">Login</button>
         <router-link :to="'/forgot-password'">Password Dimenticata</router-link>
       </div>
 
-    </form>
+    </form> -->
   </section>
 </template>
 
@@ -42,7 +57,16 @@ export default {
       form: ref({
         email: "",
         password: ""
-      })
+      }),
+      show1: false,
+      show2: true,
+      password: 'Password',
+      rules: {
+        required: value => !!value || 'Required.',
+        min: v => v.length >= 8 || 'Min 8 characters',
+        emailMatch: () => (`The email and password you entered don't match`),
+      },
+      
     };
   },
   methods: {
@@ -52,4 +76,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+*{
+  background:bisque;
+}
 </style>
