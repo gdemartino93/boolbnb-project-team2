@@ -188,4 +188,18 @@ class ApiController extends Controller
         ]);
     }
 
+    // List of apartments without pagination
+    public function list(Request $request){
+
+        $apartmentQuery = Apartment::with(['user', 'additionalServices']);
+
+        $apartments = $apartmentQuery -> get();
+
+        return response() -> json([
+
+            'message' => 'Apartments successfully fetched',
+            'data' => $apartments
+        ]);
+    }
+
 }
