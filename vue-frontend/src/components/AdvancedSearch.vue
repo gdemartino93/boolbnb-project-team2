@@ -30,6 +30,7 @@ export default{
             this.queryResults = [];
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
             this.sortedArray = this.queryResults.sort((a,b) => a.distance - b.distance);
+            console.log(this.sortedArray);
         },
         async apartmentPrint() {
             
@@ -108,41 +109,46 @@ export default{
 
     <div class="container d-flex">
 
-        <AptCard v-for="apartment in sortedArray" :apartment="apartment"/>
+        <AptCard class="mx-2" v-for="apartment in sortedArray" :apartment="apartment"/>
     </div>
 </template>
 
 <style lang="scss" scoped>
-input {
-    width: 80%;
-    margin-left: 2rem;
-    padding-left: .5rem;
-    border-radius: 16px 0 16px 0;
-    // appearance: none;
-    // border: none;
-    // outline: none;
-    background: none;
-    background-color: rgba(255, 255, 255, .35);
-    transition: 0.4s;
+.container  {
 
-    &:focus {
-        border-radius: 0 16px 0 16px;
-        background-color: rgba(255, 255, 255, .75);
+    input {
+        width: 80%;
+        margin-left: 2rem;
+        padding-left: .5rem;
+        border-radius: 16px 0 16px 0;
+        // appearance: none;
+        // border: none;
+        // outline: none;
+        background: none;
+        background-color: rgba(255, 255, 255, .35);
+        transition: 0.4s;
+    
+        &:focus {
+            border-radius: 0 16px 0 16px;
+            background-color: rgba(255, 255, 255, .75);
+        }
+    
     }
-
+    
+    button {
+        margin-left: 2rem;
+        padding: 0.5rem;
+        appearance: none;
+        border: none;
+        outline: none;
+        border-radius: 16px 0 16px 0;
+        transition: 0.4s;
+    
+        &:hover {
+            border-radius: 0 16px 0 16px;
+        }
+    }
 }
 
-button {
-    margin-left: 2rem;
-    padding: 0.5rem;
-    appearance: none;
-    border: none;
-    outline: none;
-    border-radius: 16px 0 16px 0;
-    transition: 0.4s;
 
-    &:hover {
-        border-radius: 0 16px 0 16px;
-    }
-}
 </style>
