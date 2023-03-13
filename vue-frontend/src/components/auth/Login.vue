@@ -1,7 +1,7 @@
 <template>
 
   <section class="container">
-    <div class="col-12">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto">
       <span v-if="authStore.errors.email" >
         <span class="text-danger">
           {{ (authStore.errors.email[0]) === 'These credentials do not match our records.' 
@@ -12,6 +12,7 @@
       </span>
       <v-form @submit.prevent="authStore.handleLogin(form)">
         <v-text-field
+                  append-icon="mdi-at"
                   v-model="form.email"
                   :rules="emailRules"
                   label="E-mail"
