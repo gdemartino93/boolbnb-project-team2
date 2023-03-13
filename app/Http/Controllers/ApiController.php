@@ -188,4 +188,23 @@ class ApiController extends Controller
         ]);
     }
 
+    // List of apartments without pagination
+    public function list(Request $request){
+
+        $apartmentQuery = Apartment::with(['user', 'additionalServices']);
+
+        if($request -> keyword){
+            // this will allow user to search for a specific apartment by his title
+            $apartmentQuery -> where('title', 'LIKE', '%'.$request->keyword.'%');
+        }
+
+        $apartments = $apartmentQuery -> get();
+
+        return response() -> json([
+
+            'message' => 'Apartments successfully fetched',
+            'data' => $apartments
+        ]);
+    }
+
 }

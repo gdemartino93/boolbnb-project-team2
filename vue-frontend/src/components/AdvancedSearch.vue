@@ -29,15 +29,17 @@ export default {
             // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
             this.queryResults = [];
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
-            this.sortedArray = this.queryResults.sort((a, b) => a.distance - b.distance);
+            this.sortedArray = this.queryResults.sort((a,b) => a.distance - b.distance);
+            console.log(this.sortedArray);
         },
         async apartmentPrint() {
 
             try {
+            
+                const response = await axios.get('/api/v1/apartment/search');
+                this.apartments = response.data.data;
 
-                const response = await axios.get('/api/v1/apartment/all');
-                this.apartments = response.data.response.apartments.data;
-            } catch (error) {
+            } catch (error) {        
                 console.log(error);
             }
         },
@@ -99,7 +101,7 @@ export default {
 
         <div class="container d-flex">
 
-            <AptCard v-for="apartment in sortedArray" :apartment="apartment" />
+            <AptCard class="mx-2" v-for="apartment in sortedArray" :apartment="apartment"/>
         </div>
     </div>
 </template>
@@ -135,10 +137,11 @@ export default {
         outline: none;
         border-radius: 16px 0 16px 0;
         transition: 0.4s;
-
         &:hover {
             border-radius: 0 16px 0 16px;
         }
     }
 }
+
+
 </style>
