@@ -3,11 +3,12 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios'
-import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
+import 'vuetify/styles'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-
+import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 
 // impostiamo interceptor di axios per far in modo che tutte le chiamate avvengono da questa base url 
 axios.defaults.withCredentials = true;
@@ -24,26 +25,33 @@ pinia.use(({ store}) =>{ //estendiamo lo store pinia per gestire il routing dell
 const app = createApp(App);
 
 const vuetify = createVuetify({
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    }
+  },
     components,
     directives,
 
   })
 
-//   /* import the fontawesome core */
-// import { library } from '@fortawesome/fontawesome-svg-core'
+  /* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
 
-// /* import font awesome icon component */
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-// /* import specific icons */
-// import { faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+/* import specific icons */
+import { faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 
-// /* add icons to the library */
-// library.add(faUserSecret,faUser)
+/* add icons to the library */
+library.add(faUserSecret,faUser)
 
 
 app.use(vuetify);
 app.use(pinia);
 app.use(router);
-// app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app');
