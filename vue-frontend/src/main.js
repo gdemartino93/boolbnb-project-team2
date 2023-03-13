@@ -29,21 +29,21 @@ const vuetify = createVuetify({
 
   })
 
-  /* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
+//   /* import the fontawesome core */
+// import { library } from '@fortawesome/fontawesome-svg-core'
 
-/* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// /* import font awesome icon component */
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-/* import specific icons */
-import { faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+// /* import specific icons */
+// import { faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 
-/* add icons to the library */
-library.add(faUserSecret,faUser)
+// /* add icons to the library */
+// library.add(faUserSecret,faUser)
 
 
 app.use(vuetify);
 app.use(pinia);
 app.use(router);
-app.component('font-awesome-icon', FontAwesomeIcon)
+// app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app');

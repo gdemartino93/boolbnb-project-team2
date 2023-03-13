@@ -3,14 +3,15 @@
     <h1 class="my-5">Login</h1>
 
     <v-sheet width="300" class="mx-auto">
-      <v-form @submit.prevent>
+      <v-form @submit.prevent="authStore.handleLogin(form)">
         <v-text-field
-          v-model="firstName"
+          v-model="form.email"
           :rules="rules"
           label="Email"
         >
         </v-text-field>
         <v-text-field
+              v-model="form.password"
               :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
               :rules="[rules.required, rules.min]"
               :type="show2 ? 'text' : 'password'"
@@ -25,28 +26,20 @@
     </v-sheet>
 
 
-
-<!--     
-    <form @submit.prevent="authStore.handleLogin(form)">
-
-      <div class="d-flex flex-column">
-        <label for="email">Email</label>
-        <input type="text" name="email" v-model="form.email">
-
-        <label for="password">Password</label>
         <input type="password" name="password" v-model="form.password">
 
-      </div>
+  
       <div class="d-flex align-items-center justify-content-between">
         <button type="submit" class="btn btn-success my-3">Login</button>
         <router-link :to="'/forgot-password'">Password Dimenticata</router-link>
       </div>
 
-    </form> -->
+
   </section>
 </template>
 
 <script>
+
 import { useAuthStore } from '../../stores/auth';
 import { ref } from 'vue';
 
@@ -76,7 +69,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-*{
-  background:bisque;
-}
+
 </style>
