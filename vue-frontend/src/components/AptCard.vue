@@ -46,6 +46,9 @@ export default {
 
 <style lang="scss" scoped>
 .card{
+    border: 1px solid black;
+    border-radius: 10px;
+
     img{
         width: 50px;
     }

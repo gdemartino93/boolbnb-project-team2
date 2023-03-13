@@ -31,6 +31,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/v1/apartment/all', [ApiController::class, 'index']);
+
+Route::get('/v1/apartment/search', [ApiController::class, 'list']);
+
 Route::get('/v1/apartment/{id}',[ApiController :: class, 'signleAp']);
 
 Route::get('/v1/services/all', [ApiController::class, 'getAdditionalServices']);

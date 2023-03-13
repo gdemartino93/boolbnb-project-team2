@@ -17,24 +17,24 @@ export default {
   },
   methods: {
     async updateData() {
-      
+
       this.store.getCoordinates(this.apt.address);
       this.apt.latitude = this.store.latitude;
       this.apt.longitude = this.store.longitude;
-      
+
       await this.auth.getToken();
-      
+
       try {
-        
+
         this.apt.additional_services = [...this.adservices];
         await axios.post('/api/v1/apartment/update/' + this.apt.id, this.apt, {
           headers: {
-            
+
             'Content-Type': 'multipart/form-data'
           }
-        }) 
+        })
       } catch (error) {
-        
+
         console.log(error);
       }
 
@@ -57,13 +57,13 @@ export default {
         const response = await axios.get('/api/v1/apartment/' + id);
         this.apt = response.data.response;
       } catch (error) {
-        
+
         console.log(error);
       }
     },
     getAdServices(value) {
-      
-      if(!this.adservices.includes(value)){
+
+      if (!this.adservices.includes(value)) {
 
         this.adservices.push(value);
       } else {
@@ -73,7 +73,7 @@ export default {
       }
     },
     checkCheckboxes(element) {
-      
+
       for (let x = 0; x < this.apt.additional_services.length; x++) {
         const apartmentAdds = this.apt.additional_services[x];
         if (apartmentAdds.id == element.id) {
@@ -85,7 +85,7 @@ export default {
     }
   },
   mounted() {
-    
+
     this.getSingleAp(this.$route.params.id);
     this.getServices();
   }
@@ -94,7 +94,7 @@ export default {
 
 
 <template class="my-template">
-  <section v-if="auth.user">
+  <section v-if="auth.user" class="container">
     <form action="" method="POST">
       <label for="title">Title</label>
       <input type="text" name="title" v-model="apt.title">
@@ -132,7 +132,7 @@ export default {
         <div v-for="service in adds.additional_service" :key="service.id" class="col-md-3">
           <div class="col">
             <input type="checkbox" :id="service.id" @change="getAdServices(service.id)"
-                   :checked="checkCheckboxes(service)">
+              :checked="checkCheckboxes(service)">
             <label :for="service.name"> {{ service.name }} </label>
           </div>
         </div>
@@ -150,112 +150,115 @@ export default {
 
   
 
-<style scoped>
+<style lang="scss" scoped>
+.container {
+  margin-top: 150px;
 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
 
-h2 {
-  margin-top: 0;
-}
+  h2 {
+    margin-top: 0;
+  }
 
-label {
-  display: block;
-  margin-bottom: 10px;
-  color: #333;
-}
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+  }
 
-input[type="text"],
-input[type="number"],
-input[type="file"] {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 100%;
-  margin-bottom: 20px;
-}
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-input[type="checkbox"] {
-  margin-right: 10px;
-}
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
-}
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
 
-button:hover {
-  background-color: #3e8e41;
-}
+  button:hover {
+    background-color: #3e8e41;
+  }
 
-.text-danger {
-  color: #FF0000;
-}
+  .text-danger {
+    color: #FF0000;
+  }
 
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f2f2f2;
-  max-width: 75%;
-  margin: 0 auto;
-}
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f2f2f2;
+    max-width: 75%;
+    margin: 0 auto;
+  }
 
-.my-template {
+  .my-template {
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f2f2f2;
-}
-
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.col-md-3 {
-  flex: 0 0 31%;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 5px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease-in-out;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f2f2f2;
+  }
 
 
-.col-md-3:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-input[type="checkbox"] {
-  margin-right: 0.5rem;
-}
+  .col-md-3 {
+    flex: 0 0 31%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+  }
 
-label {
-  font-weight: bold;
-  color: #333;
+
+  .col-md-3:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+
+  label {
+    font-weight: bold;
+    color: #333;
+  }
 }
 </style>
