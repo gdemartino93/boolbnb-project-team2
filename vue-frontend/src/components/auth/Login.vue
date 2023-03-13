@@ -1,7 +1,7 @@
 <template>
-  <section class="col-4 mx-auto">
-    <h1>login</h1>
-    <form @submit.prevent="authStore.handleLogin(form)">
+
+  <section class="container">
+    <div class="col-12">
       <span v-if="authStore.errors.email" >
         <span class="text-danger">
           {{ (authStore.errors.email[0]) === 'These credentials do not match our records.' 
@@ -10,25 +10,32 @@
         : ""
          }}</span>
       </span>
-      <div class="d-flex flex-column">
-        <label for="email">Email</label>
-        <input type="text" name="email" v-model="form.email">
-        <div v-if="authStore.errors.email">
-        <span class="text-danger">{{ (authStore.errors.email[0]) === 'These credentials do not match our records.' ? "" : authStore.errors.email[0] }}</span>
-        </div>
-        <label for="password">Password</label>
-        <input type="password" name="password" v-model="form.password">
-        <div v-if="authStore.errors.password">
-        <span class="text-danger">{{ authStore.errors.password[0] }}</span>
-        </div>
-      </div>
-      <div class="d-flex align-items-center justify-content-between">
-        <button type="submit" class="btn btn-success my-3">Login</button>
-        <router-link :to="'/forgot-password'">Password Dimenticata</router-link>
-      </div>
+      <v-form @submit.prevent="authStore.handleLogin(form)">
+        <v-text-field
+                  v-model="form.email"
+                  :rules="emailRules"
+                  label="E-mail"
+                  required
+        >
+        </v-text-field>
+        <v-text-field
+              v-model="form.password"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="show1 ? 'text' : 'password'"
+              name="input-10-1"
+              label="Password"
+              hint="At least 8 characters"
+              counter
+              @click:append="show1 = !show1"
+          ></v-text-field>
 
-    </form>
+
+        <v-btn type="submit" block class="mt-2">Submit</v-btn>
+      </v-form>
+    </div>
   </section>
+
 </template>
 
 <script>
@@ -41,7 +48,27 @@ export default {
       form: ref({
         email: "",
         password: ""
-      })
+      }),
+      emailRules: [
+      value => {
+        if (value) return true
+
+        return 'E-mail is requred.'
+      },
+      value => {
+        if (/.+@.+\..+/.test(value)) return true
+
+        return 'E-mail must be valid.'
+      },
+    ],
+    show1: false,
+      show2: true,
+      password: 'Password',
+      rules: {
+        required: value => !!value || 'Required.',
+        min: v => v.length >= 8 || 'Min 8 characters',
+        emailMatch: () => (`The email and password you entered don't match`),
+      },
     };
   },
   methods: {
