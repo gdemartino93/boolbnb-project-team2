@@ -93,9 +93,8 @@ export default {
 </script>
 
 
-<template>
+<template class="my-template">
   <section v-if="auth.user">
-    <h2>Form</h2>
     <form action="" method="POST">
       <label for="title">Title</label>
       <input type="text" name="title" v-model="apt.title">
@@ -129,10 +128,14 @@ export default {
       <input type="file" name="img" @change="onFileChange">
       <br>
 
-      <div v-for="service in adds.additional_service" :key="service.id">
-        <input type="checkbox" :id="service.id" @change="getAdServices(service.id)"
-          :checked="checkCheckboxes(service)">
-        <label :for="service.name"> {{ service.name }} </label>
+      <div class="row">
+        <div v-for="service in adds.additional_service" :key="service.id" class="col-md-3">
+          <div class="col">
+            <input type="checkbox" :id="service.id" @change="getAdServices(service.id)"
+                   :checked="checkCheckboxes(service)">
+            <label :for="service.name"> {{ service.name }} </label>
+          </div>
+        </div>
       </div>
 
       <br>
@@ -144,6 +147,115 @@ export default {
     <h1 class="text-danger">NON AUTENTICATO</h1>
   </section>
 </template>
+
   
 
-<style scoped></style>
+<style scoped>
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+.text-danger {
+  color: #FF0000;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+  max-width: 75%;
+  margin: 0 auto;
+}
+
+.my-template {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col-md-3 {
+  flex: 0 0 31%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+
+.col-md-3:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+</style>
