@@ -25,11 +25,11 @@
               :type="show1 ? 'text' : 'password'"
               name="input-10-1"
               label="Password"
-              hint="At least 8 characters"
               counter
               @click:append="show1 = !show1"
           ></v-text-field>
-
+        <!-- da inserire dopo aver validato nel backend la lunghezza minima della password  -->
+          <!-- hint="At least 8 characters" -->
 
         <v-btn type="submit" block class="mt-2">Submit</v-btn>
       </v-form>
@@ -66,8 +66,10 @@ export default {
       password: 'Password',
       rules: {
         required: value => !!value || 'Required.',
-        min: v => v.length >= 8 || 'Min 8 characters',
-        emailMatch: () => (`The email and password you entered don't match`),
+        // da validare nel backend e poi scommentare
+
+        // min: v => v.length >= 8 || 'Min 8 characters',
+        // emailMatch: () => (`The email and password you entered don't match`),
       },
     };
   },
