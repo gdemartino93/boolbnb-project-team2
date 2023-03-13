@@ -3,6 +3,10 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
 // impostiamo interceptor di axios per far in modo che tutte le chiamate avvengono da questa base url 
 axios.defaults.withCredentials = true;
@@ -18,6 +22,12 @@ pinia.use(({ store}) =>{ //estendiamo lo store pinia per gestire il routing dell
 });
 const app = createApp(App);
 
+const vuetify = createVuetify({
+    components,
+    directives,
+  })
+
+app.use(vuetify);
 app.use(pinia);
 app.use(router);
 
