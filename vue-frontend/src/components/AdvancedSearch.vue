@@ -1,14 +1,14 @@
 <script>
-import {store} from '../stores/store';
+import { store } from '../stores/store';
 import axios from 'axios';
 import AptCard from './AptCard.vue';
 
-export default{
+export default {
     components: {
         AptCard
     },
-    data(){
-        return{
+    data() {
+        return {
             store,
             queryValue: '',
             queryLatitude: undefined,
@@ -20,8 +20,8 @@ export default{
     },
     methods: {
 
-        queryCoordinates(){
-            
+        queryCoordinates() {
+
             // Funzione per prendere le coordinate dato un indirizzo deciso dall'input dell'utente, attraverso chiamata API a TomTom
             this.store.getCoordinates(this.queryValue);
             this.queryLatitude = this.store.latitude;
@@ -29,27 +29,27 @@ export default{
             // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
             this.queryResults = [];
             this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
-            this.sortedArray = this.queryResults.sort((a,b) => a.distance - b.distance);
+            this.sortedArray = this.queryResults.sort((a, b) => a.distance - b.distance);
         },
         async apartmentPrint() {
-            
+
             try {
-            
+
                 const response = await axios.get('/api/v1/apartment/all');
                 this.apartments = response.data.response.apartments.data;
-            } catch (error) {        
+            } catch (error) {
                 console.log(error);
             }
         },
         getApartmentsWithinRadius(apartments, centerLat, centerLon, radius) {
-            
+
             // Calcolare la distanza dall'input dell'utente in un raggio di 20 km
-            
+
             const R = 6371; // Raggio della Terra in chilometri
 
             // Si fa un foreach sull'array apartments che contiene tutti gli appartamenti presenti in DB
             apartments.forEach((apartment) => {
-                
+
                 // Assegnazione delle proprietà di latitude e longitude a due variabili d'appoggio
                 const aptLat = apartment.latitude;
                 const aptLon = apartment.longitude;
@@ -60,8 +60,8 @@ export default{
 
                 // Altri avanzatissimi calcoli che non saprei spiegare
                 const a =
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(this.toRad(centerLat)) *
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(this.toRad(centerLat)) *
                     Math.cos(this.toRad(aptLat)) *
                     Math.sin(dLon / 2) *
                     Math.sin(dLon / 2);
@@ -73,66 +73,72 @@ export default{
 
                 // Se la distanza è minore o uguale al raggio della ricerca si può pushare l'appartamento nell'array dei risultati
                 if (d <= radius) {
-                    
+
                     // qui si assegna invece all'oggetto apartment una variabile chiamata distance che servirà per ordinare i risultati in ordine crescente in base alla loro distanza dall'input
                     apartment['distance'] = d;
                     this.queryResults.push(apartment);
                 }
             });
-            
+
         },
         toRad(value) {
             return (value * Math.PI) / 180;
         }
     },
-    mounted(){
-        
+    mounted() {
+
         this.apartmentPrint();
-        
+
     }
 }
 </script>
 <template>
-    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
-    <button @click="queryCoordinates">Search</button>
+    <div class="container">
+        <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
+        <button @click="queryCoordinates">Search</button>
 
-    <div class="container d-flex">
+        <div class="container d-flex">
 
-        <AptCard v-for="apartment in sortedArray" :apartment="apartment"/>
+            <AptCard v-for="apartment in sortedArray" :apartment="apartment" />
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-input {
-    width: 80%;
-    margin-left: 2rem;
-    padding-left: .5rem;
-    border-radius: 16px 0 16px 0;
-    // appearance: none;
-    // border: none;
-    // outline: none;
-    background: none;
-    background-color: rgba(255, 255, 255, .35);
-    transition: 0.4s;
+.container {
+    margin-top: 100px;
 
-    &:focus {
-        border-radius: 0 16px 0 16px;
-        background-color: rgba(255, 255, 255, .75);
+    input {
+        width: 80%;
+        margin-left: 2rem;
+        padding-left: .5rem;
+        border-radius: 16px 0 16px 0;
+        // appearance: none;
+        // border: none;
+        // outline: none;
+        background: none;
+        background-color: rgba(255, 255, 255, .35);
+        transition: 0.4s;
+
+        &:focus {
+            border-radius: 0 16px 0 16px;
+            background-color: rgba(255, 255, 255, .75);
+        }
+
     }
 
-}
+    button {
+        margin-left: 2rem;
+        padding: 0.5rem;
+        appearance: none;
+        border: none;
+        outline: none;
+        border-radius: 16px 0 16px 0;
+        transition: 0.4s;
 
-button {
-    margin-left: 2rem;
-    padding: 0.5rem;
-    appearance: none;
-    border: none;
-    outline: none;
-    border-radius: 16px 0 16px 0;
-    transition: 0.4s;
-
-    &:hover {
-        border-radius: 0 16px 0 16px;
+        &:hover {
+            border-radius: 0 16px 0 16px;
+        }
     }
 }
 </style>

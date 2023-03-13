@@ -1,18 +1,23 @@
 <template>
-    <nav>
-        <ul>
-            <RouterLink :to="{name: 'home'}">Home</RouterLink>
+    <nav class="fixed-top" style="height:100px;">
+        <ul class="d-flex justify-content-between">
+            <li class="d-flex">
+                <RouterLink class="link" :to="{ name: 'home' }">
+                    <img :src="store.logo" class="mb-1" alt="boolbnb-logo">
+                </RouterLink>
+            </li>
 
-            <div v-if="!authStore.user" class="d-flex mx-2">
-                <RouterLink :to="{name: 'login'}">Login</RouterLink> <br>
-                <RouterLink :to="{name: 'register'}" class="mx-2">Register</RouterLink>
-            </div>
-            <div v-else class="d-flex">
-                <RouterLink :to="{ name: 'dashboard', params: {id: `${authStore.user.id}`} }">Dashboard</RouterLink>
-                
-                <button @click="authStore.handleLogout">Logout</button>
+            <li v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
+                <RouterLink class="link mx-3" :to="{ name: 'login' }">Login</RouterLink>
+                <RouterLink class="link mx-3" :to="{ name: 'register' }">Register</RouterLink>
+            </li>
+            <li v-else class="d-flex justify-content-end align-items-center">
+                <RouterLink class="link mx-3" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
+                    Dashboard
+                </RouterLink>
 
-            </div>
+                <button class="link mx-3" @click="authStore.handleLogout">Logout</button>
+            </li>
         </ul>
     </nav>
 </template>
@@ -21,21 +26,28 @@
 import { useAuthStore } from '../stores/auth';
 import { store } from '../stores/store';
 
-export default{
-    data(){
-        return{
+export default {
+    data() {
+        return {
             store,
-            authStore : useAuthStore(),
+            authStore: useAuthStore(),
         }
     }
 }
 </script>
 
-<style scoped>
-nav{
-    display: flex;
-}
-ul{
-    display: flex;
+<style lang="scss" scoped>
+nav {
+    background-color: #faf2ed;
+
+    .link {
+        color: black;
+        text-decoration: none;
+
+        img {
+            height: 100%;
+            width: 30%;
+        }
+    }
 }
 </style>
