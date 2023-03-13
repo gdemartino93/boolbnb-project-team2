@@ -38,7 +38,6 @@ export default{
                 const response = await axios.get('/api/v1/apartment/search');
                 this.apartments = response.data.data;
 
-                console.log(this.apartments);
             } catch (error) {        
                 console.log(error);
             }
