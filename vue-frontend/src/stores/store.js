@@ -6,7 +6,7 @@ export const store = reactive({
     apiKey: 'YnMfUAYY76CkHWngLQxDudDG5GdEAEs5',
     latitude: undefined,
     longitude: undefined,
-    logo: "./public/BoolBNB_logo-1.png",
+    logo: "./BoolBNB_logo-1.png",
 
     getCoordinates(value) {
 

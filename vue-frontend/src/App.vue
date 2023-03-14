@@ -5,7 +5,10 @@ import Nav from './components/Nav.vue';
 
 <template>
  
-  <Nav />
+ <header>
+    <Nav />
+ </header>
+
   <RouterView />
         <!-- <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink> -->
