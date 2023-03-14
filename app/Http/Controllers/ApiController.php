@@ -21,7 +21,7 @@ class ApiController extends Controller
 
         $apartments = Apartment::with('additionalServices')
             ->orderBy('created_at', 'desc')
-            ->paginate(4); //set how many result for page
+            ->paginate(8); //set how many result for page
         
         return response()->json([
 
