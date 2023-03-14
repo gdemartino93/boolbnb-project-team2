@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import { createVuetify } from 'vuetify'
-import 'vuetify/styles'
+
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
@@ -13,7 +13,7 @@ import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loade
 // impostiamo interceptor di axios per far in modo che tutte le chiamate avvengono da questa base url 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "http://localhost:8000";
-
+// import 'vuetify/styles'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/main.css'
