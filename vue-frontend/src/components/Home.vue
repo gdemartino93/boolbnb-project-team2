@@ -1,18 +1,15 @@
 <template>
     <div class="container">
         <div v-if="authStore.user">
-            <h2 class="mt-5" ref="first"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
+            <h2 ref="first"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
-
-        <div v-else class="mt-5">Go to login</div>
+        <div v-else class="mt-5 fs-1 fw-bold text-danger">Go to login</div>
 
         <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
 
-      
-        <div class="d-flex flex-wrap mysection row row-cols-5">
-            <AptCard class="col" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
+        <div class="apt">
+            <AptCard v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
         </div>
-
         <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
         <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
     </div>
@@ -22,7 +19,6 @@
 import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
-
 export default {
     name: 'HomePage',
     components: {
@@ -46,8 +42,6 @@ export default {
             await this.apartmentPrint(this.currentPage);
             // wait resultas has been printed then scrollintoview
             this.$refs.loadmore.scrollIntoView({ behavior: 'smooth' });
-
-
         },
         async apartmentPrint(page) {
             try {
@@ -64,7 +58,6 @@ export default {
         }
     },
     mounted() {
-
         this.authStore.getUser(); //check if user is validated
         this.apartmentPrint(); //èrin result
     },
@@ -72,7 +65,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.container {
+    margin-top: 150px;
+    .apt {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     input {
         width: 80%;
         margin-left: 2rem;
@@ -81,7 +80,6 @@ export default {
         background: none;
         background-color: rgba(255, 255, 255, .35);
         transition: 0.4s;
-
         &:focus {
             border-radius: 0 16px 0 16px;
             background-color: rgba(255, 255, 255, .75);
@@ -96,9 +94,5 @@ export default {
         border-radius: 16px 0 16px 0;
         transition: 0.4s;
     }
-    .mysection{
-        gap: 20px !important; 
-        flex-wrap: wrap;
-    }
+}
 </style>
-  
