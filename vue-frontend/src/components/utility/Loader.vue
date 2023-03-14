@@ -17,7 +17,7 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 <style lang="scss" scoped>
 .loader{
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
