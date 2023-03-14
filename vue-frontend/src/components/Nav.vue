@@ -7,7 +7,6 @@
                         <img src="/logo.png" class="mb-1" alt="boolbnb-logo">
                     </RouterLink>
 
-                    <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" alt="Avatar" /> -->
 
 
                 <section v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
@@ -27,6 +26,12 @@
                     </RouterLink>
 
                     <button class="link mx-3" @click="authStore.handleLogout">Logout</button>
+
+                    <div class="profile">
+                        
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle img-fluid" alt="Avatar" />
+                        <span>Profile</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -43,7 +48,6 @@ export default {
         return {
             store,
             authStore: useAuthStore(),
-            // logo: process.env.BASE_URL + 'logo.png'
         }
     }
 }
@@ -54,7 +58,7 @@ export default {
 nav {
     // background-color:var(--b-1);
     height: 10vh;
-background-color:#f8f9fa ;
+    background-color:#f8f9fa ;
     .link {
         color: black;
         text-decoration: none;
@@ -62,6 +66,11 @@ background-color:#f8f9fa ;
         img {
             width: 30%;
         }
+    }
+}
+.profile{
+    img{
+        width: 30px;
     }
 }
 </style>
