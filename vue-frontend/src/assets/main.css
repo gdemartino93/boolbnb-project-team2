@@ -1,4 +1,27 @@
+:root{
+  	--lb: #03a9f4;
+	--lb-1: #b3e5fc;
+	--lb-2: #81d4fa;
+	--lb-3: #4fc3f7;
+	--lb-4: #29b6f6;
+	--lb-5: var(--lb);
+	--lb-6: #039be5;
+	--lb-7: #0288d1;
+	--lb-8: #0277bd;
+	--lb-9: #01579b;
 
+  	--b: #2196f3;
+	--b-1: #bbdefb;
+	--b-2: #90caf9;
+	--b-3: #64b5f6;
+	--b-4: #42a5f5;
+	--b-5: var(--b);
+	--b-6: #1e88e5;
+	--b-7: #1976d2;
+	--b-8: #1565c0;
+	--b-9: #0d47a1;
+
+}
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
