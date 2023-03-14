@@ -7,8 +7,10 @@
 
         <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
 
-        <div class="apt">
-            <AptCard v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
+        <div class="container">
+            <div class="row row-cols-4 justify-content-around">
+                <AptCard class="col" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
+            </div>
         </div>
         <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
         <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
@@ -70,14 +72,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 150px;
-
-    .apt {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
     input {
         width: 80%;
         margin-left: 2rem;
