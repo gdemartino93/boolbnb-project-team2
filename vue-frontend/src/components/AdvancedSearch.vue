@@ -100,29 +100,11 @@ export default {
 
     <div class="container d-flex">
 
-<<<<<<< HEAD
-        <AptCard v-for="apartment in sortedArray" :apartment="apartment" />
-=======
             <AptCard class="mx-2" v-for="apartment in sortedArray" :apartment="apartment"/>
         </div>
->>>>>>> b92da4d3636259bc33578ff88e0c309c9fc9705d
-    </div>
 </template>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-input {
-    width: 80%;
-    margin-left: 2rem;
-    padding-left: .5rem;
-    border-radius: 16px 0 16px 0;
-    // appearance: none;
-    // border: none;
-    // outline: none;
-    background: none;
-    background-color: rgba(255, 255, 255, .35);
-    transition: 0.4s;
-=======
 .container {
     margin-top: 150px;
 
@@ -142,28 +124,12 @@ input {
             border-radius: 0 16px 0 16px;
             background-color: rgba(255, 255, 255, .75);
         }
->>>>>>> b92da4d3636259bc33578ff88e0c309c9fc9705d
 
     &:focus {
         border-radius: 0 16px 0 16px;
         background-color: rgba(255, 255, 255, .75);
     }
 
-<<<<<<< HEAD
-}
-
-button {
-    margin-left: 2rem;
-    padding: 0.5rem;
-    appearance: none;
-    border: none;
-    outline: none;
-    border-radius: 16px 0 16px 0;
-    transition: 0.4s;
-
-    &:hover {
-        border-radius: 0 16px 0 16px;
-=======
     button {
         margin-left: 2rem;
         padding: 0.5rem;
@@ -175,9 +141,8 @@ button {
         &:hover {
             border-radius: 0 16px 0 16px;
         }
->>>>>>> b92da4d3636259bc33578ff88e0c309c9fc9705d
     }
 }
-
+}
 
 </style>
