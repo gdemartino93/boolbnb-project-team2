@@ -38,7 +38,8 @@ export default {
     <div class="container">
         <ul class="list-unstyled">
             <li>
-                <h2>{{ apt.title }}</h2>
+                <h2 class="d-inline-block"> {{ apt.title }} </h2>
+                <h4 class="d-inline-block"> ({{ apt.address }}) </h4>
             </li>
 
             <li class="img">
@@ -62,7 +63,10 @@ export default {
         </ul>
 
         <!-- use v-if because value onmounted start as undefinied and app crash -->
-        <Map v-if="apt.latitude && apt.longitude" :center="{ lat: apt.latitude, lon: apt.longitude }" :flats="flats" />
+        <div class="map">
+            <b class="d-inline-block">Where is it</b>
+            <Map v-if="apt.latitude && apt.longitude" :center="{ lat: apt.latitude, lon: apt.longitude }" :flats="flats" />
+        </div>
     </div>
 </template>
   
@@ -79,7 +83,9 @@ export default {
     ul {
         h2 {
             margin-bottom: 30px;
+            margin-right: 15px;
         }
+
 
         img {
             width: 400px;
@@ -106,8 +112,6 @@ export default {
                 margin-right: 10px;
                 width: 40px;
             }
-
-
         }
 
         .services-ul {
@@ -117,7 +121,15 @@ export default {
             border: 1px solid rgb(171, 171, 103);
             border-radius: 10px;
         }
+
     }
 
+    .map {
+        padding-bottom: 20px;
+
+        b {
+            margin-bottom: 7px;
+        }
+    }
 }
 </style>
