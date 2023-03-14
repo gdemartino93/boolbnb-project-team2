@@ -1,5 +1,5 @@
 <template>
-    <nav class="fixed-top" style="height:100px;">
+    <nav>
         <ul class="d-flex justify-content-between">
             <li class="d-flex">
                 <RouterLink class="link" :to="{ name: 'home' }">
