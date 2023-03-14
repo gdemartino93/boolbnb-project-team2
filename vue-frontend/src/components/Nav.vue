@@ -27,10 +27,9 @@
 
                     <button class="link mx-3" @click="authStore.handleLogout">Logout</button>
 
-                    <div class="profile">
-                        
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle img-fluid" alt="Avatar" />
-                        <span>Profile</span>
+                    <div class="profile d-flex">                  
+                        <span class="fw-bold username d-none d-xl-block">{{ authStore.user.name }}</span>
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class=" mx-2 rounded-circle " alt="Avatar" />
                     </div>
                 </div>
             </div>
@@ -71,6 +70,9 @@ nav {
 .profile{
     img{
         width: 30px;
+    }
+    .username{
+        color: var(--b-4);
     }
 }
 </style>
