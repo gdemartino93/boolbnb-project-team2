@@ -143,8 +143,9 @@ export default {
       <button type="button" @click="updateData(apt)">Update Apartment</button>
     </form>
   </section>
-  <section v-else>
-    <h1 class="text-danger">NON AUTENTICATO</h1>
+  <section class="autenticato" v-else>
+    <h1 class="text-danger">Non Autenticato</h1>
+    <h2>Effettua il Login</h2>
   </section>
 </template>
 
@@ -259,6 +260,37 @@ export default {
   label {
     font-weight: bold;
     color: #333;
+  }
+
+  .autenticato {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    animation-name: animation;
+    animation-duration: 0.5s;
+
+    @keyframes animation {
+      0% {
+        // background-color: red;
+        top: 10px;
+      }
+
+      50% {
+        // background-color: red;
+        top: 0px;
+      }
+
+      75% {
+
+        top: 10px;
+      }
+
+      100% {
+
+        top: 0px;
+      }
+    }
   }
 }
 </style>
