@@ -1,5 +1,6 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid login">
+
           <div class="row no-gutter">
              
               <div class="col-md-6 d-none d-md-flex bg-image"></div>
@@ -12,17 +13,23 @@
                               <div class="col-lg-10 col-xl-7 mx-auto">
                                   <h3 class="fs-1">Benvenuto su AirBnb</h3>
                                   <p class="text-muted mb-4">Accedi e trova un appartamento per un soggiorno indimenticabile</p>
-                                  <form>
+                                  <form @submit.prevent="authStore.handleLogin(form)"> 
+                                    <div v-if="authStore.errors.email">
+                                      <span class="text-danger">
+                                        {{ (authStore.errors.email[0]) === 'These credentials do not match our records.'
+                                          ?
+                                          "Nessuna corrispondenza "
+                                          : ""
+                                        }}
+                                      </span>
+                                    </div>
                                       <div class="mb-3">
-                                          <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
+                                          <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" v-model="form.email"  />
                                       </div>
                                       <div class="mb-3">
-                                          <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
+                                          <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" v-model="form.password" />
                                       </div>
-                                      <div class="form-check">
-                                          <input id="customCheck1" type="checkbox" checked class="form-check-input" />
-                                          <label for="customCheck1" class="form-check-label">Remember password</label>
-                                      </div>
+                         
                                       <div class="d-grid gap-2 mt-2">
                                       <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
                                       </div>
@@ -40,6 +47,7 @@
 import { useAuthStore } from '../../stores/auth';
 import { ref } from 'vue';
 export default {
+
   data() {
     return {
       authStore: useAuthStore(),
@@ -73,7 +81,9 @@ export default {
 };
 </script>
 <style>
-    .login,
+    .login{
+      height: 90vh;
+    }
     .image {
       min-height: 100vh;
     }
