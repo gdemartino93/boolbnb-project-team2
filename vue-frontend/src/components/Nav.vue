@@ -24,17 +24,24 @@
                     <div class="profile d-flex ">                  
                         <span class="fw-bold username d-none d-xl-block">{{ authStore.user.name }}</span>
                         <div class="dropdown">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class=" mx-2 rounded-circle dropdown-toggle" alt="Avatar" data-bs-toggle="dropdown" aria-expanded="false" />
-              
+                        <img src="/avatar1.png" class=" mx-2 rounded-circle dropdown-toggle" alt="Avatar" data-bs-toggle="dropdown" aria-expanded="false" />
                         <ul class="dropdown-menu">
+                            <!-- item dropdown menu -->
                             <li>
-                                <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
+                                <RouterLink class="dropdown-item link" :to="{ name: 'addApt' }">
+                                    Aggiungi Appartamento
+                                </RouterLink>
                             </li>
+
                             <li>
                                 <RouterLink class="dropdown-item link" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
                                     Dashboard
                                 </RouterLink>
                             </li>
+                            <li>
+                                <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
+                            </li>
+    
                         </ul>
                     </div>
                     </div>
@@ -68,18 +75,15 @@ nav {
     // background-color:var(--b-1);
     height: 10vh;
     background-color:#f8f9fa ;
-    .link {
-        color: black;
-        text-decoration: none;
 
         img {
             width: 30%;
         }
-    }
+
 }
 .profile{
     img{
-        width: 30px;
+        width: 40px;
         cursor: pointer;
     }
     .username{
