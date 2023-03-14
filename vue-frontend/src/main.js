@@ -15,7 +15,7 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "http://localhost:8000";
 // import 'vuetify/styles'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/main.css'
 
 const pinia = createPinia(); // crea l'istanza di Pinia prima di definire l'istanza dell'app Vue.js
