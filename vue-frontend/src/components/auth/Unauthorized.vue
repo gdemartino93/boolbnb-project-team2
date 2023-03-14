@@ -1,14 +1,43 @@
 <script>
-export default{
+export default {
 
 }
 </script>
 
-<template>
+<section class="autenticato" v-else>
+    <h1 class="text-danger">Non Autenticato</h1>
+    <h2>Effettua il Login</h2>
+</section>
 
-    <h3 class="text-danger">NON SEI AUTORIZZATO MAIALE DI MERDA!</h3>
+<style lang="scss" scoped>
+.autenticato {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    animation-name: animation;
+    animation-duration: 0.5s;
 
-</template>
+    @keyframes animation {
+        0% {
+            // background-color: red;
+            top: 10px;
+        }
 
-<style scoped>
+        50% {
+            // background-color: red;
+            top: 0px;
+        }
+
+        75% {
+
+            top: 10px;
+        }
+
+        100% {
+
+            top: 0px;
+        }
+    }
+}
 </style>
