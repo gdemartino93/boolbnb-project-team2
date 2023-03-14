@@ -39,6 +39,8 @@ export default {
 </script>
 
 <style>
+@use '../assets/main.css';
+
 ul {
   list-style: none;
 }
@@ -46,5 +48,8 @@ ul {
 a{
   text-decoration: none !important;
   color: inherit !important;
+}
+.card-body{
+  background: var(--b-1);
 }
 </style>

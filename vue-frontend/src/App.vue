@@ -8,14 +8,17 @@ import Nav from './components/Nav.vue';
  <header>
     <Nav />
  </header>
+ <main>
+      <RouterView />
+ </main>
 
-  <RouterView />
-        <!-- <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink> -->
-  <!-- <RouterView /> -->
+
 </template>
 
 <style scoped>
-
+@use '../assets/main.css';
+main{
+      background-color: var(--lb-2);
+}
 
 </style>

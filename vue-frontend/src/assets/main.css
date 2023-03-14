@@ -65,3 +65,6 @@
   margin: 0;
   font-size: 1rem;
 }
+#app{
+  background: var(--b-3);
+}

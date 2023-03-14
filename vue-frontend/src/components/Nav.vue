@@ -51,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/main.css';
 nav {
-    background-color:var(--lb-1);
+    background-color:var(--b-1);
 
     .link {
         color: black;

@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@use '../assets/main.css';
 
 
 </style>
