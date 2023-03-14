@@ -1,5 +1,6 @@
 <template>
     <Loader v-if="isLoading" />
+    <!-- div ref to scrollintoview -->
     <div ref="first" class="top-page"></div>
     <div class="container">
             <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
@@ -7,8 +8,10 @@
                 <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
             </div>
             <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
-            <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
+            <button class="btn btn-success my-5" @click="loadMore">CARICA ALTRI</button>
     </div>
+        <!-- div ref to scrollintoview -->
+        <div ref="loadmore" class="top-page"></div>
 </template>
   
 <script>
