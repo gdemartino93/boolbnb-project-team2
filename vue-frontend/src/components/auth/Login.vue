@@ -14,16 +14,17 @@
                                   <h3 class="fs-1">Benvenuto su AirBnb</h3>
                                   <p class="text-muted mb-4">Accedi e trova un appartamento per un soggiorno indimenticabile</p>
                                   <form @submit.prevent="authStore.handleLogin(form)"> 
-                                    <div v-if="authStore.errors.email">
-                                      <span class="text-danger">
-                                        {{ (authStore.errors.email[0]) === 'These credentials do not match our records.'
-                                          ?
-                                          "Nessuna corrispondenza "
-                                          : ""
-                                        }}
-                                      </span>
-                                    </div>
+
                                       <div class="mb-3">
+                                        <div v-if="authStore.errors.email" class="m-2 fw-bold">
+                                          <span class="text-danger">
+                                            {{ (authStore.errors.email[0]) === 'These credentials do not match our records.'
+                                              ?
+                                              "Nessuna corrispondenza "
+                                              : ""
+                                            }}
+                                          </span>
+                                        </div>
                                           <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" v-model="form.email"  />
                                       </div>
                                       <div class="mb-3">
