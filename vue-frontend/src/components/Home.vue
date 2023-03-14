@@ -7,7 +7,7 @@
 
         <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
 
-        <div class="row row-cols-4 justify-content-between">
+        <div class="row row-cols-4 justify-content-center">
             <AptCard class="my-4" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
         </div>
         <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
@@ -65,19 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    input {
-        width: 80%;
-        margin-left: 2rem;
-        padding-left: .5rem;
-        border-radius: 16px 0 16px 0;
-        background: none;
-        background-color: rgba(255, 255, 255, .35);
-        transition: 0.4s;
-        &:focus {
-            border-radius: 0 16px 0 16px;
-            background-color: rgba(255, 255, 255, .75);
-        }
-    }
+
 
 
 </style>
