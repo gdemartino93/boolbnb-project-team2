@@ -1,19 +1,13 @@
 <template>
     <Loader v-if="isLoading" />
+    <div ref="first" class="top-page"></div>
     <div class="container">
-        
-        <div v-if="authStore.user">
-            <h2 ref="first"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
-        </div>
-        <div v-else class="fs-1 fw-bold text-danger">Go to login</div>
-
-        <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
-
-        <div class="row justify-content-center d-flex ">
-            <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
-        </div>
-        <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
-        <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
+            <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
+            <div class="row justify-content-center d-flex ">
+                <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
+            </div>
+            <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
+            <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
     </div>
 </template>
   
@@ -76,6 +70,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.toppage{
+    position: absolute;
+    top: 0;
 
+
+}
 
 </style>
