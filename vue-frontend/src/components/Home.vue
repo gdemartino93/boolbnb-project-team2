@@ -8,7 +8,7 @@
         <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
 
         <div class="row row-cols-4 justify-content-between">
-            <AptCard v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
+            <AptCard class="my-4" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
         </div>
         <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
         <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
