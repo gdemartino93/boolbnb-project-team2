@@ -21,16 +21,24 @@
                 </section>
 
                 <div v-else class="d-flex justify-content-end align-items-center">
-                    <RouterLink class="link mx-3" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
-                        Dashboard
-                    </RouterLink>
-
-                    <button class="link mx-3" @click="authStore.handleLogout">Logout</button>
-
-                    <div class="profile d-flex">                  
+                    <div class="profile d-flex ">                  
                         <span class="fw-bold username d-none d-xl-block">{{ authStore.user.name }}</span>
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class=" mx-2 rounded-circle " alt="Avatar" />
+                        <div class="dropdown">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class=" mx-2 rounded-circle dropdown-toggle" alt="Avatar" data-bs-toggle="dropdown" aria-expanded="false" />
+              
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
+                            </li>
+                            <li>
+                                <RouterLink class="dropdown-item link" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
+                                    Dashboard
+                                </RouterLink>
+                            </li>
+                        </ul>
                     </div>
+                    </div>
+ 
                 </div>
             </div>
         </section>
@@ -41,6 +49,8 @@
 <script>
 import { useAuthStore } from '../stores/auth';
 import { store } from '../stores/store';
+import { createPopper } from '@popperjs/core'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 export default {
     data() {
@@ -70,6 +80,7 @@ nav {
 .profile{
     img{
         width: 30px;
+        cursor: pointer;
     }
     .username{
         color: var(--b-4);
