@@ -3,7 +3,7 @@
         <div v-if="authStore.user">
             <h2 ref="first"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
-        <div v-else class="mt-5 fs-1 fw-bold text-danger">Go to login</div>
+        <div v-else class="fs-1 fw-bold text-danger">Go to login</div>
 
         <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
 
@@ -65,7 +65,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use '../assets/main.css';
 
 
 </style>

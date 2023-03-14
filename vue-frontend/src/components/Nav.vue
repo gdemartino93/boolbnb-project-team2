@@ -1,7 +1,7 @@
 <template>
     <nav>
         <section class="container">
-            <ul class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
 
                     <RouterLink class="link" :to="{ name: 'home' }">
                         <img src="/logo.png" class="mb-1" alt="boolbnb-logo">
@@ -20,14 +20,14 @@
 
                 </section>
 
-                <li v-else class="d-flex justify-content-end align-items-center">
+                <div v-else class="d-flex justify-content-end align-items-center">
                     <RouterLink class="link mx-3" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
                         Dashboard
                     </RouterLink>
 
                     <button class="link mx-3" @click="authStore.handleLogout">Logout</button>
-                </li>
-            </ul>
+                </div>
+            </div>
         </section>
 
     </nav>
