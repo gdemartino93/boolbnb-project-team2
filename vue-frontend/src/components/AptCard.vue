@@ -1,8 +1,8 @@
 <template>
-  <router-link  :to="{name: 'show', params:{
+  <router-link :to="{name: 'show', params:{
   id: `${apartment.id}`
   }}" >
-    <div class="card" style="width: 18rem;">
+    <div class="card">
       <img :src="apartment.img" class="card-img-top" :alt="apartment.img">
       <div class="card-body">
         <span class="fw-bold">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</span>
