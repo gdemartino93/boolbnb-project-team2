@@ -2,16 +2,24 @@
     <nav>
         <section class="container">
             <ul class="d-flex justify-content-between">
-                <li class="d-flex">
+
                     <RouterLink class="link" :to="{ name: 'home' }">
                         <img src="/logo.png" class="mb-1" alt="boolbnb-logo">
                     </RouterLink>
-                </li>
 
-                <li v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
-                    <RouterLink class="link mx-3" :to="{ name: 'login' }">Login</RouterLink>
-                    <RouterLink class="link mx-3" :to="{ name: 'register' }">Register</RouterLink>
-                </li>
+
+
+                <section v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
+                    <div class="d-none d-md-block">
+                        <RouterLink class="link mx-3" :to="{ name: 'login' }">Login</RouterLink>
+                        <RouterLink class="link mx-3" :to="{ name: 'register' }">Register</RouterLink>
+                    </div>
+                    <div class="d-md-none">
+                        <font-awesome-icon icon="fa-solid fa-bars" class="fs-1" />
+                    </div>
+
+                </section>
+
                 <li v-else class="d-flex justify-content-end align-items-center">
                     <RouterLink class="link mx-3" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
                         Dashboard
@@ -41,8 +49,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/main.css';
 nav {
-    background-color: #faf2ed;
+    background-color:var(--lb-1);
 
     .link {
         color: black;
