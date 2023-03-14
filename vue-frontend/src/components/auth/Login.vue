@@ -10,8 +10,8 @@
                       <div class="container">
                           <div class="row">
                               <div class="col-lg-10 col-xl-7 mx-auto">
-                                  <h3 class="display-4">Split login page!</h3>
-                                  <p class="text-muted mb-4">Create a login split page using Reactjs & Bootstrap 5.</p>
+                                  <h3 class="fs-1">Benvenuto su AirBnb</h3>
+                                  <p class="text-muted mb-4">Accedi e trova un appartamento per un soggiorno indimenticabile</p>
                                   <form>
                                       <div class="mb-3">
                                           <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
@@ -27,8 +27,6 @@
                                       <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
                                       </div>
                                       
-                                      <div class="text-center d-flex justify-content-between mt-4"><p>Code by <a href="https://therichpost.com/" class="font-italic text-muted"> 
-                                              <u>Jassa</u></a></p></div>
                                   </form>
                               </div>
                           </div>
@@ -39,11 +37,40 @@
       </div>
 </template>
 <script>
-//importing bootstrap 5 Modules
-
+import { useAuthStore } from '../../stores/auth';
+import { ref } from 'vue';
 export default {
-//
-}
+  data() {
+    return {
+      authStore: useAuthStore(),
+      form: ref({
+        email: "",
+        password: ""
+      }),
+      emailRules: [
+        value => {
+          if (value) return true
+          return 'E-mail is requred.'
+        },
+        value => {
+          if (/.+@.+\..+/.test(value)) return true
+          return 'E-mail must be valid.'
+        },
+      ],
+      show1: false,
+      show2: true,
+      password: 'Password',
+      rules: {
+        required: value => !!value || 'Required.',
+        // da validare nel backend e poi scommentare
+        // min: v => v.length >= 8 || 'Min 8 characters',
+        // emailMatch: () => (`The email and password you entered don't match`),
+      },
+    };
+  },
+  methods: {
+  }
+};
 </script>
 <style>
     .login,
