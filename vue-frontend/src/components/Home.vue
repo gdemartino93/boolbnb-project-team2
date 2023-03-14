@@ -19,7 +19,6 @@
 </template>
   
 <script>
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
