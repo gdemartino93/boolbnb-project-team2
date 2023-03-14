@@ -1,4 +1,5 @@
 <template>
+    <Nav />
     <div class="container">
         <div v-if="authStore.user">
             <h2 ref="first"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
@@ -19,11 +20,13 @@
 import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
+import Nav from './Nav.vue';
 export default {
     name: 'HomePage',
     components: {
         AptCard,
-        Map
+        Map,
+        Nav
     },
     data() {
         return {

@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav class="d-flex justify-center align-items-center">
         <section class="container">
             <div class="d-flex justify-content-between">
 
@@ -7,6 +7,7 @@
                         <img src="/logo.png" class="mb-1" alt="boolbnb-logo">
                     </RouterLink>
 
+                    <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" alt="Avatar" /> -->
 
 
                 <section v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
@@ -51,8 +52,9 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/main.css';
 nav {
-    background-color:var(--b-1);
-
+    // background-color:var(--b-1);
+    height: 10vh;
+background-color:#f8f9fa ;
     .link {
         color: black;
         text-decoration: none;
