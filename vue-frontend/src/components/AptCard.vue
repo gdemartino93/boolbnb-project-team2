@@ -7,7 +7,8 @@
       <div class="card-body">
         <span class="fw-bold">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</span>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <span @click="toggleShow">{{ isShow ? 'Nascondi' : 'Mostra' }} v</span>
+        <!-- quando leggi questo commento avvisami che devo fixare una roba -->
+        <button class="btn-primary btn" @click="toggleShow">{{ isShow ? 'Nascondi' : 'Mostra' }}</button>
         <ul>
           <li v-for="(additional_service, index) in apartment.additional_services" :key="index" v-if="showIndex === index || isShow">
             {{ additional_service.name }}
@@ -38,7 +39,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 @use '../assets/main.css';
 
 ul {
