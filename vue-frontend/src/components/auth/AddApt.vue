@@ -117,7 +117,7 @@ export default {
                         <label :for="service.name"> {{ service.name }} </label>
                     </div>
                 </div>
-                <input @click="storeData" type="submit" value="Create New Apartment">
+                <input class="button" @click="storeData" type="submit" value="Create New Apartment">
 
             </div>
         </form>
@@ -167,7 +167,7 @@ export default {
         margin-right: 10px;
     }
 
-    button {
+    .button {
         background-color: #4CAF50;
         color: white;
         border: none;
@@ -176,10 +176,12 @@ export default {
         cursor: pointer;
         font-size: 16px;
         margin-top: 20px;
-    }
+        margin: 0 auto;
+        width: 95%;
 
-    button:hover {
-        background-color: #3e8e41;
+        &:hover {
+            background-color: #3e8e41;
+        }
     }
 
     .text-danger {
