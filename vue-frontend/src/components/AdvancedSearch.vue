@@ -35,7 +35,6 @@ export default {
         async apartmentPrint() {
 
             try {
-
                 const response = await axios.get('/api/v1/apartment/search');
                 this.apartments = response.data.data;
 
@@ -149,7 +148,7 @@ export default {
         }
     }
 }
-
+}
 
 
 
