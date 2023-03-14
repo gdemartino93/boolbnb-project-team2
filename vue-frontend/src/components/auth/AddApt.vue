@@ -115,9 +115,10 @@ export default {
                         <input type="checkbox" :id="service.id" :value="service.id" v-model="form.additional_services">
 
                         <label :for="service.name"> {{ service.name }} </label>
-                        <input @click="storeData" type="submit" value="Create New Apartment">
                     </div>
                 </div>
+                <input @click="storeData" type="submit" value="Create New Apartment">
+
             </div>
         </form>
     </section>
