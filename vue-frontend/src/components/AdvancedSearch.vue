@@ -100,8 +100,10 @@ export default {
 
     <div class="container d-flex">
 
+
         <AptCard class="mx-2" v-for="apartment in sortedArray" :apartment="apartment" />
     </div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -124,6 +126,13 @@ export default {
             border-radius: 0 16px 0 16px;
             background-color: rgba(255, 255, 255, .75);
         }
+
+
+
+    &:focus {
+        border-radius: 0 16px 0 16px;
+        background-color: rgba(255, 255, 255, .75);
+
     }
 
     button {
@@ -140,4 +149,9 @@ export default {
         }
     }
 }
+
+
+
+
+
 </style>
