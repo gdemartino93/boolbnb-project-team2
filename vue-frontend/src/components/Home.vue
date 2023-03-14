@@ -3,21 +3,23 @@
         <div v-if="authStore.user">
             <h2 class="mt-5" ref="first"> Welcome {{ authStore.user.name }} {{ authStore.user.lastname }}</h2>
         </div>
+
         <div v-else class="mt-5">Go to login</div>
 
         <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
 
-        <div class="container">
-            <div class="row row-cols-4 justify-content-around">
-                <AptCard class="col" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
-            </div>
+      
+        <div class="d-flex flex-wrap mysection row row-cols-5">
+            <AptCard class="col" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
         </div>
+
         <button class="btn btn-info" @click="goToFirst(index)">TOP</button>
         <button class="btn btn-success my-5" @click="loadMore" ref="loadmore">CARICA ALTRI</button>
     </div>
 </template>
   
 <script>
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
@@ -71,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+
     input {
         width: 80%;
         margin-left: 2rem;
@@ -85,9 +87,7 @@ export default {
             border-radius: 0 16px 0 16px;
             background-color: rgba(255, 255, 255, .75);
         }
-
     }
-
     button {
         margin-left: 2rem;
         padding: 0.5rem;
@@ -97,6 +97,9 @@ export default {
         border-radius: 16px 0 16px 0;
         transition: 0.4s;
     }
-}
+    .mysection{
+        gap: 20px !important; 
+        flex-wrap: wrap;
+    }
 </style>
   
