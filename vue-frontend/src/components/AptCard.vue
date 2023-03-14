@@ -1,58 +1,32 @@
 <template>
-    <v-card
-      class="mx-auto"
-      
-    >
-      <v-img
-        :src="apartment.img"
-        height="200px"
-        :alt="apartment.img"
-        cover
-      ></v-img>
-  
-      <v-card-title>
-        {{ apartment.title }}
-      </v-card-title>
-  
-      <v-card-subtitle>
-       {{apartment.address}}
-      </v-card-subtitle>
-  
-      <v-card-actions>
-        <v-btn
-          color="orange-lighten-2"
-          variant="text"
-        >
-          Explore
-        </v-btn>
-  
-        <v-spacer></v-spacer>
-  
-        <v-btn
-          :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-          @click="show = !show"
-        ></v-btn>
-      </v-card-actions>
-  
-      <v-expand-transition>
-        <div v-show="show">  
-          <v-card-text>
-            <ul>
-               <li v-for="additional_services in apartment.additional_services">
+  <div class="card" style="width: 18rem;">
+  <img :src="apartment.img" class="card-img-top" :alt="apartment.img">
+  <div class="card-body">
+    <!-- creiamo funzione per capitalizzare -->
+    <span class="fw-bold">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</span>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <span @click="toggleShow">Mostra v</span>
+    <ul>
+      <li v-if="isShow" v-for="additional_services in apartment.additional_services">
                     {{ additional_services.name }}
-                </li>
-            </ul>
-          </v-card-text>
-        </div>
-      </v-expand-transition>
-    </v-card>
-  </template>
+      </li>
+    </ul>
+  </div>
+</div>
+</template>
   <script>
   export default {
     props: ['apartment'],
-    data: () => ({
-      show: false,
-    }),
+    data(){
+      return{
+        isShow : false,
+      }
+    },
+    methods:{
+      toggleShow(){
+        this.isShow = !this.isShow
+      }
+    }
   }
 </script>
 <style>
