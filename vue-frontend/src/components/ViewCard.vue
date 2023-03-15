@@ -14,7 +14,8 @@ export default {
             services: [],
             form:ref({
                 name : "",
-                email :""
+                email :"",
+                text : ""
             })
         }
     },
@@ -31,6 +32,13 @@ export default {
             }
 
         },
+        getForm(){
+            if(this.authStore.user){
+                this.form.name = this.authStore.user.name;
+                this.form.email = this.authStore.user.email;
+            }
+            console.log(this.form)
+        }
     },
     mounted() {
         this.getSingleAp(this.$route.params.id);
@@ -67,7 +75,7 @@ export default {
             </ul>
         </ul>
         <div>
-            <form action="" method="POST" class="d-flex flex-column col-3 mx-auto">
+            <form action="" method="POST" class="d-flex flex-column col-3 mx-auto" @submit.prevent="getForm">
                 <label for="name">Nome</label>
                 <input type="text" name="name" v-model="authStore.user.name" v-if="authStore.user" disabled>
                 <input type="text" name="name" v-model="form.name" v-else>
@@ -79,7 +87,7 @@ export default {
 
 
                 <label for="text">Testo</label>
-                <textarea rows="4" cols="50" type="textarea" name="text" />
+                <textarea rows="4" cols="50" type="textarea" name="text" v-model="form.text" />
 
                 <button type="submit" class="my-2 btn btn-primary">Invia</button>
 
