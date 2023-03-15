@@ -2,7 +2,7 @@
   <router-link :to="{name: 'show', params:{
   id: `${apartment.id}`
   }}" >
-    <div class="card">
+    <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{ 'hover-effect': isHovering }">
       <img :src="apartment.img" class="card-img-top" :alt="apartment.img">
       <div class="card-body">
         <span class="fw-bold">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</span>
@@ -25,7 +25,8 @@ export default {
   data() {
     return {
       isShow: false,
-      showIndex: null
+      showIndex: null,
+      isHovering: false
     }
   },
   methods: {
@@ -34,7 +35,17 @@ export default {
     },
     toggleIndex(index) {
       this.showIndex = this.showIndex === index ? null : index;
-    }
+    },
+    // activate effect after 5ms on mouseenter on card
+    handleMouseEnter() {
+    this.hoverTimeout = setTimeout(() => {
+      this.isHovering = true
+    }, 500)
+  },
+  handleMouseLeave() {
+    clearTimeout(this.hoverTimeout)
+    this.isHovering = false
+  }
   }
 }
 </script>
@@ -52,5 +63,10 @@ a{
 }
 .card-body{
   background: var(--b-1);
+}
+.card.hover-effect {
+  transition: 1s;
+  transform: scale(1.5);
+  z-index: 1;
 }
 </style>
