@@ -18,7 +18,7 @@ export default {
             error: null,
             room_number: '',
             bed_number: '',
-            isVisible: false,
+            isOpen: false,
         }
     },
     methods: {
@@ -68,17 +68,17 @@ export default {
                 })
        
         },
-        dropDown(){
+        // dropDown(){
             
-            if(!this.isVisible){
+        //     if(!this.isVisible){
 
-                this.isVisible = true;
-            }
-        },
-        dropClose(){
+        //         this.isVisible = true;
+        //     }
+        // },
+        // dropClose(){
 
-            this.isVisible = false;
-        }
+        //     this.isVisible = false;
+        // }
         
     },
     mounted() {
@@ -93,10 +93,10 @@ export default {
 
             <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
 
-            <div class="button" @click="dropDown">
-                <font-awesome-icon icon="fa-solid fa-plus" />
-
-                <div v-if="isVisible" class="menu">
+            <div class="button">
+                <font-awesome-icon icon="fa-solid fa-plus" @click="isOpen = true"/>
+                
+                <div v-if="isOpen" class="menu">
 
                     <div>
 
@@ -114,7 +114,7 @@ export default {
                         <input type="range" name="range" min="20" max="100" step="20" v-model="radius">
                     </div>
                     
-                    <div class="buttonClose" @click="dropClose">
+                    <div class="buttonClose" @click="isOpen = false">
                         Close
                     </div>
                 </div>
