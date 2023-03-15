@@ -61,7 +61,22 @@ export default {
                 <li v-for="service in services"><i class="fa-solid fa-check"></i> {{ service.name }}</li>
             </ul>
         </ul>
+        <div>
+            <form action="" method="POST" class="d-flex flex-column col-3 mx-auto">
+                <label for="name">Nome</label>
+                <input type="text" name="name">
 
+                <label for="email">Email</label>
+                <input type="email" name="email">
+
+                <label for="text">Testo</label>
+                <textarea rows="4" cols="50" type="textarea" name="text" />
+
+                <button type="submit" class="my-2 btn btn-primary">Invia</button>
+
+
+            </form>
+        </div>
         <!-- use v-if because value onmounted start as undefinied and app crash -->
         <div class="map">
             <b class="d-inline-block">Where is it</b>
