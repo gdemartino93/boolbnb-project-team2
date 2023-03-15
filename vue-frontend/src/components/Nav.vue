@@ -52,7 +52,6 @@
 <script>
 import { useAuthStore } from '../stores/auth';
 import { store } from '../stores/store';
-import { createPopper } from '@popperjs/core'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 export default {
