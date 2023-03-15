@@ -72,6 +72,7 @@
   font-size: 1rem;
 }
 
-/* #app {
-  background: var(--b-2);
-} */
+#app {
+  background: #f8f9fa;
+  height: 100vh;
+}

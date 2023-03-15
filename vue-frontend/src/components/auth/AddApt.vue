@@ -132,6 +132,7 @@ export default {
 <style lang="scss" scoped>
 .container {
     margin-top: 100px;
+    // background-color: #f8f9fa;
 
     form {
         display: flex;
