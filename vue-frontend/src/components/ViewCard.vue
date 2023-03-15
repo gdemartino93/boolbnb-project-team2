@@ -79,6 +79,7 @@ export default {
     margin: auto;
     padding: 20px 0;
     margin-top: 100px;
+    background-color: #f8f9fa;
 
     ul {
         h2 {

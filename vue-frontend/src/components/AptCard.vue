@@ -37,7 +37,7 @@ export default {
   <router-link :to="{name: 'show', params:{ id: `${apartment.id}` }}" class="card-link no-underline">
     <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{ 'hover-effect': isHovering }">
       <img :src="apartment.img" class="card-img" :alt="apartment.img">
-      <div class="card-body">
+      <div class="my-card-body">
         <h3 class="card-title">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</h3>
         <p class="card-text">{{ apartment.description }}</p>
         <!-- <button class="btn-primary btn" @click="toggleShow">{{ isShow ? 'Nascondi' : 'Mostra' }}</button> -->
@@ -77,6 +77,8 @@ export default {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   border: none;
@@ -97,11 +99,10 @@ export default {
   object-fit: cover;
 }
 
-.card-body {
-  padding: 1rem;
+.my-card-body {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  margin-top: 15px;
 }
 
 .card-title {
