@@ -210,17 +210,6 @@ class ApiController extends Controller
 
     public function storeMessage(Request $request ,Apartment $apartment){
 
-        // $apartment = $request -> apartment();
 
-        $data = $request -> validate([
-            'text' => 'required',
-            'mail' => 'email',
-            'name' => 'required'
-        ]);
-
-
-        $mail = $request -> input('mail');
-        $text = $request -> input('text');
-        $apartmentId = $request -> input('apartment_id');
     }
 }
