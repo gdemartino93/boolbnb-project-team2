@@ -70,6 +70,8 @@ nav {
     // background-color:var(--b-1);
     height: 10vh;
     background-color:#f8f9fa ;
+    border-bottom: 1px solid #dcd2d2;
+
 
         img {
             width: 30%;
