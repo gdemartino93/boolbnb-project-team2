@@ -117,7 +117,8 @@ export default {
                         <label :for="service.name"> {{ service.name }} </label>
                     </div>
                 </div>
-                <input class="button" @click="storeData" type="submit" value="Create New Apartment">
+                <input class="button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-3"
+                    @click="storeData" type="submit" value="Create New Apartment">
 
             </div>
         </form>
@@ -130,7 +131,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 150px;
+    margin-top: 100px;
 
     form {
         display: flex;
@@ -169,20 +170,20 @@ export default {
     }
 
     .button {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 4px;
+        // background-color: #4CAF50;
+        // color: white;
+        // border: none;
+        // padding: 12px 20px;
+        // border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
-        margin-top: 20px;
+        // margin-top: 20px;
         margin: 0 auto;
         width: 95%;
 
-        &:hover {
-            background-color: #3e8e41;
-        }
+        // &:hover {
+        //     background-color: #3e8e41;
+        // }
     }
 
     .text-danger {
@@ -245,7 +246,7 @@ export default {
 .autenticato {
     width: 50%;
     text-align: center;
-    margin: 0 auto;
+    margin: 100px auto 0 auto;
     position: relative;
     animation-name: animation;
     animation-duration: 0.5s;
