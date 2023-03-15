@@ -2,13 +2,9 @@
     <nav class="d-flex justify-center align-items-center">
         <section class="container">
             <div class="d-flex justify-content-between">
-
                     <RouterLink class="link" :to="{ name: 'home' }">
                         <img src="/logo.png" class="mb-1" alt="boolbnb-logo">
                     </RouterLink>
-
-
-
                 <section v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
                     <div class="d-none d-md-block">
                         <RouterLink class="link mx-3" :to="{ name: 'login' }">Login</RouterLink>
@@ -21,29 +17,29 @@
                 </section>
 
                 <div v-else class="d-flex justify-content-end align-items-center">
-                    <div class="profile d-flex ">                  
-                        <span class="fw-bold username d-none d-xl-block">{{ authStore.user.name }}</span>
+                    <div class="profile d-flex algin- ">                  
+                        <span class="fw-bold username d-none d-xl-block align-self-center">{{ authStore.user.name }}</span>
                         <div class="dropdown">
-                        <img src="/avatar1.png" class=" mx-2 rounded-circle dropdown-toggle" alt="Avatar" data-bs-toggle="dropdown" aria-expanded="false" />
-                        <ul class="dropdown-menu">
-                            <!-- item dropdown menu -->
-                            <li>
-                                <RouterLink class="dropdown-item link" :to="{ name: 'addApt' }">
-                                    Aggiungi Appartamento
-                                </RouterLink>
-                            </li>
+                            <img src="/avatar1.png" class=" mx-2 rounded-circle dropdown-toggle" alt="Avatar" data-bs-toggle="dropdown" aria-expanded="false" />
+                            <ul class="dropdown-menu">
+                                    <!-- item dropdown menu -->
+                                <li>
+                                    <RouterLink class="dropdown-item link" :to="{ name: 'addApt' }">
+                                            Aggiungi Appartamento
+                                    </RouterLink>
+                                </li>
 
-                            <li>
-                                <RouterLink class="dropdown-item link" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
-                                    Dashboard
-                                </RouterLink>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
-                            </li>
-    
-                        </ul>
-                    </div>
+                                <li>
+                                    <RouterLink class="dropdown-item link" :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
+                                            Dashboard
+                                    </RouterLink>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
+                                </li>
+        
+                            </ul>
+                        </div>
                     </div>
  
                 </div>
