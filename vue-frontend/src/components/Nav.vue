@@ -74,7 +74,13 @@ export default {
 nav {
     // background-color:var(--b-1);
     height: 10vh;
+<<<<<<< HEAD
     background-color: #f8f9fa;
+=======
+    background-color:#f8f9fa ;
+    border-bottom: 1px solid #dcd2d2;
+
+>>>>>>> modifiches
 
     img {
         width: 30%;

@@ -1,24 +1,3 @@
-<template>
-  <router-link :to="{name: 'show', params:{
-  id: `${apartment.id}`
-  }}" >
-    <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{ 'hover-effect': isHovering }">
-      <img :src="apartment.img" class="card-img-top" :alt="apartment.img">
-      <div class="card-body">
-        <span class="fw-bold">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</span>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <!-- quando leggi questo commento avvisami che devo fixare una roba -->
-        <button class="btn-primary btn" @click="toggleShow">{{ isShow ? 'Nascondi' : 'Mostra' }}</button>
-        <ul>
-          <li v-for="additional_service in apartment.additional_services" :key="apartment.id" v-if="showIndex === apartment.id || isShow">
-            {{ additional_service.name }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </router-link>
-</template>
-
 <script>
 export default {
   props: ['apartment'],
@@ -50,23 +29,110 @@ export default {
 }
 </script>
 
+
+
+
+
+<template>
+  <router-link :to="{name: 'show', params:{ id: `${apartment.id}` }}" class="card-link no-underline">
+    <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{ 'hover-effect': isHovering }">
+      <img :src="apartment.img" class="card-img" :alt="apartment.img">
+      <div class="card-body">
+        <h3 class="card-title">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</h3>
+        <p class="card-text">{{ apartment.description }}</p>
+        <!-- <button class="btn-primary btn" @click="toggleShow">{{ isShow ? 'Nascondi' : 'Mostra' }}</button> -->
+        <ul class="additional-services" v-if="showIndex === apartment.id || isShow">
+          <li v-for="additional_service in apartment.additional_services" :key="additional_service.id">
+            {{ additional_service.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </router-link>
+</template>
+
 <style lang="scss" scoped>
-@use '../assets/main.css';
-
-ul {
-  list-style: none;
+.card-link {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 23%;
+  margin-right: 2%;
+  margin-bottom: 1rem;
+  vertical-align: top;
 }
 
-a{
-  text-decoration: none !important;
-  color: inherit !important;
+.card-link:nth-child(4n) {
+  margin-right: 0;
 }
-.card-body{
-  background: var(--b-1);
+
+@media (max-width: 768px) {
+  .card-link {
+    width: 48%;
+    margin-right: 4%;
+  }
+  
+  .card-link:nth-child(2n) {
+    margin-right: 0;
+  }
 }
-.card.hover-effect {
-  transition: 1s;
-  transform: scale(1.5);
+
+.card {
+  width: 100%;
+  height: 100%;
+  border: none;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--white);
+}
+
+.card:hover {
+  transform: scale(1.05);
   z-index: 1;
 }
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.card-text {
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.btn-primary {
+  color: var(--white);
+  background-color: var(--primary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.additional-services {
+  list-style: none;
+  margin-top: 1
+}
+
+.no-underline {
+  text-decoration-line: none;
+}
+
+
 </style>
+
