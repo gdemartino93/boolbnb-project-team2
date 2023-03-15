@@ -1,11 +1,11 @@
 <template>
     <Loader v-if="isLoading" />
     
-    <section v-else>
+    <section v-else style="background-color: #f8f9fa;">
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 
-        <div class="container">
+        <div class="container" style="background-color: #f8f9fa;" >
             <router-link :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
             <div class="row justify-content-center d-flex ">
                 <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments" :apartment="apartment" :key="index" />
