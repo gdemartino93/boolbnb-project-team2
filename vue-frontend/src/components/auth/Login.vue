@@ -1,3 +1,42 @@
+<script>
+import { useAuthStore } from '../../stores/auth';
+import { ref } from 'vue';
+export default {
+
+  data() {
+    return {
+      authStore: useAuthStore(),
+      form: ref({
+        email: "",
+        password: ""
+      }),
+      emailRules: [
+        value => {
+          if (value) return true
+          return 'E-mail is requred.'
+        },
+        value => {
+          if (/.+@.+\..+/.test(value)) return true
+          return 'E-mail must be valid.'
+        },
+      ],
+      show1: false,
+      show2: true,
+      password: 'Password',
+      rules: {
+        required: value => !!value || 'Required.',
+        // da validare nel backend e poi scommentare
+        // min: v => v.length >= 8 || 'Min 8 characters',
+        // emailMatch: () => (`The email and password you entered don't match`),
+      },
+    };
+  },
+  methods: {
+  }
+};
+</script>
+
+
 <template>
   <div class="container-fluid login">
 
@@ -44,43 +83,7 @@
           </div>
       </div>
 </template>
-<script>
-import { useAuthStore } from '../../stores/auth';
-import { ref } from 'vue';
-export default {
 
-  data() {
-    return {
-      authStore: useAuthStore(),
-      form: ref({
-        email: "",
-        password: ""
-      }),
-      emailRules: [
-        value => {
-          if (value) return true
-          return 'E-mail is requred.'
-        },
-        value => {
-          if (/.+@.+\..+/.test(value)) return true
-          return 'E-mail must be valid.'
-        },
-      ],
-      show1: false,
-      show2: true,
-      password: 'Password',
-      rules: {
-        required: value => !!value || 'Required.',
-        // da validare nel backend e poi scommentare
-        // min: v => v.length >= 8 || 'Min 8 characters',
-        // emailMatch: () => (`The email and password you entered don't match`),
-      },
-    };
-  },
-  methods: {
-  }
-};
-</script>
 <style>
     .login{
       height: 90vh;
