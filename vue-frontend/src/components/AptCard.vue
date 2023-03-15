@@ -10,7 +10,7 @@
         <!-- quando leggi questo commento avvisami che devo fixare una roba -->
         <button class="btn-primary btn" @click="toggleShow">{{ isShow ? 'Nascondi' : 'Mostra' }}</button>
         <ul>
-          <li v-for="(additional_service, index) in apartment.additional_services" :key="index" v-if="showIndex === index || isShow">
+          <li v-for="additional_service in apartment.additional_services" :key="apartment.id" v-if="showIndex === apartment.id || isShow">
             {{ additional_service.name }}
           </li>
         </ul>
