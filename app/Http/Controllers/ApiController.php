@@ -189,22 +189,77 @@ class ApiController extends Controller
     }
 
     // List of apartments without pagination
-    public function list(Request $request){
+    public function list(){
 
-        $apartmentQuery = Apartment::with(['user', 'additionalServices']);
+        $apartmentList = Apartment::with(['user', 'additionalServices']);
 
-        if($request -> keyword){
-            // this will allow user to search for a specific apartment by his title
-            $apartmentQuery -> where('title', 'LIKE', '%'.$request->keyword.'%');
-        }
+        // if($request -> keyword){
+        //     // this will allow user to search for a specific apartment by his title
+        //     $apartmentQuery -> where('title', 'LIKE', '%'.$request->keyword.'%');
+        // }
 
-        $apartments = $apartmentQuery -> get();
+        $apartments = $apartmentList -> get();
 
         return response() -> json([
 
             'message' => 'Apartments successfully fetched',
             'data' => $apartments
         ]);
+    }
+
+    public function filter(Request $request){
+
+        $latitude = $request["latitude"];
+        $longitude = $request["longitude"];
+        $radius = $request["radius"];
+        $room_number = $request["room_number"];
+        $bed_number = $request["bed_number"];
+
+        $haversine = "(
+            6371 * acos(
+                cos(radians(" . $latitude . "))
+                * cos(radians(`latitude`))
+                * cos(radians(`longitude`) - radians(" . $longitude . "))
+                + sin(radians(" . $latitude . ")) * sin(radians(`latitude`))
+            )
+            
+            )";
+        
+        $apartments = Apartment::select("*")
+            ->selectRaw("$haversine AS distance")
+            ->having("distance", "<=", $radius)
+            ->orderby("distance", "desc")
+            ->get();
+
+
+        if(isset($room_number)){
+
+            $apartments = Apartment::select("*")
+            ->selectRaw("$haversine AS distance")
+            ->having("distance", "<=", $radius)
+            ->having("room_number", ">=", $room_number)
+            ->orderby("distance", "desc")
+            ->get();        
+        }
+
+        if(isset($bed_number)){
+
+            $apartments = Apartment::select("*")
+            ->selectRaw("$haversine AS distance")
+            ->having("distance", "<=", $radius)
+            ->having("room_number", ">=", $room_number)
+            ->having("bed_number", ">=", $bed_number)
+            ->orderby("distance", "desc")
+            ->get();
+        }
+
+
+        return response()->json([
+            "success" => true,
+            "apartments" => $apartments,
+        ]);
+
+
     }
 
 }

@@ -20,8 +20,8 @@ return new class extends Migration {
             $table->tinyInteger('bath_number')->unsigned();
             $table->smallInteger('square_meters')->unsigned();
             $table->string('address', 81);
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
             $table->string('img') ->nullable();
             $table->boolean('visible')->default(false);
 

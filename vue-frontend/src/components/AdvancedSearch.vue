@@ -11,96 +11,99 @@ export default {
         return {
             store,
             queryValue: '',
-            queryLatitude: undefined,
-            queryLongitude: undefined,
+            queryLatitude: '',
+            queryLongitude: '',
             apartments: [],
-            queryResults: [],
-            sortedArray: []
+            radius: 20,
+            error: null,
+            room_number: '',
+            bed_number: ''
         }
     },
     methods: {
 
-        queryCoordinates() {
+        getCoordinates(e) {
 
-            // Funzione per prendere le coordinate dato un indirizzo deciso dall'input dell'utente, attraverso chiamata API a TomTom
-            this.store.getCoordinates(this.queryValue);
-            this.queryLatitude = this.store.latitude;
-            this.queryLongitude = this.store.longitude;
-            // Si svuota l'array di risultati per evitare che vi siano risultati della precedente ricerca
-            this.queryResults = [];
-            this.getApartmentsWithinRadius(this.apartments, this.queryLatitude, this.queryLongitude, 20);
-            this.sortedArray = this.queryResults.sort((a, b) => a.distance - b.distance);
-            console.log(this.sortedArray);
+            // Metodo da spada smart per aggirare le CORS policy
+
+            e.preventDefault();
+
+            var theUrl = `${this.store.geolocationUrl}` + this.queryValue + `.json?key=${this.store.apiKey}`;
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", theUrl, false);
+            xmlHttp.send(null);
+            var json = JSON.parse(xmlHttp.responseText);
+            
+            this.queryLatitude = parseFloat(json.results[0].position.lat);
+            this.queryLongitude = parseFloat(json.results[0].position.lon);
+            
+            console.log(this.queryLatitude, this.queryLongitude);
+
+            this.getApt();
         },
-        async apartmentPrint() {
+        getApt(){
 
-            try {
-                const response = await axios.get('/api/v1/apartment/search');
-                this.apartments = response.data.data;
+            let formData = new FormData();
+            formData.append("latitude", this.queryLatitude);
+            formData.append("longitude", this.queryLongitude);
+            formData.append("radius", this.radius);
+            formData.append("room_number", this.room_number);
+            formData.append("bed_number", this.bed_number);
 
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        getApartmentsWithinRadius(apartments, centerLat, centerLon, radius) {
+            console.log(formData);
 
-            // Calcolare la distanza dall'input dell'utente in un raggio di 20 km
+            axios.post("/api/v1/apartment/search", formData)
+                .then(res => {
+                    console.log("apSear", res);
+                    // this.onSearch = true;
 
-            const R = 6371; // Raggio della Terra in chilometri
-
-            // Si fa un foreach sull'array apartments che contiene tutti gli appartamenti presenti in DB
-            apartments.forEach((apartment) => {
-
-                // Assegnazione delle proprietà di latitude e longitude a due variabili d'appoggio
-                const aptLat = apartment.latitude;
-                const aptLon = apartment.longitude;
-
-                // Variabili distanceLatitude e distanceLongitude, avanzatissimi calcoli che non saprei spiegare ma funzionano giuro
-                const dLat = this.toRad(aptLat - centerLat);
-                const dLon = this.toRad(aptLon - centerLon);
-
-                // Altri avanzatissimi calcoli che non saprei spiegare
-                const a =
-                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(this.toRad(centerLat)) *
-                    Math.cos(this.toRad(aptLat)) *
-                    Math.sin(dLon / 2) *
-                    Math.sin(dLon / 2);
-
-                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-                // d rappresenta la distanza dell'appartamento dall'input dell'utente ed è uguale a R (raggio) moltiplicato per c, perchè? Non ne ho idea, ma funziona
-                const d = R * c;
-
-                // Se la distanza è minore o uguale al raggio della ricerca si può pushare l'appartamento nell'array dei risultati
-                if (d <= radius) {
-
-                    // qui si assegna invece all'oggetto apartment una variabile chiamata distance che servirà per ordinare i risultati in ordine crescente in base alla loro distanza dall'input
-                    apartment['distance'] = d;
-                    this.queryResults.push(apartment);
-                }
-            });
-
-        },
-        toRad(value) {
-            return (value * Math.PI) / 180;
+                    this.apartments = res.data.apartments;
+                    // this.apartmentsGeoSponsored = res.data.apartmentsSponsored;
+                    console.log(this.apartments);
+                    if (this.apartments.length == 0) {
+                        this.error = "nessun appartamento trovato";
+                    }
+                    else {
+                        this.error = null
+                    }
+                })
+       
         }
+        
     },
     mounted() {
-
-        this.apartmentPrint();
 
     }
 }
 </script>
 <template>
-    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
-    <button @click="queryCoordinates">Search</button>
+    <div class="container">
 
-    <div class="container d-flex">
+        <form action="" method="post">
 
+            <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
+            <br>
+            
+            <label for="room_number">Numero minimo di camere:</label>
+            <input type="number" name="room_number" v-model="room_number">
+            <br>
 
-        <AptCard class="mx-2" v-for="apartment in sortedArray" :apartment="apartment" />
+            <label for="bed_number">Numero minimo di letti:</label>
+            <input type="number" name="bed_number" v-model="bed_number">
+            <br>
+
+            <label for="range">O in alternativa puoi cambiare il range di ricerca (il valore di default è di 20Km):</label>
+            <input type="range" name="range" min="20" max="100" step="20" v-model="radius">
+
+            <input type="submit" value="Search" @click="getCoordinates">
+        </form>
+    </div>
+
+    <div class="container d-flex flex-wrap">
+
+        <AptCard v-if="apartments" class="col-3" v-for="apartment in apartments" :apartment="apartment" />
+
+        <p v-else>{{ error }}</p>
     </div>
 
 </template>
@@ -114,9 +117,6 @@ export default {
         margin-left: 2rem;
         padding-left: .5rem;
         border-radius: 16px 0 16px 0;
-        // appearance: none;
-        // border: none;
-        // outline: none;
         background: none;
         background-color: rgba(255, 255, 255, .35);
         transition: 0.4s;

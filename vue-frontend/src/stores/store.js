@@ -4,8 +4,8 @@ export const store = reactive({
 
     geolocationUrl: 'https://api.tomtom.com/search/2/geocode/',
     apiKey: 'YnMfUAYY76CkHWngLQxDudDG5GdEAEs5',
-    latitude: undefined,
-    longitude: undefined,
+    latitude: '',
+    longitude: '',
 
     getCoordinates(value) {
 
@@ -17,8 +17,8 @@ export const store = reactive({
         xmlHttp.send(null);
         var json = JSON.parse(xmlHttp.responseText);
 
-        this.latitude = json.results[0].position.lat;
-        this.longitude = json.results[0].position.lon;
+        this.latitude = parseFloat(json.results[0].position.lat);
+        this.longitude = parseFloat(json.results[0].position.lon);
 
     }
 
