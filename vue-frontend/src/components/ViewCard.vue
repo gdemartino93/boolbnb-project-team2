@@ -14,7 +14,7 @@ export default {
             services: [],
             form:ref({
                 name : "",
-                email :"",
+                mail :"",
                 text : ""
             })
         }
@@ -33,16 +33,23 @@ export default {
 
         },
         getForm(){
+            let formData = new FormData();
+     
             if(this.authStore.user){
                 this.form.name = this.authStore.user.name;
-                this.form.email = this.authStore.user.email;
+                this.form.mail = this.authStore.user.email;
             }
-            console.log(this.form)
+            formData.append('name', this.form.name);
+            formData.append('mail', this.form.mail);
+            formData.append('text', this.form.text);
+
+            formData.append('apartment_id', this.apt.id)
         }
     },
     mounted() {
         this.getSingleAp(this.$route.params.id);
         this.authStore.getUsersWithApt();
+       
     }
 }
 </script>
@@ -83,7 +90,7 @@ export default {
                 <label for="email">Email</label>
                 <input type="email" name="email" v-model="authStore.user.email" v-if="authStore.user" disabled>
 
-                <input type="email" name="email" v-model="form.email" v-else>
+                <input type="email" name="email" v-model="form.mail" v-else>
 
 
                 <label for="text">Testo</label>

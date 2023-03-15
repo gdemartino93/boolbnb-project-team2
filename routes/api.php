@@ -37,3 +37,5 @@ Route::get('/v1/apartment/search', [ApiController::class, 'list']);
 Route::get('/v1/apartment/{id}',[ApiController :: class, 'signleAp']);
 
 Route::get('/v1/services/all', [ApiController::class, 'getAdditionalServices']);
+
+Route::post('/v1/apartment/messages',[ApiController :: class , 'storeMessage']);
