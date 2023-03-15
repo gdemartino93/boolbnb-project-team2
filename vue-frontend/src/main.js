@@ -21,10 +21,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faBars, faHome, faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHome, faUser, faUserSecret, faPlus, faBed } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret,faUser,faBars,faHome)
+library.add(faUserSecret,faUser,faBars,faHome, faPlus, faBed)
 
 
 import 'bootstrap/dist/css/bootstrap.css'

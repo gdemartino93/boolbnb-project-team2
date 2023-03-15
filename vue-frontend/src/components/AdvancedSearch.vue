@@ -17,7 +17,8 @@ export default {
             radius: 20,
             error: null,
             room_number: '',
-            bed_number: ''
+            bed_number: '',
+            isVisible: false,
         }
     },
     methods: {
@@ -55,10 +56,8 @@ export default {
             axios.post("/api/v1/apartment/search", formData)
                 .then(res => {
                     console.log("apSear", res);
-                    // this.onSearch = true;
 
                     this.apartments = res.data.apartments;
-                    // this.apartmentsGeoSponsored = res.data.apartmentsSponsored;
                     console.log(this.apartments);
                     if (this.apartments.length == 0) {
                         this.error = "nessun appartamento trovato";
@@ -68,6 +67,17 @@ export default {
                     }
                 })
        
+        },
+        dropDown(){
+            
+            if(!this.isVisible){
+
+                this.isVisible = true;
+            }
+        },
+        dropClose(){
+
+            this.isVisible = false;
         }
         
     },
@@ -77,23 +87,39 @@ export default {
 }
 </script>
 <template>
-    <div class="container">
+    <div class="container" id="form">
 
         <form action="" method="post">
 
             <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
-            <br>
+
+            <div class="button" @click="dropDown">
+                <font-awesome-icon icon="fa-solid fa-plus" />
+
+                <div v-if="isVisible" class="menu">
+
+                    <div>
+
+                        <img src="../assets/noun-apartment-194955.png" alt="room number logo">
+                        <input type="number" name="room_number" v-model="room_number" placeholder="Numero minimo di camere ...">
+                    </div>
+                    <div>
+
+                        <font-awesome-icon icon="fa-solid fa-bed" id="bed"/>        
+                        <input type="number" name="bed_number" v-model="bed_number" placeholder="Numero minimo di letti ...">
+                    </div>
+                    <div>
+
+                        <label for="range">O in alternativa puoi cambiare il range di ricerca (il valore di default è di 20Km):</label>
+                        <input type="range" name="range" min="20" max="100" step="20" v-model="radius">
+                    </div>
+                    
+                    <div class="buttonClose" @click="dropClose">
+                        Close
+                    </div>
+                </div>
+            </div>
             
-            <label for="room_number">Numero minimo di camere:</label>
-            <input type="number" name="room_number" v-model="room_number">
-            <br>
-
-            <label for="bed_number">Numero minimo di letti:</label>
-            <input type="number" name="bed_number" v-model="bed_number">
-            <br>
-
-            <label for="range">O in alternativa puoi cambiare il range di ricerca (il valore di default è di 20Km):</label>
-            <input type="range" name="range" min="20" max="100" step="20" v-model="radius">
 
             <input type="submit" value="Search" @click="getCoordinates">
         </form>
@@ -109,46 +135,93 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.container {
-    margin-top: 150px;
+#form {
 
-    input {
-        width: 80%;
-        margin-left: 2rem;
-        padding-left: .5rem;
-        border-radius: 16px 0 16px 0;
-        background: none;
-        background-color: rgba(255, 255, 255, .35);
-        transition: 0.4s;
-
-        &:focus {
-            border-radius: 0 16px 0 16px;
-            background-color: rgba(255, 255, 255, .75);
-        }
-
-
-
-    &:focus {
-        border-radius: 0 16px 0 16px;
-        background-color: rgba(255, 255, 255, .75);
-
+    background-image: url('../assets/dream.png');
+    background-size: cover;
+    background-position-y: 25%;
+    padding: 8rem 3rem;
+    border-radius: 15px;
+    color: white;
+    position: relative;
+    
+    input[type=search]{
+        
+        position: absolute;
+        bottom: 20px;
+        border-radius: 15px 0 0 15px;
+        width: 20%;
+        padding: .3rem 1.5rem;
     }
 
-    button {
-        margin-left: 2rem;
-        padding: 0.5rem;
-        appearance: none;
-        border: none;
+    input[type=submit]{
+
+        position: absolute;
+        background-color: #FF6E31;
+        bottom: 19.2px;
+        left: 30%;
         outline: none;
-        border-radius: 16px 0 16px 0;
-        transition: 0.4s;
+        padding: .3rem .5rem;
+        border-radius: 15px;
+        color: white;
+    }
 
-        &:hover {
-            border-radius: 0 16px 0 16px;
+    .button {
+        
+        background-color: #FF6E31;
+        width: 3%;
+        border-radius: 0 15px 15px 0;
+        position: absolute;
+        bottom: 20px;
+        left: 23.5%;
+        padding: .4rem .7rem;
+        cursor: pointer;
+
+        .menu {
+
+            background-color: #D1D1D1;
+            height: 200px;
+            width: 400px;
+            position: absolute;
+            z-index: 30;
+            padding: 1rem;
+            border-radius: 15px;
+
+            img {
+                width: 25px;
+                margin-right: 1.3rem;
+            }
+
+            #bed {
+                
+                color: black;
+                margin-right: 1.6rem;
+            }
+
+            input {
+
+                width: 70%;
+            }
+
+            label{
+                
+                color: black;
+            }
+
+            .buttonClose{
+
+                background-color: #FF6E31;
+                border-radius: 15px;
+                width: fit-content;
+                padding: .3rem 1rem;
+                position: absolute;
+                right: 1rem;
+            }
         }
     }
+
 }
-}
+
 
 
 
