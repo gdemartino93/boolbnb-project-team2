@@ -2,6 +2,7 @@
 import Map from './Map/Map.vue';
 import { useAuthStore } from '../stores/auth';
 import axios from 'axios';
+import { ref } from 'vue';
 export default {
     components: {
         Map
@@ -10,7 +11,11 @@ export default {
         return {
             authStore: useAuthStore(),
             apt: {},
-            services: []
+            services: [],
+            form:ref({
+                name : "",
+                email :""
+            })
         }
     },
     methods: {
@@ -64,10 +69,14 @@ export default {
         <div>
             <form action="" method="POST" class="d-flex flex-column col-3 mx-auto">
                 <label for="name">Nome</label>
-                <input type="text" name="name">
+                <input type="text" name="name" v-model="authStore.user.name" v-if="authStore.user" disabled>
+                <input type="text" name="name" v-model="form.name" v-else>
 
                 <label for="email">Email</label>
-                <input type="email" name="email">
+                <input type="email" name="email" v-model="authStore.user.email" v-if="authStore.user" disabled>
+
+                <input type="email" name="email" v-model="form.email" v-else>
+
 
                 <label for="text">Testo</label>
                 <textarea rows="4" cols="50" type="textarea" name="text" />
