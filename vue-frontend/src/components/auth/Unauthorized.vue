@@ -5,7 +5,7 @@ export default {
 </script>
 
 <section class="autenticato" v-else>
-    <h1 class="text-danger">Non Autenticato</h1>
+    <h1 class="text-danger"> Non Autenticato </h1>
     <h2>Effettua il Login</h2>
 </section>
 
@@ -13,7 +13,7 @@ export default {
 .autenticato {
     width: 50%;
     text-align: center;
-    margin: 0 auto;
+    margin: 100px auto 0 auto;
     position: relative;
     animation-name: animation;
     animation-duration: 0.5s;

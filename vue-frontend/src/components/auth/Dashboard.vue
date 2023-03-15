@@ -35,20 +35,24 @@ export default {
     <div class="container">
         <section class="dashboard-section" v-if="authStore.user">
             <RouterLink class="add-apartment-link" :to="{ name: 'addApt' }">
-                <a href="#">Aggiungi appartamento</a>
+                <a href="#" class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-3">Aggiungi
+                    appartamento</a>
             </RouterLink>
-            <h2 class="dashboard-title">BENVENUTO NELLA DASHBOARD {{ $route.params.id }}</h2>
+            <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2>
 
-            <h3 class="apartments-title">LISTA APPARTAMENTI</h3>
+            <h3 class="apartments-title"></h3>
 
             <ul v-if="authStore.apartments" class="apartments-list w-75">
                 <li v-for="apartment in authStore.apartments" class="apartment-item">
                     <span class="apartment-title w-100">{{ apartment.title }}</span>
-                    <button class="delete-button" @click="deleteApartment(apartment)">Elimina</button>
+                    <button class="delete-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
+                        @click="deleteApartment(apartment)">Elimina</button>
                     <router-link class="edit-link" :to="{ name: 'editApt', params: { id: `${apartment.id}` } }">
-                        <button class="edit-button">Modifica</button>
+                        <button
+                            class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
                     </router-link>
-                    <button class="visible-button">Occhio</button>
+                    <button
+                        class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Occhio</button>
                 </li>
             </ul>
 
@@ -62,7 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 150px;
+    margin-top: 100px;
 
     .dashboard-section {
         background-color: white;
@@ -73,10 +77,10 @@ export default {
 
 
         .add-apartment-link {
-            background-color: #f2f2f2;
-            color: white;
+            // background-color: #f2f2f2;
+            // color: white;
             padding: 10px;
-            border-radius: 5px;
+            // border-radius: 5px;
             text-decoration: none;
             margin-bottom: 20px;
             display: inline-block;
@@ -118,33 +122,34 @@ export default {
         }
 
         .delete-button {
-            background-color: #ff385c;
+            // background-color: #ff385c;
             margin-right: 10px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
+            // color: white;
+            // border: none;
+            // border-radius: 5px;
+            // padding: 5px 10px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
 
         .edit-button {
-            background-color: #ff385c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
+            // background-color: #ff385c;
+            margin-right: 10px;
+            // color: white;
+            // border: none;
+            // border-radius: 5px;
+            // padding: 5px 10px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
 
         .visible-button {
-            background-color: #ff385c;
-            margin-left: 10px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
+            // background-color: #ff385c;
+            margin-right: 10px;
+            // color: white;
+            // border: none;
+            // border-radius: 5px;
+            // padding: 5px 10px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
@@ -153,7 +158,7 @@ export default {
     .autenticato {
         width: 50%;
         text-align: center;
-        margin: 0 auto;
+        margin: 100px auto 0 auto;
         position: relative;
         animation-name: animation;
         animation-duration: 0.5s;

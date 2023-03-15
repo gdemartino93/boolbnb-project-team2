@@ -140,7 +140,8 @@ export default {
 
       <br>
 
-      <button type="button" @click="updateData(apt)">Update Apartment</button>
+      <button type="button" class="button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-3"
+        @click="updateData(apt)">Update Apartment</button>
     </form>
   </section>
   <section class="autenticato" v-else>
@@ -153,7 +154,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 150px;
+  margin-top: 100px;
 
   form {
     display: flex;
@@ -192,19 +193,21 @@ export default {
   }
 
   button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
+    // background-color: #4CAF50;
+    // color: white;
+    // border: none;
+    // padding: 12px 20px;
+    // border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 20px;
+    // margin-top: 20px;
+    margin: 0 auto;
+    width: 95%;
   }
 
-  button:hover {
-    background-color: #3e8e41;
-  }
+  // button:hover {
+  //   background-color: #3e8e41;
+  // }
 
   .text-danger {
     color: #FF0000;
@@ -261,35 +264,35 @@ export default {
     font-weight: bold;
     color: #333;
   }
+}
 
-  .autenticato {
-    width: 50%;
-    text-align: center;
-    margin: 0 auto;
-    position: relative;
-    animation-name: animation;
-    animation-duration: 0.5s;
+.autenticato {
+  width: 50%;
+  text-align: center;
+  margin: 100px auto 0 auto;
+  position: relative;
+  animation-name: animation;
+  animation-duration: 0.5s;
 
-    @keyframes animation {
-      0% {
-        // background-color: red;
-        top: 10px;
-      }
+  @keyframes animation {
+    0% {
+      // background-color: red;
+      top: 10px;
+    }
 
-      50% {
-        // background-color: red;
-        top: 0px;
-      }
+    50% {
+      // background-color: red;
+      top: 0px;
+    }
 
-      75% {
+    75% {
 
-        top: 10px;
-      }
+      top: 10px;
+    }
 
-      100% {
+    100% {
 
-        top: 0px;
-      }
+      top: 0px;
     }
   }
 }
