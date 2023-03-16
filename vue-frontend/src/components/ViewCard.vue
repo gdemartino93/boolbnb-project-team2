@@ -47,11 +47,21 @@ export default {
                 console.log(res.data);
                 this.msgSent = true;
                 })
+        },
+        async getView(id){
+            try {
+                axios.post('/api/v1/apartment/' + id)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        
+
     },
     mounted() {
         this.getSingleAp(this.$route.params.id);
         this.authStore.getUsersWithApt();
+        this.getView(this.$route.params.id)
         // this.authStore.getUser();
     }
 }
@@ -67,8 +77,9 @@ export default {
             <li class="img">
                 <img :src="apt.img" :alt="apt.img">
             </li>
-
+        
             <li class="description">{{ apt.description }}</li>
+            <li class="my-1 fw-bold">Numero di visualizzazioni: <span class="text-success"> {{ apt.views_count }}  </span>  </li>
 
             <li class="info"><i class="fa-solid fa-house-chimney-window"></i> <b>{{ apt.room_number }}</b> stanze</li>
             <li class="info"><i class="fa-solid fa-bed"></i> <b>{{ apt.bed_number }} </b> letti</li>
@@ -161,9 +172,7 @@ export default {
         }
 
         img,
-        .description {
-            margin-bottom: 10px;
-        }
+
 
         i {
             color: rgb(171, 171, 103);
