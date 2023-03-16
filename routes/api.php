@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/v1/apartment/all', [ApiController::class, 'index']);
 
-// Route::get('/v1/apartment/search', [ApiController::class, 'list']);
+Route::post('/v1/apartment/message', [ApiController::class, 'sendMessage']);
 
 Route::post('/v1/apartment/search', [ApiController::class, 'filter']);
 

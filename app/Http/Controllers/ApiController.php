@@ -262,4 +262,28 @@ class ApiController extends Controller
 
     }
 
+    public function sendMessage(Request $request){
+
+        $apartment = $request['apartment_id'];
+
+        $data = $request -> validate([
+
+            'text' => 'required',
+            'mail' => 'required | string | max: 128',
+            'name' => 'required | string | max: 64',
+        ]);
+
+        $message = Message:: make($data);
+
+        $message -> apartment() -> associate($apartment);
+
+        $message -> save();
+
+        return response() -> json([
+
+            'message' => 'Message sent!',
+            'data' => $message
+        ]);
+    }
+
 }

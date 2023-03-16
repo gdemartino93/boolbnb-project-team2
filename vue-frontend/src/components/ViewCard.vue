@@ -30,13 +30,14 @@ export default {
 
         },
         sendMessage(){
-
+            
+            let formData = new FormData();
             if(!this.authStore.user){
 
-                let formData = new FormData();
                 formData.append('mail', this.msgMail);
                 formData.append('name', this.msgName);
                 formData.append('text', this.msgTxt);
+                formData.append('apartment_id', this.apt.id);
                 console.log(formData);
             } else {
 
@@ -44,8 +45,16 @@ export default {
                 formData.append('mail', this.authStore.user.email);
                 formData.append('name', this.authStore.user.name);
                 formData.append('text', this.msgTxt);
+                formData.append('apartment_id', this.apt.id);
+
                 console.log(formData);
             }
+
+            axios.post('/api/v1/apartment/message', formData) 
+                 .then(res => {
+
+                    console.log(res.data);
+                })
         }
     },
     mounted() {
