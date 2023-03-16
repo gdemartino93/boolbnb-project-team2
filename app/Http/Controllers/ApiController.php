@@ -260,12 +260,18 @@ class ApiController extends Controller
             "apartments" => $apartments,
         ]);
     }
-    public function visibility(Apartment $apartment){
+    public function visibility(Request $request,Apartment $apartment){
 
-        $apartment = Apartment :: find($apartment);
+
+        // cerchiamo l'appartamento in base all'id
+        $apartment = Apartment :: find($apartment -> id);
+
+        // prendiamo la richiesta e la assegniamo alla colonna visible
+        $apartment -> visible = $request -> visible;
         
         $apartment -> save();
-
+        
+       
         return response() -> json([
             'success' => "Visibilità dell'appartamento aggiornata con success"
         ]);
