@@ -6,8 +6,13 @@
         <div ref="first" class="top-page"></div>
 
         <div class="container" style="background-color: #f8f9fa;">
+
+
+
             <router-link class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-5 mx-2"
                 :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
+            <AdvancedSearch />
+
             <div class="row justify-content-center d-flex ">
                 <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
                     :apartment="apartment" :key="index" />
@@ -34,12 +39,14 @@ import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
 import Loader from '../components/utility/Loader.vue'
+import AdvancedSearch from './AdvancedSearch.vue';
 export default {
     name: 'HomePage',
     components: {
         AptCard,
         Map,
-        Loader
+        Loader,
+        AdvancedSearch
     },
     data() {
         return {
