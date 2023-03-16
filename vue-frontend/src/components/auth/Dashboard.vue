@@ -1,11 +1,13 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
+import { ref } from 'vue';
 
 export default {
     data() {
         return {
             authStore: useAuthStore(),
+
         }
     },
     methods: {
@@ -23,8 +25,14 @@ export default {
                 })
                 .catch(err => console.log);
         },
+        async toggleVisibility(id){
+            try {
+                await axios.get(`/api/v1/apartment/${id}/visibility`)
+            } catch (error) {
+                console.log(error)
+            }
+        }
     },
-
     mounted() {
         this.authStore.getUsersWithApt();
     }
@@ -43,7 +51,7 @@ export default {
             <h3 class="apartments-title"></h3>
 
             <ul v-if="authStore.apartments" class="apartments-list w-75">
-                <li v-for="apartment in authStore.apartments" class="apartment-item">
+                <li v-for="(apartment,index) in authStore.apartments" class="apartment-item" >
                     <span class="apartment-title w-100">{{ apartment.title }}</span>
                     <button class="delete-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
                         @click="deleteApartment(apartment)">Elimina</button>
@@ -51,32 +59,9 @@ export default {
                         <button
                             class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
                     </router-link>
-                    <button class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Occhio</button>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Launch static backdrop modal
+                    <button class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2" @click="toggleVisibility(apartment.id)" >
+                        {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
                     </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal il componente</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-
                 </li>
             </ul>
 
