@@ -301,9 +301,34 @@ class ApiController extends Controller
         ]);
     }
     public function apartmentView(Request $request , $id){
-
+        // cerchiamo l'appartamento che viene viusalizzato
         $apartment = Apartment::find($id);
-        dd($apartment);
+        // prendiamo l'ip della richiesta
+        $ipUser = $request -> ip();
+
+        // verfica se l'utente ha visto l'appartamento
+        $view = View::where('apartment_id', $apartment->id)
+                    ->where('ip', $ipUser)
+                    ->first();
+        // se non l'ha visto crea una nuova view
+            if (!$view) {
+                $view = new View();
+                $view->apartment_id = $apartment->id;
+                $view->ip = $ipUser;
+                $view->save();
+            // incrementa il valore della colonna views count di 1
+                $apartment->views_count += 1;
+                $apartment->save();
+            }
+            
+                    return response()->json([
+                        'message' => 'Visualizzazione aumentat',
+                        'data' => $apartment 
+                    ]);
+
+
     }
+
+
 
 }
