@@ -153,4 +153,7 @@ button {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-}</style>
+  height: 90vh;
+}
+
+</style>

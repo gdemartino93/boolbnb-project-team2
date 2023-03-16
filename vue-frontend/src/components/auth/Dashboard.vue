@@ -51,10 +51,17 @@ export default {
                         <button
                             class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
                     </router-link>
-                    <button
-                        class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Occhio</button>
+                    <button class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">
+                        <font-awesome-icon :icon="faEyeSlash" />
+                    </button>
+                    <Map :address="apartment.address" />
                 </li>
             </ul>
+
+            <RouterLink class="add-apartment-link" :to="{ name: 'addApt' }">
+                <a href="#" class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-3">Aggiungi
+                    appartamento</a>
+            </RouterLink>
 
         </section>
         <section class="autenticato" v-else>
@@ -62,36 +69,38 @@ export default {
             <h2>Effettua il Login</h2>
         </section>
     </div>
+    <div class="col-md-6 bg-image">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="" class="img-r">
+    </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 100px;
+    margin: 100px auto 0 0px;
+    width: 60%;
 
     .dashboard-section {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        background-color: #f8f9fa;
         margin-bottom: 20px;
 
 
         .add-apartment-link {
             // background-color: #f2f2f2;
             // color: white;
-            padding: 10px;
+            // padding: 10px;
             // border-radius: 5px;
             text-decoration: none;
+            margin-top: 20px;
             margin-bottom: 20px;
             display: inline-block;
         }
 
         .dashboard-title {
-            font-size: 24px;
+            font-size: 35px;
             margin-bottom: 20px;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start;
+            color: #ff385c;
         }
 
         .apartments-title {
@@ -103,7 +112,7 @@ export default {
 
         .apartments-list {
             list-style: none;
-            margin: 0 auto;
+            // margin: 0 auto;
             padding: 0
         }
 
@@ -112,9 +121,8 @@ export default {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #f2f2f2;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 15px;
+            border-bottom: 1px solid #dcd2d2;
         }
 
         apartment-title {
@@ -186,4 +194,6 @@ export default {
         }
     }
 }
+
+
 </style>
