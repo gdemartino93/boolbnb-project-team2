@@ -144,6 +144,7 @@ export default {
     border-radius: 15px;
     color: white;
     position: relative;
+    margin-top: 1rem;
     
     input[type=search]{
         
@@ -158,12 +159,15 @@ export default {
 
         position: absolute;
         background-color: #FF6E31;
-        bottom: 19.2px;
+        bottom: 20px;
         left: 30%;
         outline: none;
         padding: .3rem .5rem;
         border-radius: 15px;
         color: white;
+        appearance: none;
+        outline: none;
+        border: none;
     }
 
     .button {
