@@ -30,50 +30,39 @@ export default {
 </script>
 
 
-
-
-
 <template>
   <router-link :to="{name: 'show', params:{ id: `${apartment.id}` }}" class="card-link no-underline">
     <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{ 'hover-effect': isHovering }">
       <img :src="apartment.img" class="card-img" :alt="apartment.img">
+        <div class="d-flex gap-1 my-1 align-items-center view">
+          <font-awesome-icon icon="fa-solid fa-eye" />
+          <span>
+            {{ apartment.views_count }}
+          </span>
+        </div>
       <div class="my-card-body">
-        <h3 class="card-title">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</h3>
+          <!-- capitalizza il titolo -->
+          <h2 class="card-title fs-5">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</h2>
+        
         <p class="card-text">{{ apartment.description }}</p>
-        <!-- <button class="btn-primary btn" @click="toggleShow">{{ isShow ? 'Nascondi' : 'Mostra' }}</button> -->
-        <ul class="additional-services" v-if="showIndex === apartment.id || isShow">
-          <li v-for="additional_service in apartment.additional_services" :key="additional_service.id">
-            {{ additional_service.name }}
-          </li>
-        </ul>
+
       </div>
     </div>
   </router-link>
 </template>
 
 <style lang="scss" scoped>
-.card-link {
-  box-sizing: border-box;
-  display: inline-block;
-  width: 23%;
-  margin-right: 2%;
-  margin-bottom: 1rem;
-  vertical-align: top;
-}
+// .card-link {
+//   box-sizing: border-box;
+//   display: inline-block;
+//   width: 23%;
+//   margin-right: 2%;
+//   margin-bottom: 1rem;
+//   vertical-align: top;
+// }
 
 .card-link:nth-child(4n) {
   margin-right: 0;
-}
-
-@media (max-width: 768px) {
-  .card-link {
-    width: 48%;
-    margin-right: 4%;
-  }
-  
-  .card-link:nth-child(2n) {
-    margin-right: 0;
-  }
 }
 
 .card {
@@ -102,12 +91,11 @@ export default {
 .my-card-body {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
 }
 
 .card-title {
   font-size: 16px;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
   color: black;
 }
 
@@ -132,6 +120,9 @@ export default {
 
 .no-underline {
   text-decoration-line: none;
+}
+.view{
+  font-size: 12px;
 }
 
 
