@@ -113,14 +113,14 @@ export default {
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Mail:</label>
                                 <input type="text" class="form-control" name="recipient-name"
-                                v-if="this.authStore.user" v-model="authStore.user.email">
+                                v-if="this.authStore.user" v-model="authStore.user.email" disabled>
                                 <input type="text" class="form-control" name="recipient-name"
                                 v-else v-model="msgMail">
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="col-form-label">Nome:</label>
                                 <input type="text" class="form-control" name="name" 
-                                v-if="this.authStore.user" v-model="authStore.user.name">
+                                v-if="this.authStore.user" v-model="authStore.user.name" disabled>
                                 <input type="text" class="form-control" name="name"
                                 v-else v-model="msgName">
                             </div>
