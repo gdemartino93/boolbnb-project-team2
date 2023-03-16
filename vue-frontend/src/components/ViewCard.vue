@@ -14,7 +14,7 @@ export default {
             msgMail: '',
             msgName: '',
             msgTxt: '',
-            msgSent: true,
+            msgSent: false,
         }
     },
     methods: {
@@ -104,7 +104,7 @@ export default {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div v-if="msgSent" class="w-100">
+                        <div v-if="msgSent" class="text-center">
                             
                             <font-awesome-icon id="check" class="bg-success p-3 rounded-circle fs-3 mx-auto" icon="fa-solid fa-check"/>
                             <h3>Messaggio inviato correttamente!</h3>
