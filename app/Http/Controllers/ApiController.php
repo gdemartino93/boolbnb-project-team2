@@ -300,5 +300,10 @@ class ApiController extends Controller
             'data' => $message
         ]);
     }
+    public function apartmentView(Request $request , $id){
+
+        $apartment = Apartment::find($id);
+        dd($apartment);
+    }
 
 }
