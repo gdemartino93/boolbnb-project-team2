@@ -28,7 +28,7 @@ class ApartmentFactory extends Factory
             'latitude' => fake()->latitude($min = -90, $max = 90),
             'longitude' => fake()->longitude($min = -180, $max = 180),
             'img' => fake()->imageUrl(640, 480, 'animals', true),
-            'visible' => fake()->boolean(),
+            'visible' => fake()->boolean(100),
         ];
     }
 }
