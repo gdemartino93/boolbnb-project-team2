@@ -127,9 +127,6 @@ export default {
         </form>
     </div>
 
-    <div class="text-center my-5">
-        <span v-if="apartments.length == 0" class="text-danger fs-3 fw-bold">Nessun appartamento trovato che soddisfa i tuoi requisiti </span>
-    </div>
     <!-- <div class="container d-flex flex-wrap searched my-5" v-if="apartments.length > 0">
 
         <AptCard v-if="apartments" class="col-3" v-for="apartment in apartments" :apartment="apartment" />
