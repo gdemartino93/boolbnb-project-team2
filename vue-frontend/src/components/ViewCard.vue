@@ -10,7 +10,10 @@ export default {
         return {
             authStore: useAuthStore(),
             apt: {},
-            services: []
+            services: [],
+            msgMail: '',
+            msgName: '',
+            msgTxt: ''
         }
     },
     methods: {
@@ -26,6 +29,24 @@ export default {
             }
 
         },
+        sendMessage(){
+
+            if(!this.authStore.user){
+
+                let formData = new FormData();
+                formData.append('mail', this.msgMail);
+                formData.append('name', this.msgName);
+                formData.append('text', this.msgTxt);
+                console.log(formData);
+            } else {
+
+                let formData = new FormData();
+                formData.append('mail', this.authStore.user.email);
+                formData.append('name', this.authStore.user.name);
+                formData.append('text', this.msgTxt);
+                console.log(formData);
+            }
+        }
     },
     mounted() {
         this.getSingleAp(this.$route.params.id);
@@ -72,24 +93,30 @@ export default {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Mail:</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Mail:</label>
+                                <input type="text" class="form-control" name="recipient-name"
+                                v-if="this.authStore.user" v-model="this.authStore.user.email">
+                                <input type="text" class="form-control" name="recipient-name"
+                                v-else v-model="msgMail">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" name="name" 
+                                v-if="this.authStore.user" v-model="this.authStore.user.name">
+                                <input type="text" class="form-control" name="name"
+                                v-else v-model="msgName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text" v-model="msgTxt"></textarea>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
+                        <button type="button" class="btn btn-primary" @click="sendMessage">Send message</button>
                     </div>
                     </div>
                 </div>
