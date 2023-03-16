@@ -14,6 +14,7 @@ export default {
             msgMail: '',
             msgName: '',
             msgTxt: '',
+            msgSent: true,
         }
     },
     methods: {
@@ -54,6 +55,7 @@ export default {
                  .then(res => {
 
                     console.log(res.data);
+                    this.msgSent = true;
                 })   
         }
     },
@@ -102,7 +104,12 @@ export default {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="post">
+                        <div v-if="msgSent" class="w-100">
+                            
+                            <font-awesome-icon id="check" class="bg-success p-3 rounded-circle fs-3 mx-auto" icon="fa-solid fa-check"/>
+                            <h3>Messaggio inviato correttamente!</h3>
+                        </div>
+                        <form v-else method="post">
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Mail:</label>
                                 <input type="text" class="form-control" name="recipient-name"
@@ -203,6 +210,11 @@ export default {
     
                 background: rgb(236,146,109);
                 background: linear-gradient(90deg, rgba(236,146,109,1) 0%, rgba(255,110,49,1) 50%, rgba(255,76,0,1) 100%);
+            }
+
+            #check {
+
+                color: #fff;
             }
         }
 
