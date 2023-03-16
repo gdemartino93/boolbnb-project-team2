@@ -6,15 +6,23 @@
         <div ref="first" class="top-page"></div>
 
         <div class="container" style="background-color: #f8f9fa;">
+            
             <!-- <router-link class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-5 mx-2"
                 :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link> -->
             <AdvancedSearch @apartments-searched="updateApt" class="my-5"/>
 
             <div class="row justify-content-center d-flex ">
+
+                
+            <div class="text-center my-5 " v-if="apartments.length == 0">
+                <span  class="text-danger fs-3 fw-bold">Nessun appartamento trovato che soddisfa i tuoi requisiti </span> <br>
+                <button class="btn btn-success" @click="apartmentPrint">Carica tutti</button>
+            </div>
+
                 <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
                     :apartment="apartment" :key="index" />
             </div>
-            <div class="my-4">
+            <div class="my-4" v-if="apartments.length > 0">
                 <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
                     @click="goToFirst(index)">TOP
                 </button>
