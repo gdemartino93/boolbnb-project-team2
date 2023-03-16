@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->decimal('longitude', 11, 8)->nullable();
             $table->string('img') ->nullable();
             $table->boolean('visible')->default(true);
+            $table ->smallInteger('views_count') -> default(0);
 
             $table->timestamps();
         });
