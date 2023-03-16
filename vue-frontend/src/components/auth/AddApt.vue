@@ -114,7 +114,7 @@ export default {
             <div class="d-flex flex-wrap ms-services">
                 <div v-for="service in services.additional_service" :key="service.id"
                     class=" ms-col col-sm-12 col-md-3 col-lg-3 p-3">
-                    <div class="">
+                    <div>
                         <input type="checkbox" :id="service.id" :value="service.id" v-model="form.additional_services">
 
                         <label :for="service.name"> {{ service.name }} </label>

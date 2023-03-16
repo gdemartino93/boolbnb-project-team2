@@ -94,51 +94,61 @@ export default {
 
 
 <template class="my-template">
-  <section v-if="auth.user" class="container">
-    <form action="" method="POST">
-      <label for="title">Title</label>
-      <input type="text" name="title" v-model="apt.title">
-      <br>
+  <section v-if="auth.user" class="my-container">
+    <form method="POST" class="my-form d-flex flex-wrap justify-content-around bg-white rounded-2 p-5">
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="title">Title</label>
+        <input type="text" name="title" v-model="apt.title">
+      </div>
 
-      <label for="description">Description</label>
-      <input type="text" name="description" v-model="apt.description">
-      <br>
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="description">Description</label>
+        <input type="text" name="description" v-model="apt.description">
+      </div>
 
-      <label for="room_number">Room Number</label>
-      <input type="number" name="room_number" v-model="apt.room_number">
-      <br>
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="room_number">Room Number</label>
+        <input type="number" name="room_number" v-model="apt.room_number">
+      </div>
 
-      <label for="bed_number">Bed Number</label>
-      <input type="number" name="bed_number" v-model="apt.bed_number">
-      <br>
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="bed_number">Bed Number</label>
+        <input type="number" name="bed_number" v-model="apt.bed_number">
+      </div>
 
-      <label for="bath_number">Bath Number</label>
-      <input type="number" name="bath_number" v-model="apt.bath_number">
-      <br>
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="bath_number">Bath Number</label>
+        <input type="number" name="bath_number" v-model="apt.bath_number">
+      </div>
 
-      <label for="square_meters">Square Meters</label>
-      <input type="number" name="square_meters" v-model="apt.square_meters">
-      <br>
 
-      <label for="address">Address</label>
-      <input type="text" name="address" v-model="apt.address">
-      <br>
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="square_meters">Square Meters</label>
+        <input type="number" name="square_meters" v-model="apt.square_meters">
+      </div>
 
-      <label for="img">Image</label>
-      <input type="file" name="img" @change="onFileChange">
-      <br>
 
-      <div class="row">
-        <div v-for="service in adds.additional_service" :key="service.id" class="col-md-3">
-          <div class="col">
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="address">Address</label>
+        <input type="text" name="address" v-model="apt.address">
+      </div>
+
+
+      <div class="col-sm-11 col-md-5 col-lg-5">
+        <label for="img">Image</label>
+        <input type="file" name="img" @change="onFileChange">
+      </div>
+
+
+      <div class="d-flex flex-wrap ms-services">
+        <div v-for="service in adds.additional_service" :key="service.id" class="ms-col col-sm-12 col-md-3 col-lg-3 p-3">
+          <div>
             <input type="checkbox" :id="service.id" @change="getAdServices(service.id)"
               :checked="checkCheckboxes(service)">
             <label :for="service.name"> {{ service.name }} </label>
           </div>
         </div>
       </div>
-
-      <br>
 
       <button type="button" class="button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-3"
         @click="updateData(apt)">Update Apartment</button>
@@ -153,22 +163,13 @@ export default {
   
 
 <style lang="scss" scoped>
-.container {
+.my-container {
   margin-top: 100px;
 
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  .my-form {
+    width: 80%;
     margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  h2 {
-    margin-top: 0;
   }
 
   label {
@@ -188,76 +189,31 @@ export default {
     margin-bottom: 20px;
   }
 
-  input[type="checkbox"] {
-    margin-right: 10px;
-  }
-
-  button {
-    // background-color: #4CAF50;
-    // color: white;
-    // border: none;
-    // padding: 12px 20px;
-    // border-radius: 4px;
+  .button {
     cursor: pointer;
     font-size: 16px;
-    // margin-top: 20px;
     margin: 0 auto;
     width: 95%;
   }
 
-  // button:hover {
-  //   background-color: #3e8e41;
-  // }
-
-  .text-danger {
-    color: #FF0000;
-  }
-
   section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background-color: #f2f2f2;
-    max-width: 75%;
-    margin: 0 auto;
   }
 
   .my-template {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background-color: #f2f2f2;
   }
 
-
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .col-md-3 {
-    flex: 0 0 31%;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background-color: #f8f9fa;
+  .ms-col {
     border: 1px solid #e9ecef;
     border-radius: 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease-in-out;
-  }
 
-
-  .col-md-3:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  input[type="checkbox"] {
-    margin-right: 0.5rem;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
   }
 
   label {
@@ -276,22 +232,18 @@ export default {
 
   @keyframes animation {
     0% {
-      // background-color: red;
       top: 10px;
     }
 
     50% {
-      // background-color: red;
       top: 0px;
     }
 
     75% {
-
       top: 10px;
     }
 
     100% {
-
       top: 0px;
     }
   }
