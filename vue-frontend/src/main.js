@@ -21,13 +21,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faBars, faHome, faUser, faUserSecret, faPlus, faBed } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHome, faUser, faUserSecret, faPlus, faBed, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 // import { faBars, faHome, faUser, faUserSecret, faPlus, faBed, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 
 /* add icons to the library */
-library.add(faUserSecret,faUser,faBars,faHome, faPlus, faBed)
+library.add(faUserSecret,faUser,faBars,faHome, faPlus, faBed, faCheck)
 
 
 import 'bootstrap/dist/css/bootstrap.css'
