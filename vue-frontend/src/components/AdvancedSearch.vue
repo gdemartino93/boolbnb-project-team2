@@ -125,7 +125,7 @@ export default {
         </form>
     </div>
 
-    <div class="container d-flex flex-wrap">
+    <div class="container d-flex flex-wrap searched my-5" v-if="apartments.length > 0">
 
         <AptCard v-if="apartments" class="col-3" v-for="apartment in apartments" :apartment="apartment" />
 
@@ -225,7 +225,10 @@ export default {
     }
 
 }
-
+.searched{
+    border: 1px solid red;
+    min-height: 100px;
+}
 
 
 
