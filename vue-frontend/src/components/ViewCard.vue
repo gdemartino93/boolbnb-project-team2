@@ -56,10 +56,45 @@ export default {
             <li class="info"><i class="fa-solid fa-ruler"></i> <b>{{ apt.square_meters }}</b> square meters</li>
 
             <li class="info"><i class="fa-solid fa-map-location-dot"></i> <b>{{ apt.address }}</b></li>
+            
+            <div class="container d-flex">
+                
+                <ul class="services-ul list-unstyled"><b>Additional services</b>
+                    <li v-for="service in services"><i class="fa-solid fa-check"></i> {{ service.name }}</li>
+                </ul>
 
-            <ul class="services-ul list-unstyled"><b>Additional services</b>
-                <li v-for="service in services"><i class="fa-solid fa-check"></i> {{ service.name }}</li>
-            </ul>
+                <button type="button" id="modalBtn" class="btn btn-primary align-self-center p-4 m-auto rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Send a message to the owner</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog m-auto">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Your message</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Mail:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </ul>
 
         <!-- use v-if because value onmounted start as undefinied and app crash -->
@@ -123,6 +158,11 @@ export default {
             border-radius: 10px;
         }
 
+        #modalBtn{
+
+            background: rgb(236,146,109);
+            background: linear-gradient(90deg, rgba(236,146,109,1) 0%, rgba(255,110,49,1) 50%, rgba(255,76,0,1) 100%);
+        }
     }
 
     .map {
