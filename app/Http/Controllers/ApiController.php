@@ -268,9 +268,9 @@ class ApiController extends Controller
 
         $data = $request -> validate([
 
-            'text' => 'required',
             'mail' => 'required | string | max: 128',
             'name' => 'required | string | max: 64',
+            'text' => 'required',
         ]);
 
         $message = Message:: make($data);

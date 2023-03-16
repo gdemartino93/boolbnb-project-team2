@@ -13,7 +13,7 @@ export default {
             services: [],
             msgMail: '',
             msgName: '',
-            msgTxt: ''
+            msgTxt: '',
         }
     },
     methods: {
@@ -54,12 +54,13 @@ export default {
                  .then(res => {
 
                     console.log(res.data);
-                })
+                })   
         }
     },
     mounted() {
         this.getSingleAp(this.$route.params.id);
         this.authStore.getUsersWithApt();
+        // this.authStore.getUser();
     }
 }
 </script>
@@ -69,7 +70,6 @@ export default {
         <ul class="list-unstyled">
             <li>
                 <h2 class="d-inline-block"> {{ apt.title }} </h2>
-                <h4 class="d-inline-block"> ({{ apt.address }}) </h4>
             </li>
 
             <li class="img">
@@ -78,27 +78,27 @@ export default {
 
             <li class="description">{{ apt.description }}</li>
 
-            <li class="info"><i class="fa-solid fa-house-chimney-window"></i> <b>{{ apt.room_number }}</b> rooms</li>
-            <li class="info"><i class="fa-solid fa-bed"></i> <b>{{ apt.bed_number }} </b> beds</li>
+            <li class="info"><i class="fa-solid fa-house-chimney-window"></i> <b>{{ apt.room_number }}</b> stanze</li>
+            <li class="info"><i class="fa-solid fa-bed"></i> <b>{{ apt.bed_number }} </b> letti</li>
 
-            <li class="info"><i class="fa-solid fa-bath"></i> <b>{{ apt.bath_number }} </b> baths</li>
+            <li class="info"><i class="fa-solid fa-bath"></i> <b>{{ apt.bath_number }} </b> bagni</li>
 
-            <li class="info"><i class="fa-solid fa-ruler"></i> <b>{{ apt.square_meters }}</b> square meters</li>
+            <li class="info"><i class="fa-solid fa-ruler"></i> <b>{{ apt.square_meters }}</b> metri quadrati</li>
 
             <li class="info"><i class="fa-solid fa-map-location-dot"></i> <b>{{ apt.address }}</b></li>
             
-            <div class="container d-flex">
+            <div class="container d-flex" id="ms_container">
                 
-                <ul class="services-ul list-unstyled"><b>Additional services</b>
+                <ul class="services-ul list-unstyled"><b>Servizi aggiuntivi:</b>
                     <li v-for="service in services"><i class="fa-solid fa-check"></i> {{ service.name }}</li>
                 </ul>
 
-                <button type="button" id="modalBtn" class="btn btn-primary align-self-center p-4 m-auto rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Send a message to the owner</button>
+                <button type="button" id="modalBtn" class="btn btn-primary align-self-center p-4 m-auto rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Manda un messaggio al proprietario</button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog m-auto">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Your message</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Il tuo messaggio</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -106,26 +106,26 @@ export default {
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Mail:</label>
                                 <input type="text" class="form-control" name="recipient-name"
-                                v-if="this.authStore.user" v-model="this.authStore.user.email">
+                                v-if="this.authStore.user" v-model="authStore.user.email">
                                 <input type="text" class="form-control" name="recipient-name"
                                 v-else v-model="msgMail">
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="col-form-label">Name:</label>
+                                <label for="name" class="col-form-label">Nome:</label>
                                 <input type="text" class="form-control" name="name" 
-                                v-if="this.authStore.user" v-model="this.authStore.user.name">
+                                v-if="this.authStore.user" v-model="authStore.user.name">
                                 <input type="text" class="form-control" name="name"
                                 v-else v-model="msgName">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Message:</label>
+                                <label for="message-text" class="col-form-label">Messaggio:</label>
                                 <textarea class="form-control" id="message-text" v-model="msgTxt"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" @click="sendMessage">Send message</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                        <button type="button" class="btn btn-primary" @click="sendMessage">Invia</button>
                     </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@ export default {
   
 
 <style lang="scss" scoped>
-@use '../assets/main.scss' as *;
+// @use '../assets/main.scss' as *;
 
 .container {
     font-size: 14px;
@@ -194,11 +194,18 @@ export default {
             border-radius: 10px;
         }
 
-        #modalBtn{
+        #ms_container{
 
-            background: rgb(236,146,109);
-            background: linear-gradient(90deg, rgba(236,146,109,1) 0%, rgba(255,110,49,1) 50%, rgba(255,76,0,1) 100%);
+            margin-top: 20px;
+
+            
+            #modalBtn{
+    
+                background: rgb(236,146,109);
+                background: linear-gradient(90deg, rgba(236,146,109,1) 0%, rgba(255,110,49,1) 50%, rgba(255,76,0,1) 100%);
+            }
         }
+
     }
 
     .map {
