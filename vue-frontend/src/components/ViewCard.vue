@@ -78,8 +78,7 @@ export default {
                 <img :src="apt.img" :alt="apt.img">
             </li>
         
-            <li class="description">{{ apt.description }}</li>
-            <li class="my-1 fw-bold">Numero di visualizzazioni: <span class="text-success"> {{ apt.views_count }}  </span>  </li>
+            <li class="description my-3">{{ apt.description }}</li>
 
             <li class="info"><i class="fa-solid fa-house-chimney-window"></i> <b>{{ apt.room_number }}</b> stanze</li>
             <li class="info"><i class="fa-solid fa-bed"></i> <b>{{ apt.bed_number }} </b> letti</li>

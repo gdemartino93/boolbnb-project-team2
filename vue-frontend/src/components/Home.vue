@@ -12,11 +12,16 @@
                 <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
                     :apartment="apartment" :key="index" />
             </div>
-            <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
-                @click="goToFirst(index)">TOP</button>
-            <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
-                @click="loadMore">CARICA
-                ALTRI</button>
+            <div class="my-4">
+                <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
+                    @click="goToFirst(index)">TOP
+                </button>
+                <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
+                    @click="loadMore">CARICA
+                    ALTRI
+                </button>
+            </div>
+
         </div>
 
         <!-- div ref to scrollintoview -->
