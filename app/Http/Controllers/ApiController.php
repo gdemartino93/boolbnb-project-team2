@@ -19,9 +19,10 @@ class ApiController extends Controller
     public function index()
     {
 
-        $apartments = Apartment::with('additionalServices')
-            ->orderBy('created_at', 'desc')
-            ->paginate(8); //set how many result for page
+       $apartments = Apartment::where('visible',true)
+                ->orderBy('created_at', 'desc')
+                ->paginate(8); //set how many result for page
+ 
         
         return response()->json([
 
@@ -258,8 +259,22 @@ class ApiController extends Controller
             "success" => true,
             "apartments" => $apartments,
         ]);
+    }
+    public function visibility(Apartment $apartment){
 
 
+        // cerchiamo l'appartamento in base all'id
+        $apartment = Apartment :: find($apartment -> id);
+
+        // se il visible è true allora lo settiamo su false e viceversa
+        $apartment->visible = !$apartment->visible;
+
+        $apartment -> save();
+        
+       
+        return response() -> json([
+            'success' => "Visibilità dell'appartamento aggiornata con success"
+        ]);
     }
 
     public function sendMessage(Request $request){

@@ -1,11 +1,13 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
+import { ref } from 'vue';
 
 export default {
     data() {
         return {
             authStore: useAuthStore(),
+
         }
     },
     methods: {
@@ -23,8 +25,14 @@ export default {
                 })
                 .catch(err => console.log);
         },
+        async toggleVisibility(id){
+            try {
+                await axios.get(`/api/v1/apartment/${id}/visibility`)
+            } catch (error) {
+                console.log(error)
+            }
+        }
     },
-
     mounted() {
         this.authStore.getUsersWithApt();
     }
@@ -34,16 +42,12 @@ export default {
 <template>
     <div class="container">
         <section class="dashboard-section" v-if="authStore.user">
-            <RouterLink class="add-apartment-link" :to="{ name: 'addApt' }">
-                <a href="#" class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Aggiungi
-                    appartamento</a>
-            </RouterLink>
-            <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2>
+            <h2 class="dashboard-title">I tuoi appartamenti {{ $route.params.id }}</h2>
 
             <h3 class="apartments-title"></h3>
 
             <ul v-if="authStore.apartments" class="apartments-list w-75">
-                <li v-for="apartment in authStore.apartments" class="apartment-item">
+                <li v-for="(apartment,index) in authStore.apartments" class="apartment-item" >
                     <span class="apartment-title w-100">{{ apartment.title }}</span>
                     <button class="delete-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
                         @click="deleteApartment(apartment)">Elimina</button>
@@ -51,10 +55,9 @@ export default {
                         <button
                             class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
                     </router-link>
-                    <button class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">
-                        <font-awesome-icon :icon="faEyeSlash" />
+                    <button class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2" @click="toggleVisibility(apartment.id)" >
+                        {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
                     </button>
-                    <Map :address="apartment.address" />
                 </li>
             </ul>
 
