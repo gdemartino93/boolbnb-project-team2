@@ -12,6 +12,9 @@ use App\Models\User;
 use App\Models\View;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 class ApiController extends Controller
 {
 
@@ -298,6 +301,24 @@ class ApiController extends Controller
 
             'message' => 'Message sent!',
             'data' => $message
+        ]);
+    }
+
+    public function inboxList(Request $request){
+
+        $user_id    = Auth::user()->id;
+        $apartments = Apartment::where('user_id', $user_id)->get();
+
+        // Apartments ids array
+        $apartments_id = $apartments->pluck('id'); 
+
+        $messages   = Message::whereIn('apartment_id', $apartments_id)->orderBy('created_at', 'desc')->get();
+
+        return response() -> json([
+
+            'message' => 'Fetched data',
+            'apartments' => $apartments, 
+            'messages' => $messages 
         ]);
     }
 

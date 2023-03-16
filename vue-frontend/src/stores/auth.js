@@ -7,7 +7,9 @@ export const useAuthStore = defineStore("auth",{
         authUser: null,
         authErrors: [],
         authStatus: null, //stato dell'email inviata per il cambio password
-        userApartments: []
+        userApartments: [],
+        aptMsg: [],
+        messages: []
     }),
     // nei getters si calcola il valore derivante dallo stato dell'applicazione per non ripetre codice.
     getters: {
@@ -108,7 +110,14 @@ export const useAuthStore = defineStore("auth",{
 
             const response = await axios.get('/api/dashboard');
             this.userApartments = response.data;
+        },
+        async getAptWithMsgs(){
+
+            const response = await axios.get('api/inbox');
+            this.aptMsg = response.data.apartments;
+            this.messages = response.data.messages;
         }
+
 
 
     }
