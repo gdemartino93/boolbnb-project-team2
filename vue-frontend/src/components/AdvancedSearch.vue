@@ -58,6 +58,7 @@ export default {
                     console.log("apSear", res);
 
                     this.apartments = res.data.apartments;
+                    // teniamo traccia dell'aggiornamento dell array apartments per passarlo al componente madre
                     this.$emit('apartments-searched', this.apartments)
                     console.log(this.apartments);
                     if (this.apartments.length == 0) {
@@ -126,12 +127,12 @@ export default {
         </form>
     </div>
 
-    <div class="container d-flex flex-wrap searched my-5" v-if="apartments.length > 0">
+    <!-- <div class="container d-flex flex-wrap searched my-5" v-if="apartments.length > 0">
 
         <AptCard v-if="apartments" class="col-3" v-for="apartment in apartments" :apartment="apartment" />
 
         <p v-else>{{ error }}</p>
-    </div>
+    </div> -->
 
 </template>
 
