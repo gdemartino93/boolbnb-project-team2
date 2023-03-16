@@ -58,6 +58,7 @@ export default {
                     console.log("apSear", res);
 
                     this.apartments = res.data.apartments;
+                    this.$emit('apartments-searched', this.apartments)
                     console.log(this.apartments);
                     if (this.apartments.length == 0) {
                         this.error = "nessun appartamento trovato";
