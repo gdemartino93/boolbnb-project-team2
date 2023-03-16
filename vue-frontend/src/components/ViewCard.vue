@@ -122,7 +122,7 @@ export default {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                        <button type="button" class="btn btn-primary" @click="sendMessage">Invia</button>
+                        <button type="button" class="btn btn-primary" @click="sendMessage" v-if="!msgSent">Invia</button>
                     </div>
                     </div>
                 </div>
