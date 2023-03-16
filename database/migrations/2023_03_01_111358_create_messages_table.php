@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
             $table->text('text');
-            $table->string('mail', 128)->unique();
+            $table->string('mail', 128);
             $table -> string('name', 64);
 
             $table->timestamps();
