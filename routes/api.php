@@ -37,7 +37,7 @@ Route::get('/v1/apartment/all', [ApiController::class, 'index']);
 Route::post('/v1/apartment/search', [ApiController::class, 'filter']);
 
 Route::get('/v1/apartment/{id}',[ApiController :: class, 'signleAp']);
-Route::post('/v1/apartment/{apartment}/visibility', [ApiController :: class ,'visibility']);
+Route::get('/v1/apartment/{apartment}/visibility', [ApiController :: class ,'visibility']);
 
 
 
