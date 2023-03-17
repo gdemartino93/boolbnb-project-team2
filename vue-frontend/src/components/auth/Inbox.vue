@@ -1,43 +1,29 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
+import Messages from './Messages.vue';
 
 export default{
-    data(){
-        return{
-
+    components: { Messages },
+    data() {
+        return {
             authStore: useAuthStore()
-        }
+        };
     },
-    methods: {
-
-    },
-    mounted(){
-
+    methods: {},
+    mounted() {
         this.authStore.getAptWithMsgs();
-    }
+    },
 }
 </script>
 
 <template>
 
     <h2>Messaggi ricevuti:</h2>
+    
+    <div class="container d-flex flex-wrap gap-5 mt-5">
 
-    <ul>
-        <li v-for="apartment in authStore.aptMsg">
-            
-            {{ apartment.title }}
-
-            <ul>
-                <li v-for="message in apartment.messages">
-
-                    <p>
-                            
-                        {{message.text}}
-                    </p>
-                </li>
-            </ul>
-        </li>
-    </ul>
+        <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment" />
+    </div>
 </template>
 
 <style lang="scss" scoped>
