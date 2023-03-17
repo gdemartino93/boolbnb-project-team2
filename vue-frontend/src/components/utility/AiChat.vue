@@ -21,35 +21,10 @@
       };
     },
     methods: {
-        async getResponse() {
-    //   const apiKey = process.env.OPENAI_API_KEY;
-      const model = 'text-davinci-003';
-      const prompt = 'Say this is a test';
-      const maxTokens = 7;
-      const temperature = 0;
 
-      try {
-        const response = await axios.post('https://api.openai.com/v1/completions', {
-          model,
-          prompt,
-          max_tokens: maxTokens,
-          temperature: temperature,
-        }, {
-          headers: {
-            'Authorization': 'Bearer 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',
-            'Content-Type': 'application/json',
-          }
-        });
-
-        this.response = response.data.choices[0].text;
-        // console.log(response.data)
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
 
     }
+}
   
   </script>
   
