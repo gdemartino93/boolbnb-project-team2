@@ -51,39 +51,37 @@ export default {
 
             <h3 class="apartments-title"></h3>
 
-            <section class="main d-flex flex-wrap">
-                <div class="left col-sm-11 col-md-5 col-lg-5 mx-auto">
-                    <ul v-if="authStore.apartments" class="apartments-list">
-                        <li v-for="apartment in authStore.apartments" class="apartment-item">
-                            <span class="apartment-title w-100">{{ apartment.title }}</span>
-                            <button
-                                class="delete-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
-                                @click="deleteApartment(apartment)">Elimina</button>
-                            <router-link class="edit-link" :to="{ name: 'editApt', params: { id: `${apartment.id}` } }">
+            <section class="main">
+                <div class="row no-gutter">
+                    <div class="left col-md-12 col-lg-6">
+                        <ul v-if="authStore.apartments" class="apartments-list">
+                            <li v-for="apartment in authStore.apartments" class="apartment-item">
+                                <span class="apartment-title w-100">{{ apartment.title }}</span>
                                 <button
-                                    class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
-                            </router-link>
-                            <button
-                                class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
-                                @click="toggleVisibility(apartment.id)">
-                                {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
-                            </button>
-                            <Map :address="apartment.address" />
-                        </li>
-                    </ul>
-                </div>
-                <div class="right col-sm-11 col-md-5 col-lg-5 mx-auto">
-                    <div class="image">
-                        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                            alt="" class="img-r">
+                                    class="delete-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
+                                    @click="deleteApartment(apartment)">Elimina</button>
+                                <router-link class="edit-link" :to="{ name: 'editApt', params: { id: `${apartment.id}` } }">
+                                    <button
+                                        class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
+                                </router-link>
+                                <button
+                                    class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
+                                    @click="toggleVisibility(apartment.id)">
+                                    {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
+                                </button>
+                                <Map :address="apartment.address" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right d-md-none d-lg-block col-lg-6">
+                        <div class="image">
+                            <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                                alt="" class="img-r">
+                        </div>
                     </div>
                 </div>
-            </section>
-            <RouterLink class="add-apartment-link" :to="{ name: 'addApt' }">
-                <a href="#" class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-3">Aggiungi
-                    appartamento</a>
-            </RouterLink>
 
+            </section>
         </section>
         <section class="autenticato" v-else>
             <h1 class="text-danger">Non Autenticato</h1>
@@ -122,15 +120,21 @@ export default {
         }
 
         .image {
+
             img {
                 width: 100%;
-                height: 100%;
+                background-size: cover;
+                background-position: center center;
             }
         }
 
         .apartments-list {
+            height: 80%;
             list-style: none;
+            overflow-y: auto;
+            scrollbar-width: thin;
         }
+
 
         .apartment-item {
             margin-bottom: 10px;
