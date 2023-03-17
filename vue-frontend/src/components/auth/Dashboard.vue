@@ -43,13 +43,11 @@ export default {
     <div class="container">
         <section class="dashboard-section" v-if="authStore.user">
             <h2 class="dashboard-title">I tuoi appartamenti {{ $route.params.id }}</h2>
-            <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2>
 
             <RouterLink class="add-apartment-link" :to="{ name: 'addApt' }">
                 <a href="#" class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Aggiungi
                     appartamento</a>
             </RouterLink>
-            <!-- <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2> -->
 
             <h3 class="apartments-title"></h3>
 
