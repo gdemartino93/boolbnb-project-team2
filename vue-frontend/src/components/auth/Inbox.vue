@@ -29,7 +29,7 @@ export default{
 
             <ul>
                 <li v-for="message in authStore.messages">
-                    <span v-if="message.apartment_id == apartment.id">
+                    <span v-show="message.apartment_id == apartment.id">
 
                         <p>
                             
