@@ -25,7 +25,7 @@ export default {
                 })
                 .catch(err => console.log);
         },
-        async toggleVisibility(id){
+        async toggleVisibility(id) {
             try {
                 await axios.get(`/api/v1/apartment/${id}/visibility`)
             } catch (error) {
@@ -43,11 +43,18 @@ export default {
     <div class="container">
         <section class="dashboard-section" v-if="authStore.user">
             <h2 class="dashboard-title">I tuoi appartamenti {{ $route.params.id }}</h2>
+            <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2>
+
+            <RouterLink class="add-apartment-link" :to="{ name: 'addApt' }">
+                <a href="#" class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Aggiungi
+                    appartamento</a>
+            </RouterLink>
+            <!-- <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2> -->
 
             <h3 class="apartments-title"></h3>
 
             <ul v-if="authStore.apartments" class="apartments-list w-75">
-                <li v-for="(apartment,index) in authStore.apartments" class="apartment-item" >
+                <li v-for="(apartment, index) in authStore.apartments" class="apartment-item">
                     <span class="apartment-title w-100">{{ apartment.title }}</span>
                     <button class="delete-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
                         @click="deleteApartment(apartment)">Elimina</button>
@@ -55,7 +62,8 @@ export default {
                         <button
                             class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
                     </router-link>
-                    <button class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2" @click="toggleVisibility(apartment.id)" >
+                    <button class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
+                        @click="toggleVisibility(apartment.id)">
                         {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
                     </button>
                 </li>
@@ -72,38 +80,28 @@ export default {
             <h2>Effettua il Login</h2>
         </section>
     </div>
-    <div class="col-md-6 bg-image">
-        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="" class="img-r">
-    </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
-    margin: 100px auto 0 0px;
-    width: 60%;
+    margin: 100px auto 0 auto;
+    width: 100%;
+    height: 100vh;
 
     .dashboard-section {
         background-color: #f8f9fa;
         margin-bottom: 20px;
 
+        .dashboard-title {
+            font-size: 35px;
+            color: #ff385c;
+        }
 
         .add-apartment-link {
-            // background-color: #f2f2f2;
-            // color: white;
-            // padding: 10px;
-            // border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
             margin-bottom: 20px;
             display: inline-block;
-        }
-
-        .dashboard-title {
-            font-size: 35px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: flex-start;
-            color: #ff385c;
         }
 
         .apartments-title {
@@ -113,10 +111,15 @@ export default {
             justify-content: center;
         }
 
+        .image {
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
         .apartments-list {
             list-style: none;
-            // margin: 0 auto;
-            padding: 0
         }
 
         .apartment-item {
@@ -133,34 +136,19 @@ export default {
         }
 
         .delete-button {
-            // background-color: #ff385c;
             margin-right: 10px;
-            // color: white;
-            // border: none;
-            // border-radius: 5px;
-            // padding: 5px 10px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
 
         .edit-button {
-            // background-color: #ff385c;
             margin-right: 10px;
-            // color: white;
-            // border: none;
-            // border-radius: 5px;
-            // padding: 5px 10px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
 
         .visible-button {
-            // background-color: #ff385c;
             margin-right: 10px;
-            // color: white;
-            // border: none;
-            // border-radius: 5px;
-            // padding: 5px 10px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
@@ -176,27 +164,21 @@ export default {
 
         @keyframes animation {
             0% {
-                // background-color: red;
                 top: 10px;
             }
 
             50% {
-                // background-color: red;
                 top: 0px;
             }
 
             75% {
-
                 top: 10px;
             }
 
             100% {
-
                 top: 0px;
             }
         }
     }
 }
-
-
 </style>
