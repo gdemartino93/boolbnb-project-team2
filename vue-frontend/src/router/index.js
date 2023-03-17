@@ -57,6 +57,11 @@ const router = createRouter({
       path: '/search',
       name: 'advancedSearch',
       component: () => import('../components/AdvancedSearch.vue')
+    },
+    {
+      path: '/inbox',
+      name: 'inbox',
+      component: () => import('../components/auth/Inbox.vue')
     }
 
   ]

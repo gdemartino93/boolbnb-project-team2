@@ -12,6 +12,9 @@ use App\Models\User;
 use App\Models\View;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 class ApiController extends Controller
 {
 
@@ -334,5 +337,21 @@ class ApiController extends Controller
     }
 
 
+
+    public function inboxList(){
+
+        // Prendiamo il riferimento all'utente tramite Auth e id
+        $user_id = Auth::user() -> id;
+
+        // Facciamo la query sugli appartamenti selezionando quelli in cui la colonna user_id ha un valore uguale all'id del proprietario di modo da avere accesso a tutti gli appartamenti dell'utente, poi si prendono i messaggi relativi agli appartamenti
+        $apartments = Apartment::where('user_id', $user_id)
+                                -> with('messages') -> get();
+
+        return response() -> json([
+
+            'message' => 'Success',
+            'data' => $apartments
+        ]);
+    }
 
 }

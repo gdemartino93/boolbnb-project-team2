@@ -19,6 +19,16 @@
                 </section>
 
                 <div v-else class="d-flex justify-content-end align-items-center">
+
+                    <div>
+
+                        <RouterLink :to="{ name: 'inbox'}">
+
+                            <font-awesome-icon id="inbox" class="rounded-circle p-2 text-white me-4" 
+                            icon="fa-solid fa-message" />
+                        </RouterLink>
+                    </div>
+
                     <div class="profile d-flex algin- ">
                         <span class="fw-bold username d-none d-xl-block align-self-center">{{ authStore.user.name }}</span>
                         <div class="dropdown">
@@ -86,6 +96,12 @@ nav {
         z-index: 1;
     }
 
+}
+
+#inbox {
+
+    background-color: #FF6E31;
+    cursor: pointer;
 }
 
 .profile {

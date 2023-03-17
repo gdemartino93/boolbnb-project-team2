@@ -22,11 +22,12 @@ Route::middleware('auth:sanctum') ->group(function(){
     Route :: post('/v1/apartment/store', [ApiController :: class, 'store']);
     Route :: post('/v1/apartment/update/{apartment}', [ApiController :: class, 'update']);
     Route :: delete('/v1/apartment/delete/{apartment}', [ApiController :: class, 'delete']);
-
+    Route::get('/inbox', [ApiController::class, 'inboxList']);
+    
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-
+    
 });
 
 
