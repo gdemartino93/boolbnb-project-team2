@@ -114,8 +114,8 @@ export const useAuthStore = defineStore("auth",{
         async getAptWithMsgs(){
 
             const response = await axios.get('api/inbox');
-            this.aptMsg = response.data.apartments;
-            this.messages = response.data.messages;
+            this.aptMsg = response.data.data;
+            // this.messages = response.data.messages;
         }
 
 

@@ -304,21 +304,19 @@ class ApiController extends Controller
         ]);
     }
 
-    public function inboxList(Request $request){
+    public function inboxList(){
 
-        $user_id    = Auth::user()->id;
-        $apartments = Apartment::where('user_id', $user_id)->get();
+        // Prendiamo il riferimento all'utente tramite Auth e id
+        $user_id = Auth::user() -> id;
 
-        // Apartments ids array
-        $apartments_id = $apartments->pluck('id'); 
-
-        $messages   = Message::whereIn('apartment_id', $apartments_id)->orderBy('created_at', 'desc')->get();
+        // Facciamo la query sugli appartamenti selezionando quelli in cui la colonna user_id ha un valore uguale all'id del proprietario di modo da avere accesso a tutti gli appartamenti dell'utente, poi si prendono i messaggi relativi agli appartamenti
+        $apartments = Apartment::where('user_id', $user_id)
+                                -> with('messages') -> get();
 
         return response() -> json([
 
-            'message' => 'Fetched data',
-            'apartments' => $apartments, 
-            'messages' => $messages 
+            'message' => 'Success',
+            'data' => $apartments
         ]);
     }
 

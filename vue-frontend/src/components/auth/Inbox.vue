@@ -28,14 +28,12 @@ export default{
             {{ apartment.title }}
 
             <ul>
-                <li v-for="message in authStore.messages">
-                    <span v-show="message.apartment_id == apartment.id">
+                <li v-for="message in apartment.messages">
 
-                        <p>
+                    <p>
                             
-                            {{message.text}}
-                        </p>
-                    </span>
+                        {{message.text}}
+                    </p>
                 </li>
             </ul>
         </li>
