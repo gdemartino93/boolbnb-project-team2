@@ -239,7 +239,7 @@ class ApiController extends Controller
             ->selectRaw("$haversine AS distance")
             ->having("distance", "<=", $radius)
             ->having("room_number", ">=", $room_number)
-            ->orderby("distance", "desc")
+            ->orderby("distance", "asc")
             ->get();        
         }
 
@@ -250,7 +250,7 @@ class ApiController extends Controller
             ->having("distance", "<=", $radius)
             ->having("room_number", ">=", $room_number)
             ->having("bed_number", ">=", $bed_number)
-            ->orderby("distance", "desc")
+            ->orderby("distance", "asc")
             ->get();
         }
 
