@@ -63,6 +63,11 @@ export default {
                                 <button
                                     class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
                             </router-link>
+                            <button
+                                class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
+                                @click="toggleVisibility(apartment.id)">
+                                {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
+                            </button>
                             <Map :address="apartment.address" />
                         </li>
                     </ul>
