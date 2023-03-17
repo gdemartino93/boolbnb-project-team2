@@ -6,14 +6,12 @@
         <div ref="first" class="top-page"></div>
 
         <div class="container" style="background-color: #f8f9fa;">
-            
+            <AiChat />
             <!-- <router-link class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-5 mx-2"
                 :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link> -->
             <AdvancedSearch @apartments-searched="updateApt" class="my-5"/>
 
-            <div class="row justify-content-center d-flex ">
-
-                
+            <div class="row justify-content-center d-flex ">   
             <div class="text-center my-5 " v-if="apartments.length == 0">
                 <span  class="text-danger fs-3 fw-bold">Nessun appartamento trovato che soddisfa i tuoi requisiti </span> <br>
                 <button class="btn btn-success" @click="apartmentPrint">Carica tutti</button>
@@ -45,13 +43,15 @@ import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
 import Loader from '../components/utility/Loader.vue'
 import AdvancedSearch from './AdvancedSearch.vue';
+import AiChat from './utility/AiChat.vue';
 export default {
     name: 'HomePage',
     components: {
         AptCard,
         Map,
         Loader,
-        AdvancedSearch
+        AdvancedSearch,
+        AiChat
     },
     data() {
         return {
