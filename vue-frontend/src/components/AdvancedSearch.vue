@@ -96,7 +96,7 @@ export default {
             <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
 
             <div class="button">
-                <font-awesome-icon icon="fa-solid fa-plus" @click="isOpen = true"/>
+                <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true"/>
                 
                 <div v-if="isOpen" class="menu">
 
