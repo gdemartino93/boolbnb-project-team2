@@ -338,7 +338,7 @@ class ApiController extends Controller
 
         $client = new Client();
 
-        $response = $client->post('https://api.openai.com/v1/engine/davinci-codex/completions', [
+        $response = $client->post('https://api.openai.com/v1/chat/completions', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
