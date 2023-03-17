@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ChatGPTController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,4 @@ Route::get('/v1/apartment/{apartment}/visibility', [ApiController :: class ,'vis
 
 Route::get('/v1/services/all', [ApiController::class, 'getAdditionalServices']);
 
+Route::post('/v1/chat', [ApiController :: class , 'chat']);
