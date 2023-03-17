@@ -40,7 +40,7 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container my-4">
         <section class="dashboard-section" v-if="authStore.user">
             <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2>
 
@@ -92,7 +92,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    margin: 100px auto 0 auto;
     width: 100%;
     height: 100vh;
 
