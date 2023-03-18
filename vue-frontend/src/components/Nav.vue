@@ -24,7 +24,7 @@
 
                         <RouterLink :to="{ name: 'inbox'}">
 
-                            <font-awesome-icon id="inbox" class="rounded-circle p-2 text-white me-4" 
+                            <font-awesome-icon id="inbox" class="rounded-circle p-2 me-4" 
                             icon="fa-solid fa-message" />
                         </RouterLink>
                     </div>
@@ -60,15 +60,20 @@
             </div>
         </section>
 
+        
     </nav>
+    
+    <Hero />
 </template>
 
 <script>
 import { useAuthStore } from '../stores/auth';
 import { store } from '../stores/store';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import Hero from './Hero.vue';
 
 export default {
+    components: {Hero},
     data() {
         return {
             store,
@@ -82,10 +87,8 @@ export default {
 @use '../assets/main.css';
 
 nav {
-    // background-color:var(--b-1);
     height: 10vh;
     background-color:#f8f9fa ;
-    border-bottom: 1px solid #dcd2d2;
 
 
     img {
@@ -100,8 +103,16 @@ nav {
 
 #inbox {
 
-    background-color: #FF6E31;
+    border: 1px solid #FF6E31;
     cursor: pointer;
+    color: #FF6E31;
+    transition: .4s ease-in-out;
+
+    &:hover{
+
+        background-color: #FF6E31;
+        color: #fff;
+    }
 }
 
 .profile {
