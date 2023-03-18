@@ -1,16 +1,20 @@
 <script>
+import Nav from './Nav.vue';
 export default{
-
+    components: {Nav}
 }
 </script>
 
 <template>
 
+   <Nav /> 
 
     <section id="hero">
     
-        <router-link id="heroBtn" class="btn btn-block text-uppercase rounded-pill shadow-sm p-2 mt-5 mx-2"
-            :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
+        <router-link id="heroBtn" class="btn btn-block text-uppercase rounded-pill shadow-sm p-3 mt-5 mx-2 fs-6"
+            :to="{ name: 'advancedSearch' }">Vai alla ricerca 
+            <font-awesome-icon icon="fa-solid fa-arrow-right" />
+        </router-link>
     </section>
 </template>
 
@@ -19,12 +23,14 @@ export default{
 #hero {
 
     width: 100%;
-    height: 50vh;
+    height: 100vh;
     background-image: url('../assets/dream\ big..png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
     position: relative;
+    top: 0;
+    left: 0;
 
 
     #heroBtn{

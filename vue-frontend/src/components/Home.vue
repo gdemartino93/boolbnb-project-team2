@@ -42,7 +42,6 @@ import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
 import Loader from '../components/utility/Loader.vue'
-import AdvancedSearch from './AdvancedSearch.vue';
 import Hero from './Hero.vue';
 export default {
     name: 'HomePage',
@@ -50,7 +49,6 @@ export default {
         AptCard,
         Map,
         Loader,
-        AdvancedSearch,
         Hero
     },
     data() {

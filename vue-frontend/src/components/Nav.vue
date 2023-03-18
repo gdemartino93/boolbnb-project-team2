@@ -3,7 +3,7 @@
         <section class="container">
             <div class="d-flex justify-content-between">
                 <RouterLink class="link" :to="{ name: 'home' }">
-                    <img src="/logo.png" class="mb-1" alt="boolbnb-logo">
+                    <img src="../assets/boolbnblogo.png" class="mb-1" alt="boolbnb-logo">
                 </RouterLink>
                 <section v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
                     <div class="d-none d-md-block">
@@ -69,10 +69,8 @@
 import { useAuthStore } from '../stores/auth';
 import { store } from '../stores/store';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import Hero from './Hero.vue';
 
 export default {
-    components: {Hero},
     data() {
         return {
             store,
@@ -86,8 +84,11 @@ export default {
 @use '../assets/main.css';
 
 nav {
+    width: 100%;
     height: 10vh;
-    background-color:#f8f9fa ;
+    z-index: 900;
+    position: fixed;
+    // background-color:#f8f9fa ;
 
 
     img {
@@ -96,19 +97,31 @@ nav {
 
     .dropdown {
         z-index: 1;
+
+        .dropdown-menu {
+
+            background-color: transparent;
+            border: 2px solid #FF6E31;
+            
+            li {
+                
+                color: #FF6E31;
+            }
+        }
     }
 
 }
 
 #inbox {
 
-    border: 1px solid #FF6E31;
+    border: 1px solid #fff;
     cursor: pointer;
-    color: #FF6E31;
+    color: #fff;
     transition: .4s ease-in-out;
 
     &:hover{
 
+        border-color: #FF6E31;
         background-color: #FF6E31;
         color: #fff;
     }
@@ -121,7 +134,15 @@ nav {
     }
 
     .username {
-        color: var(--b-4);
+        
+        cursor: pointer;
+        color: #fff;
+        transition: .4s ease-in-out;
+
+        &:hover {
+
+            color: #FF6E31;
+        }
     }
 }
 </style>
