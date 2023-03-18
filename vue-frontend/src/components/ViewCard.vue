@@ -132,7 +132,7 @@ export default {
 
         <!-- use v-if because value onmounted start as undefinied and app crash -->
         <div class="map">
-            <b class="d-inline-block">Where is it</b>
+            <b class="d-inline-block">Dove ci troviamo</b>
             <Map v-if="apt.latitude && apt.longitude" :center="{ lat: apt.latitude, lon: apt.longitude }" :flats="flats" />
         </div>
     </div>
