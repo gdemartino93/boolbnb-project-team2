@@ -63,7 +63,6 @@
         
     </nav>
     
-    <Hero />
 </template>
 
 <script>

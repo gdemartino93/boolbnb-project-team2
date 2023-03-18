@@ -1,4 +1,6 @@
 <template>
+    <Hero />
+
     <Loader v-if="isLoading" />
 
     <section v-else style="background-color: #f8f9fa;">
@@ -41,13 +43,15 @@ import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
 import Loader from '../components/utility/Loader.vue'
 import AdvancedSearch from './AdvancedSearch.vue';
+import Hero from './Hero.vue';
 export default {
     name: 'HomePage',
     components: {
         AptCard,
         Map,
         Loader,
-        AdvancedSearch
+        AdvancedSearch,
+        Hero
     },
     data() {
         return {

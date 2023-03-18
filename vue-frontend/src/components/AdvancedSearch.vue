@@ -70,18 +70,6 @@ export default {
                 })
        
         },
-        // dropDown(){
-            
-        //     if(!this.isVisible){
-
-        //         this.isVisible = true;
-        //     }
-        // },
-        // dropClose(){
-
-        //     this.isVisible = false;
-        // }
-        
     },
     mounted() {
 
@@ -127,12 +115,11 @@ export default {
         </form>
     </div>
 
-    <!-- <div class="container d-flex flex-wrap searched my-5" v-if="apartments.length > 0">
+    <div class="container d-flex flex-wrap">
 
-        <AptCard v-if="apartments" class="col-3" v-for="apartment in apartments" :apartment="apartment" />
-
-        <p v-else>{{ error }}</p>
-    </div> -->
+        <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
+                    :apartment="apartment" :key="index" />
+    </div>
 
 </template>
 
