@@ -1,6 +1,9 @@
 <script>
+import MsgModal from './MsgModal.vue';
+
 export default{
-    props: ['apartment']
+    props: ["apartment"],
+    components: { MsgModal }
 }
 </script>
 
@@ -14,16 +17,13 @@ export default{
 
         <section class="ms_messagebox">
             <ul>
-                <li v-for="message in apartment.messages">
+                <li v-for="(message,index) in apartment.messages" :key="index">
                     
-                    <p class="author">
-
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         {{ message.mail }}
-                    </p>
-                    <p class="date">
+                    </button>
 
-                        {{ message.created_at }}
-                    </p>
+                    <MsgModal :message="message" />
                 </li>
             </ul>
         </section>
@@ -34,7 +34,7 @@ export default{
 
     .ms_card {
 
-        width: 200px;
+        width: 250px;
         height: 300px;
 
         .pic {
@@ -43,7 +43,7 @@ export default{
             background-image: url('../../assets/webaliser-_TPTXZd9mOo-unsplash.jpg');
             width: 100%;
             height: 50%;
-            background-size: contain;
+            background-size: cover;
             background-repeat: no-repeat;
             border-radius: 15px 15px 0 0;
         }

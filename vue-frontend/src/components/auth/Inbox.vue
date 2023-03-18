@@ -12,6 +12,7 @@ export default{
     methods: {},
     mounted() {
         this.authStore.getAptWithMsgs();
+        console.log(this.authStore.aptMsg);
     },
 }
 </script>
