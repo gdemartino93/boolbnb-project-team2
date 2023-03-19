@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\View;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
+use OpenAI\Laravel\Facades\OpenAI;
 
 class ApiController extends Controller
 {
@@ -336,26 +337,19 @@ class ApiController extends Controller
 
     public function chat(Request $request){
 
-        $client = new Client();
+        
+$result = OpenAI::completions()->create([
+    'model' => 'text-davinci-003',
+    'prompt' => $request->message,
+    'max_tokens' => 100,
+]);
+ 
+return response() -> json([
+    "status" => "ok",
+    "result" => $result['choices'][0]['text']
+]) ;
 
-        $response = $client->post('https://api.openai.com/v1/chat/completions', [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
-            ],
-            'json' => [
-                'prompt' => $request->input('message'),
-                'temperature' => 0.7,
-                'max_tokens' => 60,
-                'top_p' => 1,
-                'n' => 1,
-                'stop' => ['\n'],
-            ],
-        ]);
-        $result = json_decode($response->getBody()->getContents(), true);
-        return response()->json($result['choices'][0]['text']);
     }
-
 
 
 }

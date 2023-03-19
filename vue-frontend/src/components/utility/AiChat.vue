@@ -1,8 +1,9 @@
 <template>
-    <div class="box col-4">
+    <div class="col-4">
+      <span>{{ risposta }}</span>
       <form action="" method="post" @submit.prevent="getReply">
-        <input type="text" v-model="message">
-        <span>{{ risposta }}</span>
+        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example" v-model="message">
+        
         <button class="btn btn-success" type="submit">Invia</button>
       </form>
     </div>
@@ -25,13 +26,12 @@
         try {
           let response = await axios.post('/api/v1/chat', {message: this.message})
           this.risposta = response.data.result
+          console.log(this.risposta);
         
         } catch (error) {
           console.log(error);
         }
       }
-
-
     }
 }
   </script>
@@ -41,6 +41,8 @@
     background-color: beige;
     min-height: 400px;
     border: 1px solid black;
+    width: 500px;
+    border-radius: 10px;
   }
   </style>
   

@@ -7,8 +7,8 @@
 
         <div class="container" style="background-color: #f8f9fa;">
             <AiChat />
-            <!-- <router-link class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-5 mx-2"
-                :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link> -->
+            <router-link class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-5 mx-2"
+                :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link>
             <AdvancedSearch @apartments-searched="updateApt" class="my-5"/>
 
             <div class="row justify-content-center d-flex ">   
