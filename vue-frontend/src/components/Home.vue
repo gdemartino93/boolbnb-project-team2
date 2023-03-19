@@ -7,7 +7,7 @@
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 
-        <div class="container" style="background-color: #f8f9fa;">
+        <div class="container" style="background-color: #E9EDC9;">
 
             <div class="row justify-content-center d-flex ">
 

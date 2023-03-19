@@ -34,18 +34,18 @@ export default {
   <router-link :to="{name: 'show', params:{ id: `${apartment.id}` }}" class="card-link no-underline">
     <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{ 'hover-effect': isHovering }">
       <img :src="apartment.img" class="card-img" :alt="apartment.img">
-        <div class="d-flex gap-1 my-1 align-items-center view">
-          <font-awesome-icon icon="fa-solid fa-eye" />
+        <div class="d-flex gap-1 p-1 align-items-center view bg-white">
+          <font-awesome-icon icon="fa-solid fa-eye" class="text-secondary" />
           <span>
             {{ apartment.views_count }}
           </span>
         </div>
-      <div class="my-card-body">
+      <div class="my-card-body bg-white p-3">
           <!-- capitalizza il titolo -->
           <h2 class="card-title fs-5">{{ apartment.address }}</h2>
         
         <!-- <p class="card-text">{{ apartment.description }}</p> -->
-        <ul class="d-flex text-center gap-3 mt-2">
+        <ul class="d-flex text-center gap-3 pt-3">
           <li>
             
             <p class="mb-0">
