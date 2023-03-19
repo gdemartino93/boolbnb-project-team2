@@ -21,10 +21,10 @@
                     :apartment="apartment" :key="index" />
             </div>
             <div class="my-4" v-if="apartments.length > 0">
-                <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
+                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3 text-white" style="background-color: #ff3d00;"
                     @click="goToFirst(index)">TOP
                 </button>
-                <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
+                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3 text-white" style="background-color: #ff3d00;"
                     @click="loadMore">CARICA
                     ALTRI
                 </button>
