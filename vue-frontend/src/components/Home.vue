@@ -3,7 +3,7 @@
 
     <Loader v-if="isLoading" />
 
-    <section v-else style="background-color: #f8f9fa;">
+    <section v-else style="background-color: #E9EDC9;">
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 

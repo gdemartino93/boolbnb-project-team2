@@ -7,7 +7,7 @@ export default{
 
 <template>
 
-   <Nav /> 
+   <!-- <Nav />  -->
 
     <section id="hero">
     

@@ -114,7 +114,7 @@ nav {
 
 #inbox {
 
-    border: 1px solid #fff;
+    border: 3px solid #fff;
     cursor: pointer;
     color: #fff;
     transition: .4s ease-in-out;

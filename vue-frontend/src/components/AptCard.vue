@@ -42,11 +42,45 @@ export default {
         </div>
       <div class="my-card-body">
           <!-- capitalizza il titolo -->
-          <h2 class="card-title fs-5">{{ (apartment.title).charAt(0).toUpperCase() + apartment.title.slice(1) }}</h2>
+          <h2 class="card-title fs-5">{{ apartment.address }}</h2>
         
-        <p class="card-text">{{ apartment.description }}</p>
+        <!-- <p class="card-text">{{ apartment.description }}</p> -->
+        <ul class="d-flex text-center gap-3 mt-2">
+          <li>
+            
+            <p class="mb-0">
+
+              {{ apartment.room_number }}
+            </p>
+            <p>
+              STANZE
+            </p>
+          </li>
+
+          <li>
+            <p class="mb-0">
+
+              {{ apartment.bed_number }}
+            </p>
+            <p>
+              LETTI
+            </p>
+          </li>
+
+          <li>
+            
+            <p class="mb-0">
+              {{ apartment.square_meters }}
+            </p>
+
+            <p>
+              METRI QUADRI
+            </p>
+          </li>
+        </ul>
 
       </div>
+      <router-link :to="{name: 'show', params:{ id: `${apartment.id}` }}" class="cardBtn">Scopri di pi&uacute;</router-link>
     </div>
   </router-link>
 </template>
@@ -63,6 +97,16 @@ export default {
 
 .card-link:nth-child(4n) {
   margin-right: 0;
+
+}
+.cardBtn {
+
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff3d00;
 }
 
 .card {
@@ -91,6 +135,12 @@ export default {
 .my-card-body {
   display: flex;
   flex-direction: column;
+
+  ul {
+
+    list-style-type: none;
+    color: grey;
+  }
 }
 
 .card-title {
