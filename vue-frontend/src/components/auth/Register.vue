@@ -29,7 +29,7 @@ export default {
 <template>
   <div class="row">
     <div class="col-md-6">
-      <div class="test">
+      <div class="wrapper">
         <form class="d-flex flex-column mx-auto" @submit.prevent="authStore.handleRegister(form)">
           <div class="step d-flex flex-column align-items-start">
             <h3 style="margin-bottom: 20px; width: 100%;">Registrazione</h3>
@@ -96,25 +96,14 @@ body {
   overflow: hidden;
 }
 
-.col-md-6 {
-  padding: 0;
-}
 
-.test {
+.wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  /* background-color: #f8f9fa; */
 }
 
-.step {
-  width: 500px;
-  max-width: 400px;
-  margin: 0 auto;
-  border-radius: 5px;
-  padding: 30px;
-}
 
 .form-group {
   margin-bottom: 20px;
@@ -153,7 +142,7 @@ button {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  height: 90vh;
+  height: 100vh;
 }
 
 </style>
