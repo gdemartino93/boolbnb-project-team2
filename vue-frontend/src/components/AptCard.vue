@@ -122,6 +122,8 @@ export default {
 .my-card-body {
   display: flex;
   flex-direction: column;
+  flex: 1;
+
 
   .list {
 
