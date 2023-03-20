@@ -3,7 +3,7 @@
         <section class="container">
             <div class="d-flex justify-content-between">
                 <RouterLink class="link" :to="{ name: 'home' }">
-                    <img src="/logo.png" class="mb-1" alt="boolbnb-logo">
+                    <img src="../assets/boolbnblogo.png" class="mb-1" alt="boolbnb-logo">
                 </RouterLink>
                 <section v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
                     <div class="d-none d-md-block">
@@ -24,7 +24,7 @@
 
                         <RouterLink :to="{ name: 'inbox'}">
 
-                            <font-awesome-icon id="inbox" class="rounded-circle p-2 text-white me-4" 
+                            <font-awesome-icon id="inbox" class="rounded-circle p-2 me-4" 
                             icon="fa-solid fa-message" />
                         </RouterLink>
                     </div>
@@ -60,7 +60,9 @@
             </div>
         </section>
 
+        
     </nav>
+    
 </template>
 
 <script>
@@ -82,10 +84,11 @@ export default {
 @use '../assets/main.css';
 
 nav {
-    // background-color:var(--b-1);
+    width: 100%;
     height: 10vh;
-    background-color:#f8f9fa ;
-    border-bottom: 1px solid #dcd2d2;
+    z-index: 900;
+    position: fixed;
+    // background-color:#f8f9fa ;
 
 
     img {
@@ -94,14 +97,34 @@ nav {
 
     .dropdown {
         z-index: 1;
+
+        .dropdown-menu {
+
+            background-color: transparent;
+            border: 2px solid #FF6E31;
+            
+            li {
+                
+                color: #FF6E31;
+            }
+        }
     }
 
 }
 
 #inbox {
 
-    background-color: #FF6E31;
+    border: 3px solid #fff;
     cursor: pointer;
+    color: #fff;
+    transition: .4s ease-in-out;
+
+    &:hover{
+
+        border-color: #FF6E31;
+        background-color: #FF6E31;
+        color: #fff;
+    }
 }
 
 .profile {
@@ -111,7 +134,15 @@ nav {
     }
 
     .username {
-        color: var(--b-4);
+        
+        cursor: pointer;
+        color: #fff;
+        transition: .4s ease-in-out;
+
+        &:hover {
+
+            color: #FF6E31;
+        }
     }
 }
 </style>

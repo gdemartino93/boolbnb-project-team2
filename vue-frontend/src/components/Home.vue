@@ -1,15 +1,13 @@
 <template>
+    <Hero />
+
     <Loader v-if="isLoading" />
 
-    <section v-else style="background-color: #f8f9fa;">
+    <section v-else>
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 
-        <div class="container" style="background-color: #f8f9fa;">
-            
-            <!-- <router-link class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-5 mx-2"
-                :to="{ name: 'advancedSearch' }">Vai alla ricerca</router-link> -->
-            <AdvancedSearch @apartments-searched="updateApt" class="my-5"/>
+        <div class="container">
 
             <div class="row justify-content-center d-flex ">
 
@@ -23,10 +21,10 @@
                     :apartment="apartment" :key="index" />
             </div>
             <div class="my-4" v-if="apartments.length > 0">
-                <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
+                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
                     @click="goToFirst(index)">TOP
                 </button>
-                <button class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
+                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
                     @click="loadMore">CARICA
                     ALTRI
                 </button>
@@ -44,14 +42,14 @@ import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 import AptCard from './AptCard.vue';
 import Loader from '../components/utility/Loader.vue'
-import AdvancedSearch from './AdvancedSearch.vue';
+import Hero from './Hero.vue';
 export default {
     name: 'HomePage',
     components: {
         AptCard,
         Map,
         Loader,
-        AdvancedSearch
+        Hero
     },
     data() {
         return {
@@ -106,5 +104,19 @@ export default {
 .toppage {
     position: absolute;
     top: 0;
+}
+
+.btn {
+
+    border: 2px solid #ff3d00;
+    color: #ff3d00;
+    font-weight: bold;
+    transition: .4s ease-in-out;
+
+    &:hover {
+
+        background-color: #ff3d00;
+        color: #fff;
+    }
 }
 </style>

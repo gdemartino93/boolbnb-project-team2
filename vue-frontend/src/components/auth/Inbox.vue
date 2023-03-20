@@ -17,15 +17,24 @@ export default{
 </script>
 
 <template>
-
-    <h2>Messaggi ricevuti:</h2>
     
-    <div class="container d-flex flex-wrap gap-5 mt-5">
+    <div id="inboxContainer">
 
-        <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment" />
+        <h2>Messaggi ricevuti:</h2>
+        
+        <div class="container d-flex flex-wrap gap-5 mt-5">
+    
+            <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment" />
+        </div>
     </div>
+
 </template>
 
 <style lang="scss" scoped>
 
+#inboxContainer {
+
+    padding-top: 4rem;
+    background-color: #DFDFDE;
+}
 </style>
