@@ -13,19 +13,37 @@ export default{
         </div>
 
         <section class="ms_messagebox">
-            <ul>
-                <li v-for="message in apartment.messages">
-                    
-                    <p class="author">
 
-                        {{ message.mail }}
-                    </p>
-                    <p class="date">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" v-for="message in apartment.messages">
+                
+                <font-awesome-icon icon="fa-solid fa-envelope" class="letterIcon"/>
+                {{ message.mail }}
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" v-for="message in apartment.messages">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="exampleModalLabel">Il tuo messaggio da 
+                        <span style="color: #ff3d00">
 
-                        {{ message.created_at }}
-                    </p>
-                </li>
-            </ul>
+                            {{ message.name }}
+                        </span>
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{message.text}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                    <button type="button" class="btn btn-primary">Rispondi</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
         </section>
     </div>
 </template>
@@ -50,20 +68,15 @@ export default{
 
         .ms_messagebox {
 
-            height: 50%;
+            height: max-content;
             overflow-y: auto;
-            border: 1px dashed black;
-            border-radius: 0 0 15px 15px;
 
-            ul {
-                list-style-type: none;
+            .btn {
+                
+                background-image: linear-gradient(to right, #ff3d00, #FF5F00);
+                color: #fff;
 
-                .date {
-
-                    font-size: 8px;
-                }
-
-                .author {
+                .letterIcon {
 
                     font-size: 13px;
                 }

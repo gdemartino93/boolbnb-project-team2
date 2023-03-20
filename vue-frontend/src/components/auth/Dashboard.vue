@@ -40,16 +40,14 @@ export default {
 </script>
 
 <template>
-    <div class="container my-4">
+    <div class="container">
         <section class="dashboard-section" v-if="authStore.user">
-            <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2>
+            <!-- <h2 class="dashboard-title">LISTA APPARTAMENTI {{ $route.params.id }}</h2> -->
 
             <RouterLink class="add-apartment-link" :to="{ name: 'addApt' }">
-                <a href="#" class="btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Aggiungi
+                <a href="#" id="addApt" class="btn btn-block text-uppercase rounded-pill shadow-sm p-2">Aggiungi
                     appartamento</a>
             </RouterLink>
-
-            <h3 class="apartments-title"></h3>
 
             <section class="main">
                 <div class="row no-gutter">
@@ -93,11 +91,32 @@ export default {
 <style lang="scss" scoped>
 .container {
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
+    background-color: #bbc6c7;
 
     .dashboard-section {
-        background-color: #f8f9fa;
-        margin-bottom: 20px;
+        padding-top: 15vh;
+        
+        .btn {
+
+            background-color: #ff3d00;
+        }
+
+        #addApt {
+
+            border: 2px solid #ff3d00;
+            background-color: transparent;
+            color: #ff3d00;
+            box-shadow: 3px 3px rgba(0, 0, 0, .3);
+            transition: .4s ease-in-out;
+
+            &:hover {
+
+                background-color: #ff3d00;
+                color: #fff;
+            }
+        }
+
 
         .dashboard-title {
             font-size: 35px;
