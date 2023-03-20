@@ -86,7 +86,7 @@ export default {
 
 <style>
     .login{
-      height: 90vh;
+      height: 100vh;
     }
     .image {
       min-height: 100vh;
@@ -94,6 +94,6 @@ export default {
     .bg-image {
       background-image: url('/login.png');
       background-size: cover;
-      background-position: center center;
+      background-position: center;
     }
 </style>
