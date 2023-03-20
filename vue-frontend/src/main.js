@@ -21,7 +21,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faBars, faHome, faUser, faUserSecret, faFilter, faBed, faCheck, faEye, faMessage, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHome, faUser, faUserSecret, faFilter, faBed, faBath, faRuler, faLocationDot, faCheck, faEye, faMessage, faArrowRight} from '@fortawesome/free-solid-svg-icons'
 
 // import { faBars, faHome, faUser, faUserSecret, faPlus, faBed, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
