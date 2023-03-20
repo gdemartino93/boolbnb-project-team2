@@ -6,7 +6,7 @@
                     <img src="../assets/boolbnblogo.png" class="mb-1" alt="boolbnb-logo">
                 </RouterLink>
                 <section v-if="!authStore.user" class="d-flex justify-content-end align-items-center">
-                    <div class="d-none d-md-block">
+                    <div class="d-none d-md-block d-md-flex">
                         <RouterLink class="link mx-3 btn btn-primary btn-block text-uppercase rounded-pill shadow-sm"
                             :to="{ name: 'login' }">Login</RouterLink>
                         <RouterLink class="link mx-3 btn btn-primary btn-block text-uppercase rounded-pill shadow-sm"
@@ -29,7 +29,7 @@
                         </RouterLink>
                     </div>
 
-                    <div class="profile d-flex algin- ">
+                    <div class="profile d-flex ">
                         <div class="dropdown">
                             <a href="#" src="/avatar1.png" class="dropdown-toggle fw-bold" alt="Avatar"
                             data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
@@ -58,20 +58,14 @@
                                 <li>
                                     <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </section>
-
-        
+        </section>  
     </nav>
-    
 </template>
-
 <script>
 import { useAuthStore } from '../stores/auth';
 import { store } from '../stores/store';
@@ -105,9 +99,8 @@ nav {
     }
 
     .dropdown-item {
-
+        color: white;
         &:hover {
-
             color: #ff3d00;
         }
     }
