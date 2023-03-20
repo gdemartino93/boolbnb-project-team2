@@ -36,7 +36,6 @@ export default {
 };
 </script>
 
-
 <template>
   <div class="container-fluid login">
 
@@ -44,7 +43,7 @@ export default {
              
               <div class="col-md-6 d-none d-md-flex bg-image"></div>
               
-              <div class="col-md-6 bg-light">
+              <div class="col-md-6">
                   <div class="login d-flex align-items-center py-5">
                      
                       <div class="container">
