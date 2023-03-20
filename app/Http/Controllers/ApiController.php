@@ -347,10 +347,13 @@ class ApiController extends Controller
         $apartments = Apartment::where('user_id', $user_id)
                                 -> with('messages') -> get();
 
+        // $messages = Message::with('apartment') -> get();
+
         return response() -> json([
 
             'message' => 'Success',
             'data' => $apartments
+            
         ]);
     }
 

@@ -1,9 +1,7 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
-import Messages from './Messages.vue';
 
 export default{
-    components: { Messages },
     data() {
         return {
             authStore: useAuthStore()
@@ -12,24 +10,26 @@ export default{
     methods: {},
     mounted() {
         this.authStore.getAptWithMsgs();
+        console.log(this.authStore.aptMsg);
     },
 }
 </script>
 
 <template>
     
-    <div id="inboxContainer">
+    <div id="inboxContainer" class="container">
 
-        <div class="container" id="header">
-            <h3>
+        <div id="box" class="container d-flex flex-wrap gap-5 mt-5 bg-white p-2">
+            <ul class="w-75 mx-auto">
+                <li v-for="(apartment, index) in authStore.aptMsg" :key="index">
+                    <div v-for="message in apartment.messages" class="message d-flex p-1 mb-1">
 
-                Posta in arrivo.
-            </h3>
-        </div>
-        
-        <div class="container d-flex flex-wrap gap-5 mt-5">
-    
-            <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment" />
+                        <font-awesome-icon class="letter me-1" icon="fa-solid fa-envelope" />
+                        <div><b>{{ message.mail }}</b></div>
+                        <div class="date ms-auto">{{ message.created_at.slice(0, 16).replace('T', ' ') }}</div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -39,18 +39,35 @@ export default{
 
 #inboxContainer {
 
-    padding-top: 7rem;
-    background-color: #bbc6c7;
+    padding-top: 5rem;
     height: 100vh;
-    overflow-y: auto;
 
-    #header {
-
-        background-image: linear-gradient(to right, #ff3d00, #FF5F00, #ff3d00);
-        color: #fff;
-        padding: .5rem;
-        border-radius: 10px;
-        font-weight: bold;
+    #box {
+        height: 50vh;
+        overflow-y: auto;
     }
+
+    ul {
+
+        list-style-type: none;
+
+        .message {
+
+            background-color: #D8D8D8;
+
+            .letter {
+    
+                color: #ff3d00;
+                font-size: 20px;
+            }
+
+            .date {
+
+                font-size: 10px;
+            }
+        }
+        
+    }
+
 }
 </style>
