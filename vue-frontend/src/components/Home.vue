@@ -101,10 +101,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.toppage {
-    position: absolute;
-    top: 0;
-}
+// .toppage {
+//     position: absolute;
+//     top: 0;
+// }
 
 .btn {
 

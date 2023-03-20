@@ -59,14 +59,16 @@ export default{
         position: absolute;
         bottom: 10%;
         left: 10%;
-        border: 3px solid #ff3d00;
+        border: 3px solid #fff;
         border-radius: 50%;
         padding: 1.2rem;
-        color: #ff3d00;
+        color: #fff;
+        font-size: 20px;
         transition: .4s ease-in-out;
     
         &:hover {
-    
+            
+            border-color: #ff3d00;
             background-color: #ff3d00;
             color: #fff;
         }

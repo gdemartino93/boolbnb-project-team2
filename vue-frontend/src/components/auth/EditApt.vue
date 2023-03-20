@@ -151,7 +151,7 @@ export default {
       </div>
 
       <button type="button" class="button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-3"
-        @click="updateData(apt)">Update Apartment</button>
+        @click="updateData(apt)">AGGIORNA APPARTAMENTO</button>
     </form>
   </section>
   <section class="autenticato" v-else>
@@ -164,7 +164,7 @@ export default {
 
 <style lang="scss" scoped>
 .my-container {
-  margin-top: 100px;
+  padding-top: 15vh;
 
   .my-form {
     width: 80%;
@@ -193,7 +193,15 @@ export default {
     cursor: pointer;
     font-size: 16px;
     margin: 0 auto;
-    width: 95%;
+    width: 30%;
+    color: #fff;
+    background-image: linear-gradient(to right, #ff3d00, #FF5F00);
+    transition: .4s ease-in-out;
+
+      &:hover {
+
+        transform: scale(1.2);
+      }
   }
 
   section {

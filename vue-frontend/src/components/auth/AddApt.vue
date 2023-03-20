@@ -120,8 +120,8 @@ export default {
                         <label :for="service.name"> {{ service.name }} </label>
                     </div>
                 </div>
-                <input class="button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2 mt-3"
-                    @click="storeData" type="submit" value="Create New Apartment">
+                <input class="button btn btn-block text-uppercase rounded-pill shadow-sm p-2 mt-3"
+                    @click="storeData" type="submit" value="CREA NUOVO APPARTAMENTO">
             </div>
         </form>
     </section>
@@ -133,7 +133,8 @@ export default {
 
 <style lang="scss" scoped>
 .my-container {
-    margin-top: 100px;
+    padding-top: 15vh;
+    background-color: #bbc6c7;
 
     form {
         width: 80%;
@@ -162,15 +163,23 @@ export default {
         cursor: pointer;
         font-size: 16px;
         margin: 0 auto;
-        width: 95%;
+        width: 30%;
+        color: #fff;
+        background-image: linear-gradient(to right, #ff3d00, #FF5F00);
+        transition: .4s ease-in-out;
+
+        &:hover {
+
+            transform: scale(1.2);
+        }
     }
 
     section {
-        background-color: #f2f2f2;
+        background-color: #bbc6c7;
     }
 
     .my-template {
-        background-color: #f2f2f2;
+        background-color: #bbc6c7;
     }
 
     .ms-col {

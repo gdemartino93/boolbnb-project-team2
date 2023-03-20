@@ -95,7 +95,7 @@ export default {
     background-color: #bbc6c7;
 
     .dashboard-section {
-        padding-top: 12vh;
+        padding-top: 15vh;
         
         .btn {
 
