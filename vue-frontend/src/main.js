@@ -6,7 +6,7 @@ import axios from 'axios'
 
 // impostiamo interceptor di axios per far in modo che tutte le chiamate avvengono da questa base url 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://164.92.165.22:8000";
+axios.defaults.baseURL = "http://http://boolbnb.gianlucademartino.it:8000";
 
 const pinia = createPinia(); // crea l'istanza di Pinia prima di definire l'istanza dell'app Vue.js
 pinia.use(({ store }) => { //estendiamo lo store pinia per gestire il routing dell'applicazione. Quindi abbiamo accesso al router nel nostro store pinia.
