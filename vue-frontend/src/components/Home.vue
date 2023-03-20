@@ -1,8 +1,6 @@
 <template>
-    <Hero />
-
+    <Hero class="d-none d-md-block" />
     <Loader v-if="isLoading" />
-
     <section id="content" v-else >
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
