@@ -12,8 +12,21 @@
                         <RouterLink class="link mx-3 btn btn-primary btn-block text-uppercase rounded-pill shadow-sm"
                             :to="{ name: 'register' }">Register</RouterLink>
                     </div>
-                    <div class="d-md-none">
-                        <font-awesome-icon icon="fa-solid fa-bars" class="fs-1" />
+                    <!-- dropdown menu hamburger non registrato -->
+                    <div class="dropdown d-md-none">
+                        <a  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <font-awesome-icon icon="fa-solid fa-bars" class="fs-1" />
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <RouterLink class="dropdown-item" :to="{ name: 'login' }">Login</RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink class="dropdown-item" :to="{ name: 'register' }">Register</RouterLink>
+                            </li>
+
+                        </ul>
                     </div>
 
                 </section>
@@ -154,4 +167,5 @@ nav {
         border-bottom: 1px solid grey;
     }
 }
+
 </style>
