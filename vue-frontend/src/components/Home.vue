@@ -3,19 +3,19 @@
 
     <Loader v-if="isLoading" />
 
-    <section v-else>
+    <section v-else style="background-color: #D6E4E5;">
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 
-        <div class="container">
+        <div class="container" style="background-color: #D6E4E5;">
 
             <div class="row justify-content-center d-flex ">
 
                 
-            <div class="text-center my-5 " v-if="apartments.length == 0">
-                <span  class="text-danger fs-3 fw-bold">Nessun appartamento trovato che soddisfa i tuoi requisiti </span> <br>
-                <button class="btn btn-success" @click="apartmentPrint">Carica tutti</button>
-            </div>
+                <div class="text-center my-5 " v-if="apartments.length == 0">
+                    <span  class="text-danger fs-3 fw-bold">Nessun appartamento trovato che soddisfa i tuoi requisiti </span> <br>
+                    <button class="btn btn-success" @click="apartmentPrint">Carica tutti</button>
+                </div>
 
                 <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
                     :apartment="apartment" :key="index" />

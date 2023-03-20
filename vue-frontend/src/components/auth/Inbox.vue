@@ -19,8 +19,6 @@ export default{
 <template>
     
     <div id="inboxContainer">
-
-        <h2>Messaggi ricevuti:</h2>
         
         <div class="container d-flex flex-wrap gap-5 mt-5">
     
@@ -35,6 +33,6 @@ export default{
 #inboxContainer {
 
     padding-top: 4rem;
-    background-color: #DFDFDE;
+    background-color: #D6E4E5;
 }
 </style>

@@ -72,8 +72,8 @@ export default {
 }
 </script>
 <template>
-    <div class="container-fluid" style="background-color: #FFD8A9;">
-        <div class="container d-flex flex-wrap" style="background-color: #FFD8A9;">
+    <div class="container-fluid" style="background-color: #D6E4E5;">
+        <div class="container d-flex flex-wrap" style="background-color: #D6E4E5;">
             <div class=" my-left col-lg-5 mx-auto my-auto">
                 <div class="img my-5">
                     <img :src="apt.img" :alt="apt.img">
