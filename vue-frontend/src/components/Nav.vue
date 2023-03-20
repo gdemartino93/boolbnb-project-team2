@@ -96,6 +96,7 @@ nav {
     z-index: 900;
     position: fixed;
     top: 0;
+    background: rgba($color: #000000, $alpha: 0.3);
 
     a {
 
