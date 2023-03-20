@@ -3,11 +3,11 @@
 
     <Loader v-if="isLoading" />
 
-    <section v-else style="background-color: #D6E4E5;">
+    <section id="content" v-else style="background-color: #bbc6c7;">
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 
-        <div class="container" style="background-color: #D6E4E5;">
+        <div class="container" style="background-color: #bbc6c7;">
 
             <div class="row justify-content-center d-flex ">
 

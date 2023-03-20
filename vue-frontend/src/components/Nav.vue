@@ -88,9 +88,7 @@ nav {
     height: 10vh;
     z-index: 900;
     position: fixed;
-    // background-color:#f8f9fa ;
-    background: rgba($color: #000000, $alpha: 0.4);
-
+    top: 0;
 
     img {
         width: 30%;

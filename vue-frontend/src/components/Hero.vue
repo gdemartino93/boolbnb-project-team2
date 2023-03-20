@@ -15,6 +15,11 @@ export default{
             :to="{ name: 'advancedSearch' }">Vai alla ricerca 
             <font-awesome-icon icon="fa-solid fa-arrow-right" />
         </router-link>
+
+        <a href="#content">
+
+            <font-awesome-icon id="scrollDown" icon="fa-solid fa-arrow-down" />
+        </a>
     </section>
 </template>
 
@@ -39,6 +44,24 @@ export default{
         top: 70%;
         right: 10%;
         border: 3px solid #ff3d00;
+        color: #ff3d00;
+        transition: .4s ease-in-out;
+    
+        &:hover {
+    
+            background-color: #ff3d00;
+            color: #fff;
+        }
+    }
+
+    #scrollDown {
+
+        position: absolute;
+        bottom: 10%;
+        left: 10%;
+        border: 3px solid #ff3d00;
+        border-radius: 50%;
+        padding: 1.2rem;
         color: #ff3d00;
         transition: .4s ease-in-out;
     
