@@ -3,15 +3,12 @@
 
     <Loader v-if="isLoading" />
 
-    <section id="content" v-else style="background-color: #bbc6c7;">
+    <section id="content" v-else >
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 
-        <div class="container" style="background-color: #bbc6c7;">
-
-            <div class="row justify-content-center d-flex ">
-
-                
+        <div class="container" >
+            <div class="row justify-content-center d-flex ">   
                 <div class="text-center my-5 " v-if="apartments.length == 0">
                     <span  class="text-danger fs-3 fw-bold">Nessun appartamento trovato che soddisfa i tuoi requisiti </span> <br>
                     <button class="btn btn-success" @click="apartmentPrint">Carica tutti</button>
@@ -20,7 +17,7 @@
                 <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
                     :apartment="apartment" :key="index" />
             </div>
-            <div class="my-4" v-if="apartments.length > 0">
+            <div class="py-2" v-if="apartments.length > 0">
                 <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
                     @click="goToFirst(index)">TOP
                 </button>
@@ -101,11 +98,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .toppage {
-//     position: absolute;
-//     top: 0;
-// }
-
 .btn {
 
     border: 2px solid #ff3d00;
@@ -114,7 +106,6 @@ export default {
     transition: .4s ease-in-out;
 
     &:hover {
-
         background-color: #ff3d00;
         color: #fff;
     }
