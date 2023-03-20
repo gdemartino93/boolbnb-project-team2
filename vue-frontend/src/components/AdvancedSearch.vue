@@ -80,38 +80,33 @@ export default {
     <div class="container" id="form">
 
         <form action="" method="post">
-
-            <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue">
-
             <div class="button">
-                <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true"/>
+                <div class="d-flex box-ricerca align-items-center">
+                    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" id="ricerca" @click="isOpen = true">
+                    <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true" id="icona-ricerca"/>
+
+                </div>
+
                 
                 <div v-if="isOpen" class="menu">
-
                     <div>
-
                         <img src="../assets/noun-apartment-194955.png" alt="room number logo">
                         <input type="number" name="room_number" v-model="room_number" placeholder="Numero minimo di camere ...">
                     </div>
                     <div>
-
                         <font-awesome-icon icon="fa-solid fa-bed" id="bed"/>        
                         <input type="number" name="bed_number" v-model="bed_number" placeholder="Numero minimo di letti ...">
                     </div>
                     <div>
-
                         <label for="range">O in alternativa puoi cambiare il range di ricerca (il valore di default è di 20Km):</label>
                         <input type="range" name="range" min="20" max="100" step="20" v-model="radius">
                     </div>
-                    
                     <div class="buttonClose" @click="isOpen = false">
                         Close
                     </div>
                 </div>
             </div>
-            
 
-            <input type="submit" value="Search" @click="getCoordinates">
         </form>
     </div>
 
@@ -134,41 +129,19 @@ export default {
     color: white;
     position: relative;
     margin-top: 1rem;
-    
-    input[type=search]{
-        
-        position: absolute;
-        bottom: 20px;
-        border-radius: 15px 0 0 15px;
-        width: 20%;
-        padding: .3rem 1.5rem;
-    }
 
-    input[type=submit]{
 
-        position: absolute;
-        background-color: #FF6E31;
-        bottom: 20px;
-        left: 30%;
-        outline: none;
-        padding: .3rem .5rem;
-        border-radius: 15px;
-        color: white;
-        appearance: none;
-        outline: none;
-        border: none;
-    }
 
     .button {
         
-        background-color: #FF6E31;
-        width: 3%;
-        border-radius: 0 15px 15px 0;
-        position: absolute;
-        bottom: 20px;
-        left: 23.5%;
-        padding: .4rem .7rem;
-        cursor: pointer;
+        // background-color: #FF6E31;
+        // width: 3%;
+        // border-radius: 0 15px 15px 0;
+        // position: absolute;
+        // bottom: 20px;
+        // left: 23.5%;
+        // padding: .4rem .7rem;
+        // cursor: pointer;
 
         .menu {
 
@@ -179,6 +152,7 @@ export default {
             z-index: 30;
             padding: 1rem;
             border-radius: 15px;
+            bottom: -160px;
 
             img {
                 width: 25px;
@@ -218,7 +192,23 @@ export default {
     border: 1px solid red;
     min-height: 100px;
 }
-
+#ricerca{
+    
+}
+.box-ricerca{
+    position: absolute;
+    bottom: 15%;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    border-radius: 10px;
+    #icona-ricerca{
+        width: 50px;
+        border-radius: 50px 50px 50px ;
+    }
+    input{
+        border-radius: 10px 5px 5px 10px;
+        padding: 5px;
+    }
+}
 
 
 
