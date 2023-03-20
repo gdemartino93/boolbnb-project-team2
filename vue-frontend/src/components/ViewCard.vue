@@ -15,6 +15,7 @@ export default {
             msgName: '',
             msgTxt: '',
             msgSent: false,
+            isOpen: false
         }
     },
     methods: {
@@ -54,6 +55,10 @@ export default {
             } catch (error) {
                 console.log(error)
             }
+        },
+        openSec(){
+
+            this.isOpen = !this.isOpen;
         }
 
 
@@ -84,7 +89,7 @@ export default {
                     </li>
                     <li class="description m-2 p-2 "><b>{{ apt.description }}</b></li>
                     <ul
-                        class="d-flex flex-wrap col-xs-10 col-sm-12 col-md-10 col-lg-12 bg-light rounded-1 py-3 px-5 mx-auto">
+                        class="whiteBox d-flex flex-wrap col-xs-10 col-sm-12 col-md-10 col-lg-12 bg-light py-3 px-5 mx-auto">
                         <li class="info p-2 col-xs-5 col-sm-6 col-md-5 col-lg-6"><font-awesome-icon style="color: #ff3d00"
                                 icon="fa-solid fa-house" /> <b class="mx-1">{{
                                     apt.room_number
@@ -108,23 +113,29 @@ export default {
                                 Metri
                                 Quadrati</b>
                         </li>
+                        
+                        <button class="btn align-self-center p-2 m-2 rounded-pill text-white"
+                            style="background-color: #ff3d00;" @click="openSec">
+                            <b>Servizi
+                                Aggiuntivi</b>
+                        </button>
+
+                        <div v-if="isOpen" class="addServices px-5">
+                            
+                            <ul class="services">
+                                <li class="my-2" v-for="service in services">
+                                    <b><font-awesome-icon class="check" icon="fa-solid fa-check" /> {{
+                                        service.name }}</b>
+                                </li>
+                            </ul>
+                        </div>
                     </ul>
+                    
                 </ul>
 
-                <div class="ms-container d-flex justify-content-around col-lg-12 py-2" id="ms_container">
+                <div class="ms-container d-flex col-lg-12 py-2" id="ms_container">
 
-                    <button class="btn align-self-center p-3 m-2 rounded-pill text-white"
-                        style="background-color: #ff3d00;"><b>Servizi
-                            Aggiuntivi</b></button>
-
-                    <!-- <ul class="services mx-auto"><b>Servizi aggiuntivi:</b>
-                            <li class="my-2 p-2" v-for="service in services">
-                                <b><font-awesome-icon icon="fa-solid fa-check" /> {{
-                                    service.name }}</b>
-                            </li>
-                        </ul> -->
-
-                    <button type="button" id="modalBtn" class="btn btn-primary align-self-center p-3 m-2 rounded-pill"
+                    <button type="button" id="modalBtn" class="btn p-3 m-2 text-white fw-bold"
                         data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Invia
                         un
                         messaggio</button>
@@ -165,8 +176,8 @@ export default {
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                                    <button type="button" class="btn btn-primary" @click="sendMessage"
+                                    <button type="button" class="btn ms_close" data-bs-dismiss="modal">Chiudi</button>
+                                    <button type="button" class="btn ms_send" @click="sendMessage"
                                         v-if="!msgSent">Invia</button>
                                 </div>
                             </div>
@@ -209,7 +220,34 @@ export default {
 
         ul {
             list-style: none;
+            
+            .whiteBox {
+    
+                box-shadow: 3px 3px rgba(0, 0, 0, .2);
+                transition: .4s ease-out;
+
+                &:hover {
+
+                    box-shadow: 6px 6px rgba(0, 0, 0, .3);
+                }
+
+                .addServices {
+
+                    border: 1px solid #ff3d00;
+                    
+                    .services {
+
+                        transition: .4s ease-in-out;
+                    }
+
+                    .check {
+                        
+                        color: #ff3d00;
+                    }
+                }
+            }
         }
+
 
         .info {
             // border: 1px solid rgb(171, 171, 103);
@@ -221,6 +259,26 @@ export default {
                 color: rgb(171, 171, 103);
 
             }
+        }
+    }
+
+    #modalBtn {
+
+        border-radius: 5px;
+        background-image: linear-gradient(to right, #ff3d00, #FF5F00);
+        box-shadow: 3px 3px rgba(0, 0, 0, .3);
+    }
+
+    .ms_close, .ms_send {
+
+        border: 2px solid #ff3d00;
+        color: #ff3d00;
+        transition: .4s ease-in-out;
+
+        &:hover {
+
+            background-color: #ff3d00;
+            color: #fff;
         }
     }
 }
