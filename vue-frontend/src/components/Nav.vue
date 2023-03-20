@@ -30,23 +30,30 @@
                     </div>
 
                     <div class="profile d-flex algin- ">
-                        <span class="fw-bold username d-none d-xl-block align-self-center">{{ authStore.user.name }}</span>
                         <div class="dropdown">
-                            <img src="/avatar1.png" class=" mx-2 rounded-circle dropdown-toggle" alt="Avatar"
-                                data-bs-toggle="dropdown" aria-expanded="false" />
+                            <a href="#" src="/avatar1.png" class="dropdown-toggle fw-bold" alt="Avatar"
+                            data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
                             <ul class="dropdown-menu">
                                 <!-- item dropdown menu -->
-                                <li>
-                                    <RouterLink class="dropdown-item link" :to="{ name: 'addApt' }">
-                                        Aggiungi Appartamento
-                                    </RouterLink>
-                                </li>
-
+                                <li class="fw-bold username dropdown-item">{{ authStore.user.name }}</li>
+                                
                                 <li>
                                     <RouterLink class="dropdown-item link"
-                                        :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
-                                        Dashboard
+                                    :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
+                                    Dashboard
                                     </RouterLink>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item link">
+
+                                        Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item link">
+
+                                        Assistenza
+                                    </a>
                                 </li>
                                 <li>
                                     <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
@@ -90,6 +97,20 @@ nav {
     position: fixed;
     top: 0;
 
+    a {
+
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .dropdown-item {
+
+        &:hover {
+
+            color: #ff3d00;
+        }
+    }
+
     img {
         width: 30%;
     }
@@ -100,7 +121,7 @@ nav {
         .dropdown-menu {
 
             background-color: transparent;
-            border: 2px solid #FF6E31;
+            border: 2px solid #fff;
             
             li {
                 
@@ -136,12 +157,7 @@ nav {
         
         cursor: pointer;
         color: #fff;
-        transition: .4s ease-in-out;
-
-        &:hover {
-
-            color: #FF6E31;
-        }
+        border-bottom: 1px solid grey;
     }
 }
 </style>
