@@ -56,7 +56,7 @@ export default {
                 console.log(error)
             }
         },
-        openSec(){
+        openSec() {
 
             this.isOpen = !this.isOpen;
         }
@@ -81,109 +81,112 @@ export default {
             </div>
             <div class="my-right d-flex flex-column justify-content-around col-md-12 col-lg-6 mx-auto my-5">
                 <ul class="col-lg-12">
-                    <li class="info m-2 p-2"><b class="mx-1 fs-5" style="color: #ff3d00">{{
+                    <li class="info"><b class="mx-1 fs-5" style="color: #ff3d00">{{
                         apt.address
                     }}</b></li>
-                    <li class="my-1 col-md-12 m-2 p-2 fs-1 text">
+                    <li class="col-md-12 fs-1 text">
                         <b>{{ apt.title }}</b>
                     </li>
-                    <li class="description m-2 p-2 "><b>{{ apt.description }}</b></li>
-                    <ul
-                        class="whiteBox d-flex flex-wrap col-xs-10 col-sm-12 col-md-10 col-lg-12 bg-light py-3 px-5 mx-auto">
-                        <li class="info p-2 col-xs-5 col-sm-6 col-md-5 col-lg-6"><font-awesome-icon style="color: #ff3d00"
-                                icon="fa-solid fa-house" /> <b class="mx-1">{{
+                    <li class="description py-3"><b>{{ apt.description }}</b></li>
+                    <ul class="whiteBox d-flex flex-column col-12 bg-light py-3 px-5 mx-auto">
+                        <div class="row">
+                            <li class="info p-2 col-6"><font-awesome-icon style="color: #ff3d00" icon="fa-solid fa-house" />
+                                <b class="mx-1">{{
                                     apt.room_number
                                 }}
-                                Stanze</b>
-                        </li>
-                        <li class="info p-2 col-xs-5 col-sm-6 col-md-5 col-lg-6"><font-awesome-icon style="color: #ff3d00"
-                                icon="fa-solid fa-bed" /><b class="mx-1">{{ apt.bed_number
-                                }}
-                                Letti</b>
-                        </li>
-                        <li class="info p-2 col-xs-5 col-sm-6 col-md-5 col-lg-6"><font-awesome-icon style="color: #ff3d00"
-                                icon="fa-solid fa-bath" /><b class="mx-1">{{ apt.bath_number
-                                }}
-                                Bagni</b>
-                        </li>
-                        <li class="info p-2 col-xs-5 col-sm-6 col-md-5 col-lg-6"><font-awesome-icon style="color: #ff3d00"
-                                icon="fa-solid fa-ruler" /><b class="mx-1">{{
-                                    apt.square_meters
-                                }}
-                                Metri
-                                Quadrati</b>
-                        </li>
-                        
-                        <button class="btn align-self-center p-2 m-2 rounded-pill text-white"
-                            style="background-color: #ff3d00;" @click="openSec">
-                            <b>Servizi
-                                Aggiuntivi</b>
-                        </button>
-
-                        <div v-if="isOpen" class="addServices px-5">
-                            
-                            <ul class="services">
-                                <li class="my-2" v-for="service in services">
-                                    <b><font-awesome-icon class="check" icon="fa-solid fa-check" /> {{
-                                        service.name }}</b>
-                                </li>
-                            </ul>
+                                    Stanze</b>
+                            </li>
+                            <li class="info p-2 col-6"><font-awesome-icon style="color: #ff3d00" icon="fa-solid fa-bed" /><b
+                                    class="mx-1">{{ apt.bed_number
+                                    }}
+                                    Letti</b>
+                            </li>
+                        </div>
+                        <div class="row">
+                            <li class="info p-2 col-6"><font-awesome-icon style="color: #ff3d00"
+                                    icon="fa-solid fa-bath" /><b class="mx-1">{{ apt.bath_number
+                                    }}
+                                    Bagni</b>
+                            </li>
+                            <li class="info p-2 col-6"><font-awesome-icon style="color: #ff3d00"
+                                    icon="fa-solid fa-ruler" /><b class="mx-1">{{
+                                        apt.square_meters
+                                    }}
+                                    Metri
+                                    Quadrati</b>
+                            </li>
+                        </div>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-6 my-auto">
+                                <button class="btn align-self-center p-2 m-1 rounded-pill text-white"
+                                    style="background-color: #ff3d00;" @click="openSec">
+                                    <b>Servizi
+                                        Aggiuntivi</b>
+                                </button>
+                            </div>
+                            <div v-if="isOpen" class="addServices col-6">
+                                <div class="services p-2">
+                                    <div class="my-2" v-for="service in services">
+                                        <b><font-awesome-icon class="check" icon="fa-solid fa-check" /> {{
+                                            service.name }}</b>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </ul>
-                    
-                </ul>
-
-                <div class="ms-container d-flex col-lg-12 py-2" id="ms_container">
-
-                    <button type="button" id="modalBtn" class="btn p-3 m-2 text-white fw-bold"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Invia
-                        un
-                        messaggio</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog m-auto">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Il tuo messaggio</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div v-if="msgSent" class="text-center">
-
-                                        <font-awesome-icon id="check" class="bg-success p-3 rounded-circle fs-3 mx-auto"
-                                            icon="fa-solid fa-check" />
-                                        <h3>Messaggio inviato correttamente!</h3>
+                    <div class="ms-container d-flex col-12 py-3" id="ms_container">
+                        <button type="button" id="modalBtn" class="btn p-3 mx-5 text-white fw-bold" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Invia
+                            un
+                            messaggio</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog m-auto">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Il tuo messaggio</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
-                                    <form v-else method="post">
-                                        <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Mail:</label>
-                                            <input type="text" class="form-control" name="recipient-name"
-                                                v-if="this.authStore.user" v-model="authStore.user.email" disabled>
-                                            <input type="text" class="form-control" name="recipient-name" v-else
-                                                v-model="msgMail">
+                                    <div class="modal-body">
+                                        <div v-if="msgSent" class="text-center">
+
+                                            <font-awesome-icon id="check" class="bg-success p-3 rounded-circle fs-3 mx-auto"
+                                                icon="fa-solid fa-check" />
+                                            <h3>Messaggio inviato correttamente!</h3>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="name" class="col-form-label">Nome:</label>
-                                            <input type="text" class="form-control" name="name" v-if="this.authStore.user"
-                                                v-model="authStore.user.name" disabled>
-                                            <input type="text" class="form-control" name="name" v-else v-model="msgName">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="message-text" class="col-form-label">Messaggio:</label>
-                                            <textarea class="form-control" id="message-text" v-model="msgTxt"></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn ms_close" data-bs-dismiss="modal">Chiudi</button>
-                                    <button type="button" class="btn ms_send" @click="sendMessage"
-                                        v-if="!msgSent">Invia</button>
+                                        <form v-else method="post">
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Mail:</label>
+                                                <input type="text" class="form-control" name="recipient-name"
+                                                    v-if="this.authStore.user" v-model="authStore.user.email" disabled>
+                                                <input type="text" class="form-control" name="recipient-name" v-else
+                                                    v-model="msgMail">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="name" class="col-form-label">Nome:</label>
+                                                <input type="text" class="form-control" name="name"
+                                                    v-if="this.authStore.user" v-model="authStore.user.name" disabled>
+                                                <input type="text" class="form-control" name="name" v-else
+                                                    v-model="msgName">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label">Messaggio:</label>
+                                                <textarea class="form-control" id="message-text"
+                                                    v-model="msgTxt"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn ms_close" data-bs-dismiss="modal">Chiudi</button>
+                                        <button type="button" class="btn ms_send" @click="sendMessage"
+                                            v-if="!msgSent">Invia</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </ul>
             </div>
 
             <!-- use v-if because value onmounted start as undefinied and app crash -->
@@ -220,9 +223,9 @@ export default {
 
         ul {
             list-style: none;
-            
+
             .whiteBox {
-    
+
                 box-shadow: 3px 3px rgba(0, 0, 0, .2);
                 transition: .4s ease-out;
 
@@ -234,14 +237,14 @@ export default {
                 .addServices {
 
                     border: 1px solid #ff3d00;
-                    
+
                     .services {
 
                         transition: .4s ease-in-out;
                     }
 
                     .check {
-                        
+
                         color: #ff3d00;
                     }
                 }
@@ -269,7 +272,8 @@ export default {
         box-shadow: 3px 3px rgba(0, 0, 0, .3);
     }
 
-    .ms_close, .ms_send {
+    .ms_close,
+    .ms_send {
 
         border: 2px solid #ff3d00;
         color: #ff3d00;
