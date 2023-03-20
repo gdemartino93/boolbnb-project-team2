@@ -3,11 +3,11 @@
 
     <Loader v-if="isLoading" />
 
-    <section v-else style="background-color: #E9EDC9;">
+    <section v-else>
         <!-- div ref to scrollintoview -->
         <div ref="first" class="top-page"></div>
 
-        <div class="container" style="background-color: #E9EDC9;">
+        <div class="container">
 
             <div class="row justify-content-center d-flex ">
 
@@ -21,10 +21,10 @@
                     :apartment="apartment" :key="index" />
             </div>
             <div class="my-4" v-if="apartments.length > 0">
-                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3 text-white" style="background-color: #ff3d00;"
+                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
                     @click="goToFirst(index)">TOP
                 </button>
-                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3 text-white" style="background-color: #ff3d00;"
+                <button class="btn btn-block text-uppercase rounded-pill shadow-sm mx-2 mt-3"
                     @click="loadMore">CARICA
                     ALTRI
                 </button>
@@ -104,5 +104,19 @@ export default {
 .toppage {
     position: absolute;
     top: 0;
+}
+
+.btn {
+
+    border: 2px solid #ff3d00;
+    color: #ff3d00;
+    font-weight: bold;
+    transition: .4s ease-in-out;
+
+    &:hover {
+
+        background-color: #ff3d00;
+        color: #fff;
+    }
 }
 </style>
