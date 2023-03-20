@@ -17,71 +17,56 @@ export default {
     },
     // activate effect after 5ms on mouseenter on card
     handleMouseEnter() {
-    this.hoverTimeout = setTimeout(() => {
-      this.isHovering = true
-    }, 500)
-  },
-  handleMouseLeave() {
-    clearTimeout(this.hoverTimeout)
-    this.isHovering = false
-  }
+      this.hoverTimeout = setTimeout(() => {
+        this.isHovering = true
+      }, 500)
+    },
+    handleMouseLeave() {
+      clearTimeout(this.hoverTimeout)
+      this.isHovering = false
+    }
   }
 }
 </script>
 
 
 <template>
-  <router-link :to="{name: 'show', params:{ id: `${apartment.id}` }}" class="card-link no-underline">
-    <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{ 'hover-effect': isHovering }">
-      <img :src="apartment.img" class="card-img" :alt="apartment.img"> 
+  <router-link :to="{ name: 'show', params: { id: `${apartment.id}` } }" class="card-link no-underline">
+    <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave"
+      :class="{ 'hover-effect': isHovering }">
+      <img :src="apartment.img" class="card-img" :alt="apartment.img">
       <!-- <img src="../assets/xan-griffin-IM8AJKDavbk-unsplash.jpg" alt=""> -->
-        <div class="d-flex gap-1 p-1 align-items-center view bg-white">
-          <font-awesome-icon icon="fa-solid fa-eye" class="text-secondary" />
-          <span>
-            {{ apartment.views_count }}
-          </span>
-        </div>
-      <div class="my-card-body bg-white p-3">
-          <!-- capitalizza il titolo -->
-          <h2 class="card-title fs-5">{{ apartment.address }}</h2>
-        
-        <!-- <p class="card-text">{{ apartment.description }}</p> -->
-        <ul class="d-flex text-center gap-3 pt-3">
-          <li>
-            
-            <p class="mb-0">
-
-              {{ apartment.room_number }}
-            </p>
-            <p>
-              STANZE
-            </p>
-          </li>
-
-          <li>
-            <p class="mb-0">
-
-              {{ apartment.bed_number }}
-            </p>
-            <p>
-              LETTI
-            </p>
-          </li>
-
-          <li>
-            
-            <p class="mb-0">
-              {{ apartment.square_meters }}
-            </p>
-
-            <p>
-              METRI QUADRI
-            </p>
-          </li>
-        </ul>
-
+      <div class="d-flex gap-1 p-1 align-items-center view bg-white">
+        <font-awesome-icon icon="fa-solid fa-eye" class="text-secondary" />
+        <span>
+          {{ apartment.views_count }}
+        </span>
       </div>
-      <router-link :to="{name: 'show', params:{ id: `${apartment.id}` }}" class="cardBtn">Scopri di pi&uacute;</router-link>
+      <!-- capitalizza il titolo -->
+      <h2 class="card-title text-center fs-5">{{ apartment.address }}</h2>
+      <div class="my-card-body bg-white p-3">
+
+        <!-- <p class="card-text">{{ apartment.description }}</p> -->
+        <div class="list d-flex justify-content-center col-12">
+          <div class="d-flex col-4 justify-content-center text-center">
+            <div class="mx-auto">{{ apartment.room_number }}
+              <div class="">Stanze</div>
+            </div>
+          </div>
+          <div class="d-flex col-4 text-center">
+            <div class="mx-auto">{{ apartment.bed_number }}
+              <div>Letti</div>
+            </div>
+          </div>
+          <div class="d-flex col-4 text-center">
+            <div class="mx-auto">{{ apartment.square_meters }}
+              <div>m<sup>2</sup></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <router-link :to="{ name: 'show', params: { id: `${apartment.id}` } }" class="cardBtn">Scopri di
+        pi&uacute;</router-link>
     </div>
   </router-link>
 </template>
@@ -100,6 +85,7 @@ export default {
   margin-right: 0;
 
 }
+
 .cardBtn {
 
   text-align: center;
@@ -137,7 +123,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  ul {
+  .list {
 
     list-style-type: none;
     color: grey;
@@ -146,7 +132,7 @@ export default {
 
 .card-title {
   font-size: 16px;
-  // margin-bottom: 10px;
+  margin-bottom: 10px;
   color: black;
 }
 
@@ -172,10 +158,9 @@ export default {
 .no-underline {
   text-decoration-line: none;
 }
-.view{
+
+.view {
   font-size: 12px;
 }
-
-
 </style>
 
