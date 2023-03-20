@@ -32,7 +32,7 @@ export default {
 
 <template>
   <router-link :to="{ name: 'show', params: { id: `${apartment.id}` } }" class="card-link no-underline">
-    <div class="card" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave"
+    <div class="card bg-white" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave"
       :class="{ 'hover-effect': isHovering }">
       <img :src="apartment.img" class="card-img" :alt="apartment.img">
       <!-- <img src="../assets/xan-griffin-IM8AJKDavbk-unsplash.jpg" alt=""> -->
@@ -60,7 +60,7 @@ export default {
           </div>
           <div class="d-flex col-4 text-center">
             <div class="mx-auto">{{ apartment.square_meters }}
-              <div>m<sup>2</sup></div>
+              <div>M<sup>2</sup></div>
             </div>
           </div>
         </div>
