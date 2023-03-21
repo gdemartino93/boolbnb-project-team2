@@ -4,35 +4,48 @@ import Messages from './Messages.vue';
 
 export default{
     components: { Messages },
+
     data() {
         return {
-            authStore: useAuthStore()
+            authStore: useAuthStore(),
+            aptMsg: [],
+            messages : []
         };
     },
-    methods: {},
+    methods: {
+        async getAptWithMsgs(){
+
+            const response = await axios.get('api/inbox');
+            this.aptMsg = response.data.data;
+            this.messages = response.data.messages;
+            }
+    },
     mounted() {
-        this.authStore.getAptWithMsgs();
+        this.getAptWithMsgs()
     },
 }
 </script>
 
 <template>
     
-    <div id="inboxContainer">
-
+    <div id="inboxContainer" v-if="authStore.user">
         <div class="container" id="header">
             <h3>
-
                 Posta in arrivo.
             </h3>
         </div>
         
         <div class="container d-flex flex-wrap gap-5 mt-5">
-    
-            <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment"  v-if="authStore.messages.length > 0"/>
+            <Messages v-for="apartment in aptMsg" :apartment="apartment"  v-if="messages.length > 0"/>
             <div v-else class="d-flex justify-center">
                 <span>Non hai messaggi</span>
             </div>
+        </div>
+    </div>
+    <!-- non autenticato -->
+    <div class="no-logged" v-else>
+        <div class="container d-flex justify-content-center my-5">
+            <h2>Non sei loggato</h2>
         </div>
     </div>
 
@@ -55,5 +68,10 @@ export default{
         border-radius: 10px;
         font-weight: bold;
     }
+}
+.no-logged{
+    background-color: #bbc6c7;
+    height: 100vh;
+    padding-top: 10vh;
 }
 </style>

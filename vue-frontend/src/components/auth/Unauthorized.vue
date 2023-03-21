@@ -4,7 +4,7 @@ export default {
 }
 </script>
 
-<section class="autenticato" v-else>
+<section class="autenticato">
     <h1 class="text-danger"> Non Autenticato </h1>
     <h2>Effettua il Login</h2>
 </section>
