@@ -97,45 +97,45 @@ export default {
   <section v-if="auth.user" class="my-container">
     <form method="POST" class="my-form d-flex flex-wrap justify-content-around bg-white rounded-2 p-5">
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="title">Title</label>
+        <label for="title">Nome</label>
         <input type="text" name="title" v-model="apt.title">
       </div>
 
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="description">Description</label>
+        <label for="description">Descrizione</label>
         <input type="text" name="description" v-model="apt.description">
       </div>
 
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="room_number">Room Number</label>
+        <label for="room_number">Numero di stanze</label>
         <input type="number" name="room_number" v-model="apt.room_number">
       </div>
 
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="bed_number">Bed Number</label>
+        <label for="bed_number">Numero di letti</label>
         <input type="number" name="bed_number" v-model="apt.bed_number">
       </div>
 
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="bath_number">Bath Number</label>
+        <label for="bath_number">Numero di bagni</label>
         <input type="number" name="bath_number" v-model="apt.bath_number">
       </div>
 
 
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="square_meters">Square Meters</label>
+        <label for="square_meters">m<sup>2</sup></label>
         <input type="number" name="square_meters" v-model="apt.square_meters">
       </div>
 
 
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="address">Address</label>
+        <label for="address">Indirizzo</label>
         <input type="text" name="address" v-model="apt.address">
       </div>
 
 
       <div class="col-sm-11 col-md-5 col-lg-5">
-        <label for="img">Image</label>
+        <label for="img">Foto</label>
         <input type="file" name="img" @change="onFileChange">
       </div>
 
