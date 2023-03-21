@@ -1,7 +1,6 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
-import { ref } from 'vue';
 
 export default {
     data() {
@@ -27,13 +26,13 @@ export default {
                 .catch(err => console.log);
         },
         async toggleVisibility(index, id) {
-  try {
-    await axios.get(`/api/v1/apartment/${id}/visibility`);
-    this.authStore.apartments[index].isShow = !this.authStore.apartments[index].isShow;
-  } catch (error) {
-    console.log(error);
-  }
-}
+              try {
+                await axios.get(`/api/v1/apartment/${id}/visibility`);
+                this.authStore.apartments[index].isShow = !this.authStore.apartments[index].isShow;
+              } catch (error) {
+                console.log(error);
+              }
+          }
     },
     mounted() {
         this.authStore.getUsersWithApt();
