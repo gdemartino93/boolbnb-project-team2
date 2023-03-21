@@ -82,11 +82,11 @@ export default {
                 <div class="button">
                     <div class="wrap-ricerca d-flex">
                         <div class="d-flex box-ricerca align-items-center">
-                        <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" id="ricerca" @click="isOpen = true">
+                        <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" id="ricerca">
                         <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true" id="icona-ricerca"/>
                     </div>
                     <div>
-                        <input class="btn btn-info mx-2" type="submit" value="Search" @click="getCoordinates">
+                        <input class="btn btn-info mx-2" type="submit" value="Cerca" @click="getCoordinates" id="cerca">
                     </div>
                     </div>
 
@@ -138,7 +138,9 @@ export default {
     position: relative;
     margin-top: 1rem;
 
-
+    #cerca{
+        border-radius: 10px;
+    }
 
     .button {
         
