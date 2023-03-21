@@ -26,7 +26,6 @@ export default {
         getCoordinates(e) {
 
             // Metodo da spada smart per aggirare le CORS policy
-
             e.preventDefault();
 
             var theUrl = `${this.store.geolocationUrl}` + this.queryValue + `.json?key=${this.store.apiKey}`;
@@ -81,11 +80,16 @@ export default {
 
         <form action="" method="post">
             <div class="button">
-                <div class="d-flex box-ricerca align-items-center">
+                <div class="wrap-ricerca d-flex">
+                    <div class="d-flex box-ricerca align-items-center">
                     <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" id="ricerca" @click="isOpen = true">
                     <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true" id="icona-ricerca"/>
-
                 </div>
+                <div>
+                    <input class="btn btn-info mx-2" type="submit" value="Search" @click="getCoordinates">
+                </div>
+                </div>
+                
 
                 
                 <div v-if="isOpen" class="menu">
@@ -192,12 +196,14 @@ export default {
     border: 1px solid red;
     min-height: 100px;
 }
-#ricerca{
-    
-}
-.box-ricerca{
+.wrap-ricerca{
     position: absolute;
     bottom: 15%;
+    display: flex;
+    align-items: center;
+}
+.box-ricerca{
+
     background-color: rgba($color: #000000, $alpha: 0.3);
     border-radius: 10px;
     #icona-ricerca{
