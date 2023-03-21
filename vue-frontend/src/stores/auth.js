@@ -113,12 +113,6 @@ export const useAuthStore = defineStore("auth",{
             const response = await axios.get('/api/dashboard');
             this.userApartments = response.data;
         },
-        async getAptWithMsgs(){
-
-            const response = await axios.get('api/inbox');
-            this.aptMsg = response.data.data;
-            this.messages = response.data.messages;
-        }
 
 
 
