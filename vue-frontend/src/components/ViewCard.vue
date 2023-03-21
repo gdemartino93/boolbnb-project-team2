@@ -72,10 +72,11 @@ export default {
 }
 </script>
 <template>
-    <div class="container-fluid" style="background-color: #bbc6c7;">
+    <div class="single-apt">
+        <div class="container" style="background-color: #bbc6c7;">
         <div class="container d-flex flex-wrap" style="background-color: #bbc6c7;">
-            <div class=" my-left col-lg-5 mx-auto my-auto">
-                <div class="img my-5">
+            <div class=" my-left col-lg-5 mx-auto">
+                <div class="img">
                     <img :src="apt.img" :alt="apt.img">
                 </div>
             </div>
@@ -197,19 +198,20 @@ export default {
             </div>
         </div>
     </div>
+    </div>
+    
 </template>
 
-
-  
-
 <style lang="scss" scoped>
-// @use '../assets/main.scss' as *;
 
+.single-apt{
+    height: 100vh;
+    padding-top: 12vh;
+    overflow: auto;
+}
 .container {
     font-size: 14px;
     margin: 0 auto;
-    padding: 20px 0;
-    padding-top: 100px;
     background-color: #f8f9fa;
 
     .my-left {
@@ -219,8 +221,6 @@ export default {
     }
 
     .my-right {
-        margin: o auto;
-
         ul {
             list-style: none;
 
