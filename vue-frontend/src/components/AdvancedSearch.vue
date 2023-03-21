@@ -29,6 +29,7 @@ export default {
             // Metodo da spada smart per aggirare le CORS policy
             e.preventDefault();
 
+            this.isFilled = true;
             var theUrl = `${this.store.geolocationUrl}` + this.queryValue + `.json?key=${this.store.apiKey}`;
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", theUrl, false);
@@ -41,7 +42,6 @@ export default {
             console.log(this.queryLatitude, this.queryLongitude);
 
             this.getApt();
-            this.isFilled = true;
         },
         getApt(){
 

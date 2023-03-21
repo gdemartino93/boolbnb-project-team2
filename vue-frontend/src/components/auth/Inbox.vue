@@ -28,6 +28,10 @@ export default {
                 
                 console.log(error);
             }
+        },
+        close(){
+
+            this.isOpen = false;
         }
     },
     mounted() {
@@ -55,7 +59,7 @@ export default {
                             <p class="date ms-auto">{{ message.created_at.slice(0, 16).replace('T', ' ') }}</p>
                         </li>
 
-                        <li v-else>
+                        <li v-else class="text-danger">
                             <p> Non hai messaggi per questo appartamento!</p>
                         </li>
                     </ul>
@@ -70,18 +74,26 @@ export default {
             
                 <div v-for="(message, index) in apartment.messages" :key="index">
             
-                    <div class="header bot col-10 mx-auto fs-6 fw-bold p-1">Il tuo messaggio da <span style="color: #ff3d00">{{ message.name }}</span></div>
+                    <div class="header bot col-10 mx-auto fs-6 fw-bold p-2">Il tuo messaggio da <span style="color: #ff3d00">{{ message.name }}</span></div>
 
             
-                    <div class="bg-white col-10 mx-auto mb-2 p-1">
-            
-                        {{ message.text }}
-            
-                        <button class="btn rounded-pill fw-bold">Rispondi</button>
+                    <div class="text col-10 mx-auto mb-2 p-2">
+                        
+                        <p>
+
+                            {{ message.text }}
+                        </p>
+                        
+                        <div class="text-end">
+
+                            <button class="btn rounded-pill fw-bold">Rispondi</button>
+                        </div>
                     </div>
-
-            
+                    
+                    
                 </div>
+                
+                <button class="btn close rounded-pill mx-auto" @click="close">Chiudi</button>
             
             </div>
                 
@@ -153,14 +165,21 @@ export default {
 
     #messageContent {
 
-        background-color: #ff3d00;
-        height: 50%;
+        height: 40%;
         overflow-y: auto;
 
         .bot {
 
-            background-color: #fff;
+            background-color: transparent;
+            border: 2px solid #2E3840;
+            margin-bottom: .5rem;
             color: #2E3840;
+        }
+
+        .text {
+
+            border: 3px solid #ff3d00;
+            border-radius: 20px;
         }
 
         .btn {
@@ -172,6 +191,18 @@ export default {
             &:hover {
 
                 background-color: #ff3d00;
+                color: #fff;
+            }
+        }
+
+        .close {
+
+            border: 2px solid #2E3840;
+            color: #2E3840;
+            
+            &:hover {
+
+                background-color: #2E3840;
                 color: #fff;
             }
         }
