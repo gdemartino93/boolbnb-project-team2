@@ -66,7 +66,7 @@ export default {
         </div>
       </div>
       <router-link :to="{ name: 'show', params: { id: `${apartment.id}` } }" class="cardBtn">Scopri di
-        pi&uacute;</router-link>
+        più</router-link>
     </div>
   </router-link>
 </template>
@@ -87,10 +87,9 @@ export default {
 }
 
 .cardBtn {
-
   text-align: center;
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
   text-decoration: none;
   color: #fff;
   background-color: #ff3d00;

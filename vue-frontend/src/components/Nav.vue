@@ -14,7 +14,7 @@
                     </div>
                     <!-- dropdown menu hamburger non registrato -->
                     <div class="dropdown d-md-none">
-                        <a  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <font-awesome-icon icon="fa-solid fa-bars" class="fs-1" />
                         </a>
 
@@ -35,25 +35,24 @@
 
                     <div>
 
-                        <RouterLink :to="{ name: 'inbox'}">
+                        <RouterLink :to="{ name: 'inbox' }">
 
-                            <font-awesome-icon id="inbox" class="rounded-circle p-2 me-4" 
-                            icon="fa-solid fa-message" />
+                            <font-awesome-icon id="inbox" class="rounded-circle p-2 me-4" icon="fa-solid fa-message" />
                         </RouterLink>
                     </div>
 
                     <div class="profile d-flex ">
                         <div class="dropdown">
                             <a href="#" src="/avatar1.png" class="dropdown-toggle fw-bold" alt="Avatar"
-                            data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                                data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
                             <ul class="dropdown-menu">
                                 <!-- item dropdown menu -->
                                 <li class="fw-bold username dropdown-item">{{ authStore.user.name }}</li>
-                                
+
                                 <li>
                                     <RouterLink class="dropdown-item link"
-                                    :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
-                                    Dashboard
+                                        :to="{ name: 'dashboard', params: { id: `${authStore.user.id}` } }">
+                                        Dashboard
                                     </RouterLink>
                                 </li>
                                 <li>
@@ -76,7 +75,7 @@
                     </div>
                 </div>
             </div>
-        </section>  
+        </section>
     </nav>
 </template>
 <script>
@@ -99,7 +98,7 @@ export default {
 
 nav {
     width: 100%;
-    height: 10vh;
+    height: 60px;
     z-index: 900;
     position: fixed;
     top: 0;
@@ -113,6 +112,7 @@ nav {
 
     .dropdown-item {
         color: white;
+
         &:hover {
             color: #ff3d00;
         }
@@ -129,9 +129,9 @@ nav {
 
             background-color: transparent;
             border: 2px solid #fff;
-            
+
             li {
-                
+
                 color: #FF6E31;
             }
         }
@@ -146,7 +146,7 @@ nav {
     color: #fff;
     transition: .4s ease-in-out;
 
-    &:hover{
+    &:hover {
 
         border-color: #FF6E31;
         background-color: #FF6E31;
@@ -161,11 +161,19 @@ nav {
     }
 
     .username {
-        
+
         cursor: pointer;
         color: #fff;
         border-bottom: 1px solid grey;
     }
 }
 
+
+@media screen and (min-width: 768px) {
+    nav {
+        img {
+            width: 25%;
+        }
+    }
+}
 </style>

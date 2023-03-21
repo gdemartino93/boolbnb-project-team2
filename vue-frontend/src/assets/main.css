@@ -75,3 +75,17 @@
 #app {
   background: #bbc6c7;
 }
+
+/* scrollbar */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #ff3d00;
+  border-radius: 100px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: rgba(110, 110, 110, 0.257);
+}
