@@ -143,16 +143,7 @@ export default {
     }
 
     .button {
-        
-        // background-color: #FF6E31;
-        // width: 3%;
-        // border-radius: 0 15px 15px 0;
-        // position: absolute;
-        // bottom: 20px;
-        // left: 23.5%;
-        // padding: .4rem .7rem;
-        // cursor: pointer;
-
+    
         .menu {
 
             background-color: rgba($color: #D1D1D1, $alpha: 0.9);
