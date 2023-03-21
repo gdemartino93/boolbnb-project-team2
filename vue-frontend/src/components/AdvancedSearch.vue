@@ -76,53 +76,57 @@ export default {
 }
 </script>
 <template>
-    <div class="container" id="form">
-
-        <form action="" method="post">
-            <div class="button">
-                <div class="wrap-ricerca d-flex">
-                    <div class="d-flex box-ricerca align-items-center">
-                    <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" id="ricerca" @click="isOpen = true">
-                    <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true" id="icona-ricerca"/>
-                </div>
-                <div>
-                    <input class="btn btn-info mx-2" type="submit" value="Search" @click="getCoordinates">
-                </div>
-                </div>
-                
-
-                
-                <div v-if="isOpen" class="menu">
-                    <div>
-                        <img src="../assets/noun-apartment-194955.png" alt="room number logo">
-                        <input type="number" name="room_number" v-model="room_number" placeholder="Numero minimo di camere ...">
+    <div class="search">
+            <div class="container" id="form">
+            <form action="" method="post">
+                <div class="button">
+                    <div class="wrap-ricerca d-flex">
+                        <div class="d-flex box-ricerca align-items-center">
+                        <input type="search" name="searchBar" placeholder="Cosa stai cercando?" v-model="queryValue" id="ricerca" @click="isOpen = true">
+                        <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true" id="icona-ricerca"/>
                     </div>
                     <div>
-                        <font-awesome-icon icon="fa-solid fa-bed" id="bed"/>        
-                        <input type="number" name="bed_number" v-model="bed_number" placeholder="Numero minimo di letti ...">
+                        <input class="btn btn-info mx-2" type="submit" value="Search" @click="getCoordinates">
                     </div>
-                    <div>
-                        <label for="range">O in alternativa puoi cambiare il range di ricerca (il valore di default è di 20Km):</label>
-                        <input type="range" name="range" min="20" max="100" step="20" v-model="radius">
                     </div>
-                    <div class="buttonClose" @click="isOpen = false">
-                        Close
+
+                    <div v-if="isOpen" class="menu">
+                        <div>
+                            <img src="../assets/noun-apartment-194955.png" alt="room number logo">
+                            <input type="number" name="room_number" v-model="room_number" placeholder="Numero minimo di camere ...">
+                        </div>
+                        <div>
+                            <font-awesome-icon icon="fa-solid fa-bed" id="bed"/>        
+                            <input type="number" name="bed_number" v-model="bed_number" placeholder="Numero minimo di letti ...">
+                        </div>
+                        <div>
+                            <label for="range">O in alternativa puoi cambiare il range di ricerca (il valore di default è di 20Km):</label>
+                            <input type="range" name="range" min="20" max="100" step="20" v-model="radius">
+                        </div>
+                        <div class="buttonClose" @click="isOpen = false">
+                            Close
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </form>
+            </form>
+        </div>
+
+        <div class="container d-flex flex-wrap">
+
+            <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
+                        :apartment="apartment" :key="index" />
+        </div>
     </div>
-
-    <div class="container d-flex flex-wrap">
-
-        <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
-                    :apartment="apartment" :key="index" />
-    </div>
+    
 
 </template>
 
 <style lang="scss" scoped>
+.search{
+    padding-top: 10vh;
+    height: 100vh;
+}
 #form {
 
     background-image: url('../assets/dream.png');
@@ -149,7 +153,7 @@ export default {
 
         .menu {
 
-            background-color: #D1D1D1;
+            background-color: rgba($color: #D1D1D1, $alpha: 0.9);
             height: 200px;
             width: 400px;
             position: absolute;
