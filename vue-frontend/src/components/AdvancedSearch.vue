@@ -126,16 +126,18 @@ export default {
 .search{
     padding-top: 10vh;
     height: 100vh;
+    background-image: url('../assets/searchbg.png');
+    position: relative;
 }
 #form {
 
-    background-image: url('../assets/dream.png');
-    background-size: cover;
-    background-position-y: 25%;
+    // background-image: url('../assets/dream.png');
+    // background-size: cover;
+    // background-position-y: 25%;
     padding: 8rem 3rem;
     border-radius: 15px;
     color: white;
-    position: relative;
+    // position: relative;
     margin-top: 1rem;
 
     #cerca{
@@ -150,10 +152,10 @@ export default {
             height: 200px;
             width: 400px;
             position: absolute;
+            top: 22%;
             z-index: 30;
             padding: 1rem;
             border-radius: 15px;
-            bottom: -160px;
 
             img {
                 width: 25px;
@@ -195,7 +197,7 @@ export default {
 }
 .wrap-ricerca{
     position: absolute;
-    bottom: 15%;
+    top: 15%;
     display: flex;
     align-items: center;
 }
@@ -203,10 +205,12 @@ export default {
 
     background-color: rgba($color: #000000, $alpha: 0.3);
     border-radius: 10px;
+    
     #icona-ricerca{
-        width: 50px;
+        width: 30%;
         border-radius: 50px 50px 50px ;
     }
+    
     input{
         border-radius: 10px 5px 5px 10px;
         padding: 5px;
