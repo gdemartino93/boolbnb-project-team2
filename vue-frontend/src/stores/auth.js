@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-export const useAuthStore = defineStore("auth",{
+export const useAuthStore = defineStore("auth", {
     // nello state si ineriscono le variabili
     state: () => ({
         authUser: null,
@@ -9,7 +9,9 @@ export const useAuthStore = defineStore("auth",{
         authStatus: null, //stato dell'email inviata per il cambio password
         userApartments: [],
         aptMsg: [],
-        messages: []
+        messages: [],
+        aptMsg: [],
+        // messages: []
     }),
     // nei getters si calcola il valore derivante dallo stato dell'applicazione per non ripetre codice.
     getters: {
@@ -19,14 +21,14 @@ export const useAuthStore = defineStore("auth",{
         apartments: (state) => state.userApartments
     },
     // qui ci vanno le funzioni tra cui le chiamate API
-    actions:{
+    actions: {
         // funzione per ottenere il token
-        async getToken(){
+        async getToken() {
             await axios.get('/sanctum/csrf-cookie');
         },
         // otteniamo le informazioni dell'user
         // gestiamo con il trycatch per evitare di far crashare l'applicazione quando l'utente non è loggato.
-        async getUser(){
+        async getUser() {
             try {
                 await this.getToken();
                 const response = await axios.get('/api/user');
@@ -47,74 +49,78 @@ export const useAuthStore = defineStore("auth",{
                     email: data.email,
                     password: data.password,
                 });
-            this.router.push("/")    
+                this.router.push("/")
             } catch (error) {
-                if(error.response.status === 422){
+                if (error.response.status === 422) {
                     this.authErrors = error.response.data.errors
                 }
             }
-          },
+        },
         //   gestione registrazione
         async handleRegister(data) {
             this.authErrors = [];
             await this.getToken();
             // usiamo trycatch per la gestione degli errori ed evitare crash dell'applicazione e gestione degli errori
             try {
-                await axios.post('/register',{
-                    name : data.name,
-                    lastname : data.lastname,
-                    email : data.email,
-                    birthdate : data.birthdate,
-                    password : data.password,
-                    password_confirmation : data.password_confirmation
-                });        
-                this.router.push('/dashboard')    
+                await axios.post('/register', {
+                    name: data.name,
+                    lastname: data.lastname,
+                    email: data.email,
+                    birthdate: data.birthdate,
+                    password: data.password,
+                    password_confirmation: data.password_confirmation
+                });
+                this.router.push('/dashboard')
             } catch (error) {
-                if ( error.response.status === 422){
+                if (error.response.status === 422) {
                     this.authErrors = error.response.data.errors
                 }
             }
-          },
+        },
         // gestiamo il logout
-        async handleLogout(){
+        async handleLogout() {
             await axios.post('/logout');
             this.authUser = null;
-            this.router.push("/")        
+            this.router.push("/")
 
         },
-        async handleForgotPassword(emailUser){
+        async handleForgotPassword(emailUser) {
             this.authErrors = [];
             this.getToken();
             try {
-                const response = await axios.post("/forgot-password",{
-                    email : emailUser
+                const response = await axios.post("/forgot-password", {
+                    email: emailUser
                 })
                 this.authStatus = response.data.status;
             } catch (error) {
-                if ( error.response.status === 422){
+                if (error.response.status === 422) {
                     this.authErrors = error.response.data.errors;
                 }
             }
         },
-        async handleResetPassword(resetData){
+        async handleResetPassword(resetData) {
             this.authErrors = [];
             try {
                 const response = await axios.post('/reset-password', resetData);
                 this.authStatus = response.data.errors;
-                this.router.push("/login")        
+                this.router.push("/login")
             } catch (error) {
-                if (error.response.status === 422){
+                if (error.response.status === 422) {
                     this.authErrors = error.response.data.errors;
                 }
             }
         },
-        async getUsersWithApt(){
+        async getUsersWithApt() {
 
             const response = await axios.get('/api/dashboard');
             this.userApartments = response.data;
         },
 
+        async getAptWithMsgs() {
 
-
+            const response = await axios.get('api/inbox');
+            this.aptMsg = response.data.data;
+            // this.messages = response.data.messages;
+        }
     }
 })
