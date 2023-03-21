@@ -96,7 +96,7 @@ export default {
     width: 90%;
 }
 .dashboard {
-  padding-top: 10vh;
+  padding-top: 9vh;
   background-color: #bbc6c7;
   height: 100vh;
 }

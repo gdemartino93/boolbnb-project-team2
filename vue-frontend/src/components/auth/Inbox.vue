@@ -31,7 +31,7 @@ export default{
     
             <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment"  v-if="authStore.messages.length > 0"/>
             <div v-else class="d-flex justify-center">
-                <h3>Non hai messaggi</h3>
+                <span>Non hai messaggi</span>
             </div>
         </div>
     </div>
