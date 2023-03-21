@@ -40,7 +40,7 @@ export default {
 </script>
 
 <template>
-    <div class="container dashboard d-flex">
+    <div class="dashboard d-flex">
         <div class="left col-6">sx</div>
         <div class="right col-6">dx</div>
     </div>
@@ -48,8 +48,12 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard {
-    padding-top: 12vh;
+    padding-top: 10vh;
     background-color: #bbc6c7;
     height: 100vh;
+    // padding-bottom: ;
+}
+.right{
+    background-image: url('/dash-img.png');
 }
 </style>
