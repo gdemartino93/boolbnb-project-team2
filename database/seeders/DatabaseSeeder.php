@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             AdditionalServiceSeeder::class,
-            // SponsorshipSeeder::class,
-            // ApartmentSeeder::class, 
-            // MessageSeeder::class,
-            // ViewSeeder::class,
+            SponsorshipSeeder::class,
+            ApartmentSeeder::class, 
+            MessageSeeder::class,
+            ViewSeeder::class,
 
 
 
