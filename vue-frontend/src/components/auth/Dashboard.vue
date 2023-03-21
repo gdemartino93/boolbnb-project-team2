@@ -41,51 +41,90 @@ export default {
 
 <template>
     <div class="dashboard d-flex">
-        <div class="left col-7">
-            <div class="container">
-                <div class="box">
-                    <div class="box-header text-center my-4">
-                        <h2>Lista Appartamenti</h2>
-                    </div>
-                    <div class="box-body">
-                        <ul v-if="authStore.apartments" class="apartments-list">
-                            <li v-for="apartment in authStore.apartments" class="apartment-item">
-                                <span class="apartment-title">{{ apartment.title }}</span>
-                                <button
-                                    class="delete-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
-                                    @click="deleteApartment(apartment)">Elimina</button>
-                                <router-link class="edit-link" :to="{ name: 'editApt', params: { id: `${apartment.id}` } }">
-                                    <button
-                                        class="edit-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2">Modifica</button>
-                                </router-link>
-                                <button
-                                    class="visible-button btn btn-primary btn-block text-uppercase rounded-pill shadow-sm p-2"
-                                    @click="toggleVisibility(apartment.id)">
-                                    {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
-                                </button>
-                                <Map :address="apartment.address" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="left col-7">
+        <div class="container">
+          <div class="box">
+            <div class="box-header text-center my-4">
+              <h2>Lista Appartamenti</h2>
             </div>
+            <div class="box-body">
+                <RouterLink :to="{ name: 'addApt' }">
+                    <a href="#" class="btn btn-primary text-uppercase rounded-pill shadow-sm d-inline-block">Aggiungi appartamento</a>
+                </RouterLink>
+              <ul v-if="authStore.apartments" class="apartments-list">
+                <li v-for="apartment in authStore.apartments" class="apartment-item">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <span class="apartment-title">{{ apartment.title }}</span>
+                    <div class="d-flex align-items-center">
+                      <button
+                        class="delete-button btn btn-primary text-uppercase rounded-pill shadow-sm p-1 mx-1"
+                        @click="deleteApartment(apartment)"
+                      >
+                        Elimina
+                      </button>
+                      <router-link
+                        class="edit-link"
+                        :to="{ name: 'editApt', params: { id: `${apartment.id}` } }"
+                      >
+                        <button
+                          class="edit-button btn btn-primary text-uppercase rounded-pill shadow-sm p-1 mx-1"
+                        >
+                          Modifica
+                        </button>
+                      </router-link>
+                      <button
+                        class="visible-button btn btn-primary text-uppercase rounded-pill shadow-sm p-1 mx-1"
+                        @click="toggleVisibility(apartment.id)"
+                      >
+                        {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
+                      </button>
+                    </div>
+                  </div>
+                  <Map :address="apartment.address" />
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="right col-5"></div>
+      </div>
+      <div class="right col-5"></div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.container{
+    width: 90%;
+}
 .dashboard {
-    padding-top: 10vh;
-    background-color: #bbc6c7;
-    height: 100vh;
+  padding-top: 10vh;
+  background-color: #bbc6c7;
+  height: 100vh;
 }
-.right{
-    background-image: url('/dash-img.png');
+.right {
+  background-image: url('/dash-img.png');
 }
-.box-body{
-    height: 75vh;
-    background-color: beige;
-    overflow: auto;
+
+.box-body {
+  height: 75vh;
+  overflow: auto;
+}
+.apartment-item {
+  border-bottom: 1px solid #faf5f5;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+.delete-button,
+.edit-button,
+.visible-button {
+  font-size: 0.8rem;
+}
+
+.btn{
+    background-color: #ff3d00;
+    display: flex;
+    align-content: center;
+    font-size: 11px;
+    padding: 5px !important;
+    margin-bottom: 10px;
 }
 </style>
