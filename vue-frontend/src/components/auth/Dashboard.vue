@@ -1,12 +1,12 @@
 <script>
 import { useAuthStore } from '../../stores/auth';
 import axios from 'axios';
-import { ref } from 'vue';
 
 export default {
     data() {
         return {
             authStore: useAuthStore(),
+            isShow: true
 
         }
     },
@@ -25,13 +25,14 @@ export default {
                 })
                 .catch(err => console.log);
         },
-        async toggleVisibility(id) {
-            try {
-                await axios.get(`/api/v1/apartment/${id}/visibility`)
-            } catch (error) {
-                console.log(error)
-            }
-        }
+        async toggleVisibility(index, id) {
+              try {
+                await axios.get(`/api/v1/apartment/${id}/visibility`);
+                this.authStore.apartments[index].isShow = !this.authStore.apartments[index].isShow;
+              } catch (error) {
+                console.log(error);
+              }
+          }
     },
     mounted() {
         this.authStore.getUsersWithApt();
@@ -41,7 +42,7 @@ export default {
 
 <template>
     <div class="dashboard d-flex">
-      <div class="left col-7">
+      <div class="left col- col-lg-7">
         <div class="container">
           <div class="box">
             <div class="box-header text-center my-4">
@@ -52,7 +53,7 @@ export default {
                     <a href="#" class="btn btn-primary text-uppercase rounded-pill shadow-sm d-inline-block">Aggiungi appartamento</a>
                 </RouterLink>
               <ul v-if="authStore.apartments" class="apartments-list">
-                <li v-for="apartment in authStore.apartments" class="apartment-item">
+                <li v-for="(apartment,index) in authStore.apartments" class="apartment-item">
                   <div class="d-flex align-items-center justify-content-between">
                     <span class="apartment-title">{{ apartment.title }}</span>
                     <div class="d-flex align-items-center">
@@ -74,9 +75,9 @@ export default {
                       </router-link>
                       <button
                         class="visible-button btn btn-primary text-uppercase rounded-pill shadow-sm p-1 mx-1"
-                        @click="toggleVisibility(apartment.id)"
+                         @click="toggleVisibility(index, apartment.id)"
                       >
-                        {{ apartment.visible ? 'Nascondi' : 'Mostra' }}
+                      {{ apartment.isShow ? 'Nascondi' : 'Mostra' }}
                       </button>
                     </div>
                   </div>
@@ -87,7 +88,7 @@ export default {
           </div>
         </div>
       </div>
-      <div class="right col-5"></div>
+      <div class="right col-5 d-none d-md-block"></div>
     </div>
 </template>
 
