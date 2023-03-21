@@ -86,7 +86,7 @@ export default {
                         <font-awesome-icon icon="fa-solid fa-filter" @click="isOpen = true" id="icona-ricerca"/>
                     </div>
                     <div>
-                        <input class="btn btn-info mx-2" type="submit" value="Cerca" @click="getCoordinates" id="cerca">
+                        <input class="btn mx-2" type="submit" value="Cerca" @click="getCoordinates" id="cerca">
                     </div>
                     </div>
 
@@ -112,9 +112,9 @@ export default {
             </form>
         </div>
 
-        <div class="container d-flex flex-wrap">
+        <div class="slider container d-flex gap-2">
 
-            <AptCard class="my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
+            <AptCard class="searchCard my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
                         :apartment="apartment" :key="index" />
         </div>
     </div>
@@ -126,20 +126,43 @@ export default {
 .search{
     padding-top: 10vh;
     height: 100vh;
+    background-image: url('../assets/bg.png');
+    position: relative;
+
+    .slider {
+
+        position: absolute;
+        bottom: 10%;
+        width: 1000px;
+        overflow-x: auto;
+
+        .searchCard {
+
+            width: calc(100% / 3);
+        }
+    }
 }
 #form {
 
-    background-image: url('../assets/dream.png');
-    background-size: cover;
-    background-position-y: 25%;
     padding: 8rem 3rem;
     border-radius: 15px;
     color: white;
-    position: relative;
     margin-top: 1rem;
 
     #cerca{
         border-radius: 10px;
+        border: 3px solid #ff3d00;
+        padding: .5rem 1rem;
+        color: #ff3d00;
+        font-weight: 900;
+        font-size: 10px;
+        transition: .4s ease-in-out;
+
+        &:hover {
+
+            background-color: #ff3d00;
+            color: #fff;
+        }
     }
 
     .button {
@@ -150,10 +173,11 @@ export default {
             height: 200px;
             width: 400px;
             position: absolute;
+            top: 22%;
             z-index: 30;
             padding: 1rem;
             border-radius: 15px;
-            bottom: -160px;
+            cursor: pointer;
 
             img {
                 width: 25px;
@@ -178,7 +202,7 @@ export default {
 
             .buttonClose{
 
-                background-color: #FF6E31;
+                background-color: #ff3d00;
                 border-radius: 15px;
                 width: fit-content;
                 padding: .3rem 1rem;
@@ -195,21 +219,22 @@ export default {
 }
 .wrap-ricerca{
     position: absolute;
-    bottom: 15%;
+    top: 15%;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .box-ricerca{
 
-    background-color: rgba($color: #000000, $alpha: 0.3);
+    background-color:#ff3d00;
     border-radius: 10px;
-    #icona-ricerca{
-        width: 50px;
-        border-radius: 50px 50px 50px ;
-    }
+    width: 400px;
+    
     input{
-        border-radius: 10px 5px 5px 10px;
+        border-radius: 10px 0 0 10px;
         padding: 5px;
+        width: 90%;
+        margin-right: 2.5%;
     }
 }
 
