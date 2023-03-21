@@ -43,7 +43,7 @@ export default {
         </span>
       </div>
       <!-- capitalizza il titolo -->
-      <h2 class="card-title text-center fs-5">{{ apartment.address }}</h2>
+      <h2 class="card-title text-center fs-5">{{ apartment.title }}</h2>
       <div class="my-card-body bg-white p-3">
 
         <!-- <p class="card-text">{{ apartment.description }}</p> -->
