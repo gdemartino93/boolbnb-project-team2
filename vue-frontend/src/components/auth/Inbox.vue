@@ -29,7 +29,10 @@ export default{
         
         <div class="container d-flex flex-wrap gap-5 mt-5">
     
-            <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment" />
+            <Messages v-for="apartment in authStore.aptMsg" :apartment="apartment"  v-if="authStore.messages.length > 0"/>
+            <div v-else class="d-flex justify-center">
+                <h3>Non hai messaggi</h3>
+            </div>
         </div>
     </div>
 
