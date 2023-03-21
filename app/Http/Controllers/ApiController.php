@@ -331,8 +331,6 @@ class ApiController extends Controller
 
     }
 
-
-
     public function inboxList(){
 
         // Prendiamo il riferimento all'utente tramite Auth e id
@@ -346,6 +344,17 @@ class ApiController extends Controller
 
             'message' => 'Success',
             'data' => $apartments
+        ]);
+    }
+
+    public function singleApWithMsg($id)
+    {
+
+        $apartment = Apartment::with('messages')->find($id);
+
+        return response()->json([
+            'success' => true,
+            'apartment' => $apartment
         ]);
     }
 
