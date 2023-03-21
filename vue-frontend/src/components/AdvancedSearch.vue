@@ -19,6 +19,7 @@ export default {
             room_number: '',
             bed_number: '',
             isOpen: false,
+            isFilled: false
         }
     },
     methods: {
@@ -28,6 +29,7 @@ export default {
             // Metodo da spada smart per aggirare le CORS policy
             e.preventDefault();
 
+            this.isFilled = true;
             var theUrl = `${this.store.geolocationUrl}` + this.queryValue + `.json?key=${this.store.apiKey}`;
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", theUrl, false);
@@ -112,6 +114,8 @@ export default {
             </form>
         </div>
 
+        <img v-if="isFilled" id="phrase" src="../assets/dreams-here.png" alt="">
+
         <div class="slider container d-flex gap-2">
 
             <AptCard class="searchCard my-4 col-12 col-sm-6 col-md-4 col-lg-3" v-for="(apartment, index) in apartments"
@@ -129,10 +133,18 @@ export default {
     background-image: url('../assets/bg.png');
     position: relative;
 
+    #phrase {
+
+        width: 20%;
+        position: absolute;
+        left: 45%;
+        top: 9%;
+    }
+
     .slider {
 
         position: absolute;
-        bottom: 10%;
+        bottom: 5%;
         width: 1000px;
         overflow-x: auto;
 
