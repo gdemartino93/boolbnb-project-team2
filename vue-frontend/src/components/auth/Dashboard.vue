@@ -107,6 +107,9 @@ export default {
 .box-body {
   height: 75vh;
   overflow: auto;
+  a{
+    text-decoration: none;
+  }
 }
 .apartment-item {
   border-bottom: 1px solid #faf5f5;
