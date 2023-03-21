@@ -41,7 +41,7 @@ export default {
 
 <template>
     <div class="dashboard d-flex">
-      <div class="left col-7">
+      <div class="left col-12 col-lg-7">
         <div class="container">
           <div class="box">
             <div class="box-header text-center my-4">
@@ -87,7 +87,7 @@ export default {
           </div>
         </div>
       </div>
-      <div class="right col-5"></div>
+      <div class="right col-5 d-none d-md-block"></div>
     </div>
 </template>
 
