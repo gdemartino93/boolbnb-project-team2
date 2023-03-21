@@ -54,20 +54,20 @@ export default {
                 {{ apartment.title }}
                 <span v-if="apartment.messages.length > 0" class="badge bg-danger rounded-pill">{{ apartment.messages.length }}</span>
             </a>
+            <span class="fs-3 text-center my-3" v-if="authStore.aptMsg.length == 0">Non ci sono nuovi messaggi</span>
             </div>
         </div>
-        <div class="col-md-8">
-            <div id="messageContent" v-if="isOpen">
-            <div v-for="(message, index) in apartment.messages" :key="index" class="singleMsg">
-                <div class="header bot fs-6 fw-bold p-2">
-                Il tuo messaggio da <span style="color: #ff3d00">{{ message.name }}</span>
+            <div class="col-md-8">
+                <div id="messageContent" v-if="isOpen">
+                    <div v-for="(message, index) in apartment.messages" :key="index" class="singleMsg">
+                        <div class="header bot fs-6 fw-bold p-2">
+                        Il tuo messaggio da <span style="color: #ff3d00">{{ message.name }}</span>
+                        </div>
+                        <div class="text p-2">
+                        <p>{{ message.text }}</p>
+                    </div>
                 </div>
-                <div class="text p-2">
-                <p>{{ message.text }}</p>
-
-                </div>
-                </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>
