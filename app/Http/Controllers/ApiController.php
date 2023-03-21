@@ -197,11 +197,6 @@ class ApiController extends Controller
 
         $apartmentList = Apartment::with(['user', 'additionalServices']);
 
-        // if($request -> keyword){
-        //     // this will allow user to search for a specific apartment by his title
-        //     $apartmentQuery -> where('title', 'LIKE', '%'.$request->keyword.'%');
-        // }
-
         $apartments = $apartmentList -> get();
 
         return response() -> json([
