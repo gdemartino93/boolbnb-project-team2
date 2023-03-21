@@ -131,4 +131,7 @@ export default {
     padding: 5px !important;
     margin-bottom: 10px;
 }
+ul{
+  list-style: none;
+}
 </style>
