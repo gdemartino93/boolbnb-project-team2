@@ -56,18 +56,6 @@
                                     </RouterLink>
                                 </li>
                                 <li>
-                                    <a href="#" class="dropdown-item link">
-
-                                        Account
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item link">
-
-                                        Assistenza
-                                    </a>
-                                </li>
-                                <li>
                                     <button class="dropdown-item" @click="authStore.handleLogout">Logout</button>
                                 </li>
                             </ul>
@@ -127,7 +115,7 @@ nav {
 
         .dropdown-menu {
 
-            background-color: transparent;
+            background-color: rgba($color: #000000, $alpha: 0.4);
             border: 2px solid #fff;
 
             li {
