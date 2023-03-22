@@ -92,10 +92,6 @@ export default {
 </template>
 
 <style>
-body {
-  overflow: hidden;
-}
-
 
 .wrapper {
   display: flex;
